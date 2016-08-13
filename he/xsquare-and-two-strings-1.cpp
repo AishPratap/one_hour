@@ -1,11 +1,4 @@
-#include <stdio.h>
-#include <ctype.h>
-#include <string.h>
-#include <math.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include <vector>
-#include <algorithm>
+#include <bits/stdc++.h>
 
 #define s(n) scanf("%d",&n)
 #define sc(n) scanf("%c",&n)
@@ -31,15 +24,10 @@
 #define INDEX(arr,ind)  (lower_bound(all(arr),ind)-arr.begin())
 #define ll long long
 
-#define ll long long
-
 using namespace std;
 
 int main() {
-	freopen("_in","r",stdin);
-    freopen("_out","w",stdout);
-
-
+	vector<int> a;
 
 	return 0;
 }
