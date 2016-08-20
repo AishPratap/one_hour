@@ -1,4 +1,4 @@
 # Dojo
-Time to spend in boring weekends :(
+Time to kill on some boring days -_-
 <br/>
-Status: https://1drv.ms/x/s!AroJ4lDoyX-zer0Xdd91W96Y6Ak
+Status for uva/cp3: https://1drv.ms/x/s!AroJ4lDoyX-zer0Xdd91W96Y6Ak
