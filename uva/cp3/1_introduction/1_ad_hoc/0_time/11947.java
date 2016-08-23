@@ -9,7 +9,7 @@ import java.util.*;
  */
 public class Main {
 
-    private static final boolean LOCAL = true;
+    private static final boolean LOCAL = false;
     private static BufferedReader in;
     private static StringTokenizer token;
     private static PrintWriter out;
@@ -31,32 +31,119 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         Task.solve();
-        
         out.close();
         in.close();
     }
 
+    private static void setDate(Calendar cur, int y, int m, int d) {
+        cur.set(y, m, d, 0, 0, 0);
+    }
+
     static class Task {
+
         static int t;
-        static String line;
-        static int d, m, y;
+        static String curline;
+
+        static int[] startDay = {21, 20, 21, 21, 22, 22, 23, 22, 24, 24, 23, 23};
+        static int[] endDay = {19, 20, 20, 21, 21, 22, 21, 23, 23, 22, 22, 20};
+        static String signs[] = {"aquarius",
+            "pisces",
+            "aries",
+            "taurus",
+            "gemini",
+            "cancer",
+            "leo",
+            "virgo",
+            "libra",
+            "scorpio",
+            "sagittarius",
+            "capricorn"};
+
         static void solve() throws Exception {
-//            System.out.println("DEBUG: begin");
             t = Next.Int();
-            
-            while(t-- > 0) {
-//                System.out.println("DEBUG: " + t);
-                line = Next.Line();
-                m = Integer.parseInt(line.substring(0, 2));
-                d = Integer.parseInt(line.substring(2, 4));
-                y = Integer.parseInt(line.substring(4, 8));
-                Calendar calendar = Calendar.getInstance();
-                calendar.set(y, m - 1, d);
-                calendar.add(Calendar.WEEK_OF_YEAR, 40);
+            for (int i = 1; i <= t; ++i) {
+                curline = Next.Line();
+                int month = Integer.parseInt(curline.substring(0, 2)) - 1;
+                int day = Integer.parseInt(curline.substring(2, 4));
+                int year = Integer.parseInt(curline.substring(4, 8));
                 
-                out.println((1 + calendar.get(Calendar.MONTH)) + "/" +
-                        calendar.get(Calendar.DATE) + "/" + 
-                        calendar.get(Calendar.YEAR));
+                Calendar date = Calendar.getInstance();
+                date.set(year, month, day);
+                date.add(Calendar.WEEK_OF_MONTH, 40);
+                printCal(date, i);
+            }
+        }
+
+        private static void printCal(Calendar date, int ks) {
+            out.printf("%d %02d/%02d/%d %s\n", ks, date.get(Calendar.MONTH) + 1,
+                    date.get(Calendar.DATE),
+                    date.get(Calendar.YEAR),
+                    getSign(date));
+        }
+
+        private static String getSign(Calendar date) {
+            Calendar start = Calendar.getInstance();
+            Calendar end = Calendar.getInstance();
+            
+            int startYear = date.get(Calendar.YEAR);
+            int endYear = startYear;
+            
+            for (int i = 0; i < 11; ++i) {
+                if (i == 11) {
+                    endYear += 1;
+                }
+                start.set(startYear, i, startDay[i]);
+                end.set(endYear, (i + 1) % 12, endDay[i]);
+
+                if (inBetween(date, start, end)) {
+                    return signs[i];
+                }
+            }
+            
+            return signs[11];
+        }
+
+        private static boolean inBetween(Calendar date, Calendar start, Calendar end) {
+            return isBefore(date, end) && isAfter(date, start);
+        }
+
+        private static boolean isBefore(Calendar date, Calendar end) {
+            int dateYear = date.get(Calendar.YEAR);
+            int endYear = end.get(Calendar.YEAR);
+            
+            if (dateYear < endYear) {
+                return true;
+            } else if (dateYear == endYear) {
+                int dateMonth = date.get(Calendar.MONTH);
+                int endMonth = end.get(Calendar.MONTH);
+                if (dateMonth < endMonth) {
+                    return true;
+                } else if (dateMonth == endMonth) {
+                    return date.get(Calendar.DATE) <= end.get(Calendar.DATE);
+                }
+                return false;
+            } else {
+                return false;
+            }
+        }
+
+        private static boolean isAfter(Calendar date, Calendar start) {
+            int dateYear = date.get(Calendar.YEAR);
+            int endYear = start.get(Calendar.YEAR);
+            
+            if (dateYear > endYear) {
+                return true;
+            } else if (dateYear == endYear) {
+                int dateMonth = date.get(Calendar.MONTH);
+                int endMonth = start.get(Calendar.MONTH);
+                if (dateMonth > endMonth) {
+                    return true;
+                 } else if (dateMonth == endMonth) {
+                    return date.get(Calendar.DATE) >= start.get(Calendar.DATE);
+                }
+                return false;
+            } else {
+                return false;
             }
         }
     }

@@ -18,6 +18,8 @@
 #define strupper(data) transform(data.begin(), data.end(), data.begin(), ::toupper)
 #define umap unordered_map
 #define pb(i) push_back(i)
+#define is_pow2(a) ((a & (a - 1)) == 0)
+#define between(a, b, c) (a >= b && a <= c)
 
 using namespace std;
 
