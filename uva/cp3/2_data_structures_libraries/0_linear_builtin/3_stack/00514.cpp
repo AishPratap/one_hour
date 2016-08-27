@@ -1,6 +1,4 @@
-<snippet>
-	<description>compro</description>
-    <content><![CDATA[#include <bits/stdc++.h>
+#include <bits/stdc++.h>
 
 #define forall(i,a,b) for(int i=a;i<b;i++)
 #define foreach(v, c) for( typeof( (c).begin()) v = (c).begin();  v != (c).end(); ++v)
@@ -24,13 +22,53 @@
 
 using namespace std;
 
+int n, a;
+
+bool is_possible(int train[], int n) {
+
+	// forall(i, 0, n) {
+	// 	cout << train[i] << " ";
+	// }
+	// cout << endl;
+
+
+	stack<int> station;
+	int head = 0;
+	forall(i, 1, n + 1) {
+		station.push(i);
+		while(!station.empty() && station.top() == train[head]) {
+			station.pop();
+			head += 1;
+		}
+	}
+
+	return station.empty();
+}
+
 int main() {
 	std::ios::sync_with_stdio(false);
-	freopen("_in","r",stdin);
-    freopen("_out","w",stdout);
+	// freopen("_in","r",stdin);
+    // freopen("_out","w",stdout);
 
+    while(cin >> n) {
+    	if (!n) {
+    		break;
+    		// end
+    	}
+
+    	int train[n];
+    	while(1) {
+    		cin >> a;
+    		if (!a) {
+    			break;
+    		}
+    		train[0] = a;
+    		forall(i, 1, n) {
+    			cin >> train[i];
+    		}
+            cout << (is_possible(train, n) ? "Yes" : "No") << endl;
+    	}
+        cout << endl;
+    }
 	return 0;
-}]]></content>
-    <tabTrigger>def</tabTrigger>
-    <scope>source.c, source.c++, source.objc, source.objc++</scope>
-</snippet>
+}

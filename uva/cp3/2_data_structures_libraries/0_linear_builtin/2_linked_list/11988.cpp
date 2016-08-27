@@ -1,6 +1,4 @@
-<snippet>
-	<description>compro</description>
-    <content><![CDATA[#include <bits/stdc++.h>
+#include <bits/stdc++.h>
 
 #define forall(i,a,b) for(int i=a;i<b;i++)
 #define foreach(v, c) for( typeof( (c).begin()) v = (c).begin();  v != (c).end(); ++v)
@@ -24,13 +22,55 @@
 
 using namespace std;
 
+string str;
+
+string solve(const string& str) {
+	string result = "";
+	string buffer = "";
+	deque<string> d;
+
+	bool right = true;
+
+	forall(i, 0, str.size()) {
+		char c = str[i];
+		if (c == '[' || c == ']') {
+			if (right) {
+				d.pb(buffer);
+			} else {
+				d.pf(buffer);
+			}
+			buffer.clear();
+			if (c == '[') {
+				right = false;
+			} else {
+				right = true;
+			}
+		} else {
+			buffer += c;
+		}
+	}
+
+	if (right) {
+		d.pb(buffer);
+	} else {
+		d.pf(buffer);
+	}
+
+	for(deque<string>::iterator it = d.begin(); it != d.end(); ++it) {
+		result += *it;
+	}
+
+	return result;
+}
+
 int main() {
 	std::ios::sync_with_stdio(false);
-	freopen("_in","r",stdin);
-    freopen("_out","w",stdout);
+	// freopen("_in", "r", stdin);
+	// freopen("_out", "w", stdout);
+
+	while (cin >> str) {
+		cout << solve(str) << endl;
+	}
 
 	return 0;
-}]]></content>
-    <tabTrigger>def</tabTrigger>
-    <scope>source.c, source.c++, source.objc, source.objc++</scope>
-</snippet>
+}
