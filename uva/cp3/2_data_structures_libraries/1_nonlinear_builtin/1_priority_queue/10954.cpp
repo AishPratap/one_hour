@@ -1,6 +1,4 @@
-<snippet>
-	<description>compro</description>
-    <content><![CDATA[#include <bits/stdc++.h>
+#include <bits/stdc++.h>
 
 #define forall(i,a,b) for(int i=a;i<b;i++)
 #define foreach(v, c) for( typeof( (c).begin()) v = (c).begin();  v != (c).end(); ++v)
@@ -25,13 +23,37 @@
 
 using namespace std;
 
+int t, a;
+
 int main() {
 	std::ios::sync_with_stdio(false);
-	freopen("_in","r",stdin);
-    freopen("_out","w",stdout);
+	// freopen("_in","r",stdin);
+    // freopen("_out","w",stdout);
+
+    while(cin >> t) {
+    	if (!t) {
+    		break;
+    	}
+    	pq<int, vector<int>, greater<int> > q;
+    	while(t--) {
+    		cin >> a;
+    		// cout << "DEBUG: a " << a << endl;
+    		q.push(a);
+    	}
+    	int price = 0;
+
+    	while(q.size() >= 2) {
+    		int top1 = q.top();
+    		q.pop();
+    		int top2 = q.top();
+    		q.pop();
+    		price += (top1 + top2);
+    		q.push(top1 + top2);
+    		// cout << "DEBUG: top1 top2: " << top1 << " " << top2 << endl;
+    	}
+
+    	cout << price << endl;
+    }
 
 	return 0;
-}]]></content>
-    <tabTrigger>def</tabTrigger>
-    <scope>source.c, source.c++, source.objc, source.objc++</scope>
-</snippet>
+}
