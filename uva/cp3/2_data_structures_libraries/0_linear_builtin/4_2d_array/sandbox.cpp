@@ -1,6 +1,4 @@
-<snippet>
-	<description>compro</description>
-    <content><![CDATA[#include <bits/stdc++.h>
+#include <bits/stdc++.h>
 
 #define forall(i,a,b) for(int i=a;i<b;i++)
 #define foreach(v, c) for( typeof( (c).begin()) v = (c).begin();  v != (c).end(); ++v)
@@ -26,13 +24,24 @@
 
 using namespace std;
 
+void change(v(int)& v) {
+	v[0] = 69696;
+}
+
 int main() {
 	std::ios::sync_with_stdio(false);
-	freopen("_in","r",stdin);
-    freopen("_out","w",stdout);
+
+	v(int) v;
+	v.pb(1);
+	v.pb(2);
+	v.pb(3);
+	v.pb(4);
+
+	change(v);
+
+	forall(i, 0, 4) {
+		cout << v[i] << endl;
+	}
 
 	return 0;
-}]]></content>
-    <tabTrigger>def</tabTrigger>
-    <scope>source.c, source.c++, source.objc, source.objc++</scope>
-</snippet>
+}

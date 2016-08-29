@@ -1,6 +1,4 @@
-<snippet>
-	<description>compro</description>
-    <content><![CDATA[#include <bits/stdc++.h>
+#include <bits/stdc++.h>
 
 #define forall(i,a,b) for(int i=a;i<b;i++)
 #define foreach(v, c) for( typeof( (c).begin()) v = (c).begin();  v != (c).end(); ++v)
@@ -29,10 +27,14 @@ using namespace std;
 int main() {
 	std::ios::sync_with_stdio(false);
 	freopen("_in","r",stdin);
-    freopen("_out","w",stdout);
+    // freopen("_out","w",stdout);
+ 	
+	umap<int, int> m;
+	m[1] += 1;
+	m[1] -= 1;
+	for(umap<int,int>::iterator it = m.begin(); it != m.end(); ++it) {
+		cout << it->first << " " << it->second;
+	}
 
 	return 0;
-}]]></content>
-    <tabTrigger>def</tabTrigger>
-    <scope>source.c, source.c++, source.objc, source.objc++</scope>
-</snippet>
+}

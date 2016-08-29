@@ -1,6 +1,4 @@
-<snippet>
-	<description>compro</description>
-    <content><![CDATA[#include <bits/stdc++.h>
+#include <bits/stdc++.h>
 
 #define forall(i,a,b) for(int i=a;i<b;i++)
 #define foreach(v, c) for( typeof( (c).begin()) v = (c).begin();  v != (c).end(); ++v)
@@ -26,13 +24,16 @@
 
 using namespace std;
 
+int a, b, c;
+string str;
+
 int main() {
 	std::ios::sync_with_stdio(false);
-	freopen("_in","r",stdin);
-    freopen("_out","w",stdout);
+	// freopen("_in","r",stdin);
+    // freopen("_out","w",stdout);
+
+    cin >> a >> b >> c >> str;
+    cout << (a + b + c) << " " << str << endl;
 
 	return 0;
-}]]></content>
-    <tabTrigger>def</tabTrigger>
-    <scope>source.c, source.c++, source.objc, source.objc++</scope>
-</snippet>
+}

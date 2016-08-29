@@ -1,6 +1,4 @@
-<snippet>
-	<description>compro</description>
-    <content><![CDATA[#include <bits/stdc++.h>
+#include <bits/stdc++.h>
 
 #define forall(i,a,b) for(int i=a;i<b;i++)
 #define foreach(v, c) for( typeof( (c).begin()) v = (c).begin();  v != (c).end(); ++v)
@@ -26,13 +24,48 @@
 
 using namespace std;
 
+int n, a, x;
+
+long f(int num, int required, map<int, int> occ) {
+	// cout << "-------" << endl;
+	// cout << "DEBUG: " << num << " " << required << endl;
+	// for(map<int,int>::iterator it = occ.begin(); it != occ.end(); ++it) {
+	// 	cout << it->first << " " << it->second << endl;
+	// }
+
+	int total = 0;
+	if (num <= 1) {
+		// cout << "DEBUG:1: " << occ[required] << endl;
+		return occ[required];
+	} else {
+		for(map<int, int>::iterator it = occ.begin(); it != occ.end(); ++it) {
+			while(it->second > 0) {
+				it->second -= 1;
+				total += f(num - 1, required - it->first, occ);
+			}
+		}
+		return total;
+	}
+}
+
 int main() {
 	std::ios::sync_with_stdio(false);
-	freopen("_in","r",stdin);
-    freopen("_out","w",stdout);
+	// freopen("_in","r",stdin);
+    // freopen("_out","w",stdout);
+
+   	map<int, int> occ;
+
+    cin >> n >> a;
+    forall(i, 0, n) {
+    	cin >> x;
+    	occ[x] += 1;
+    }
+
+    long total = 0;
+    forall(i, 1, n + 1) {
+    	total += f(i, a * i, occ);
+    }
+    cout << total << endl;
 
 	return 0;
-}]]></content>
-    <tabTrigger>def</tabTrigger>
-    <scope>source.c, source.c++, source.objc, source.objc++</scope>
-</snippet>
+}

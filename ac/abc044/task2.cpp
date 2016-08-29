@@ -1,6 +1,4 @@
-<snippet>
-	<description>compro</description>
-    <content><![CDATA[#include <bits/stdc++.h>
+#include <bits/stdc++.h>
 
 #define forall(i,a,b) for(int i=a;i<b;i++)
 #define foreach(v, c) for( typeof( (c).begin()) v = (c).begin();  v != (c).end(); ++v)
@@ -26,13 +24,30 @@
 
 using namespace std;
 
+string str;
+
+bool is_beautiful(string& str) {
+	umap<char, int> mmap;
+	forall(i, 0, str.size()) {
+		mmap[str[i]] += 1;
+	}
+
+	for (char c = 'a'; c <= 'z'; ++c) {
+		if(mmap[c] % 2 == 1) {
+			return false;
+		}
+	}
+
+	return true;
+}
+
 int main() {
 	std::ios::sync_with_stdio(false);
-	freopen("_in","r",stdin);
-    freopen("_out","w",stdout);
+	// freopen("_in","r",stdin);
+    // freopen("_out","w",stdout);
+
+    cin >> str;
+    cout << (is_beautiful(str) ? "Yes" : "No") << endl;
 
 	return 0;
-}]]></content>
-    <tabTrigger>def</tabTrigger>
-    <scope>source.c, source.c++, source.objc, source.objc++</scope>
-</snippet>
+}

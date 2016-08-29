@@ -26,6 +26,12 @@ int main() {
 	// freopen("_in","r",stdin);
     // freopen("_out","w",stdout);
 
+	int k = 0;
+	if (k = 3) {
+		cout << "FUCK" << endl;
+	} else {
+
+	}
 	
 
 	return 0;
