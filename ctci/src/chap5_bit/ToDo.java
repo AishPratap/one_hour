@@ -29,6 +29,24 @@ public class ToDo {
     }
     
     /**
+     * Given a number, return its next smallest number that share the same bit
+     * @param num
+     * @return 
+     */
+    public int nextBitSmaller(int num) {
+        return 0;
+    }
+     
+    /**
+     * Same as above
+     * @param num
+     * @return 
+     */
+    public int nextBitLarget(int num) {
+        return 0;
+    }
+    
+    /**
      * Given two integers, return the number of bits to convert a to b
      * Example: 31, 14 -> 2
      * @param a
@@ -51,4 +69,17 @@ public class ToDo {
         
         return 0;
     }
+    
+    /**
+     * Giving an array of integers from 0 to n
+     * There is only one method fetch(i, j): get bit i from array[j]
+     * Find that missing bastard in O(n)
+     * @param array
+     * @return 
+     */
+    public int missingInteger(int[] array) {
+        return 0;
+    }
+    
+    
 }

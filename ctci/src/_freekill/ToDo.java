@@ -27,4 +27,15 @@ public class ToDo {
     public void hanoiTower(int disks) {
         
     }
+    
+    /**
+     * Implement an algorithm to print out every possibility pairs of brackets.
+     * @param n 
+     */
+    public void allBrackets(int n) {
+        
+    }
+    
+    
+    // TODO: given an array of points, return a line that poassed most of the points
 }
