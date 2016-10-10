@@ -1,14 +1,19 @@
 #include <stdio.h>
 
-/*Reverse a string with C*/
-/*Complexity O(n)*/
-void reverse(char* str) {
+/**
+ * Reverse a null-terminal string
+ * Time: O(n); Space: O(1)
+ */
+void rev(char* str) {
+	if (!str || !str[1]) {
+		return;
+	}
 	int left = 0, right = 0;
 	while (str[right]) {
 		right += 1;
 	}
 	right -= 1;
-	while(left < right) {
+	while (left < right) {
 		char temp = str[left];
 		str[left] = str[right];
 		str[right] = temp;
@@ -18,8 +23,8 @@ void reverse(char* str) {
 }
 
 int main() {
-	char str[] = "this is sparta";
-	reverse(str);
+	char str[32] = "kibo";
+	rev(str);
+
 	printf("%s\n", str);
-	return 0;
 }

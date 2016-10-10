@@ -1,0 +1,647 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head profile="http://gmpg.org/xfn/11">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta name="distribution" content="global"/>
+<meta name="robots" content="index, follow"/>
+<meta name="language" content="en, sv"/>
+<title>LeetCode Problem Classification</title>
+<meta name="distribution" content="global"/>
+<meta name="robots" content="follow, all"/>
+<meta name="language" content="en, sv"/>
+<meta name="generator" content="WordPress 4.5.4"/>
+ 
+<meta name="verify-v1" content="eku39xbVyAqZRVnfCQB7rGSk7S567b6gw5ZZxV6HZrc="/>
+<meta name="msvalidate.01" content="C80190E357C320626147430BA5BA9A69"/>
+<meta name="google-site-verification" content="qUNffY7hZLX1Gvj4EiuBShmtW33Nr8XaEtoxjeDvOpI"/>
+<meta name="msvalidate.01" content="C6D2CC4CE9EDF63204585F013CB34CC9"/>
+ 
+<link rel="shortcut icon" href="http://www.programcreek.com/wp-content/themes/light/images/icon.ico"/>
+<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://www.programcreek.com/feed/"/>
+<link rel="alternate" type="text/xml" title="RSS .92" href="http://www.programcreek.com/feed/rss/"/>
+<link rel="alternate" type="application/atom+xml" title="Atom 0.3" href="http://www.programcreek.com/feed/atom/"/>
+<link rel="pingback" href="http://www.programcreek.com/xmlrpc.php"/>
+ 
+ 
+<style type="text/css" media="screen"><!-- @import url( http://www.programcreek.com/wp-content/themes/light/style.css ); --></style>
+ 
+<meta name="description" content="An algorithm problem contains 3 parts: the input, the output and the solution. The input data structures can be an array, string, tree, liked list, matrix, etc."/>
+<link rel="canonical" href="http://www.programcreek.com/2013/08/leetcode-problem-classification/"/>
+ 
+<link rel="alternate" type="application/rss+xml" title="Program Creek &raquo; LeetCode Problem Classification Comments Feed" href="http://www.programcreek.com/2013/08/leetcode-problem-classification/feed/"/>
+<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/72x72\/","ext":".png","source":{"concatemoji":"http:\/\/www.programcreek.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.5.4"}};
+			!function(a,b,c){function d(a){var c,d,e,f=b.createElement("canvas"),g=f.getContext&&f.getContext("2d"),h=String.fromCharCode;if(!g||!g.fillText)return!1;switch(g.textBaseline="top",g.font="600 32px Arial",a){case"flag":return g.fillText(h(55356,56806,55356,56826),0,0),f.toDataURL().length>3e3;case"diversity":return g.fillText(h(55356,57221),0,0),c=g.getImageData(16,16,1,1).data,d=c[0]+","+c[1]+","+c[2]+","+c[3],g.fillText(h(55356,57221,55356,57343),0,0),c=g.getImageData(16,16,1,1).data,e=c[0]+","+c[1]+","+c[2]+","+c[3],d!==e;case"simple":return g.fillText(h(55357,56835),0,0),0!==g.getImageData(16,16,1,1).data[0];case"unicode8":return g.fillText(h(55356,57135),0,0),0!==g.getImageData(16,16,1,1).data[0]}return!1}function e(a){var c=b.createElement("script");c.src=a,c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i;for(i=Array("simple","flag","unicode8","diversity"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+<style type="text/css">img.wp-smiley,img.emoji{display:inline!important;border:none!important;box-shadow:none!important;height:1em!important;width:1em!important;margin:0 .07em!important;vertical-align:-0.1em!important;background:none!important;padding:0!important;}</style>
+<link rel='stylesheet' id='yarppWidgetCss-css' href='http://www.programcreek.com/wp-content/plugins/yet-another-related-posts-plugin/style/widget.css?ver=4.5.4' type='text/css' media='all'/>
+<link rel='stylesheet' id='wp-syntax-css-css' href='http://www.programcreek.com/wp-content/plugins/wp-syntax/css/wp-syntax.css?ver=1.0' type='text/css' media='all'/>
+<link rel='https://api.w.org/' href='http://www.programcreek.com/wp-json/'/>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.programcreek.com/xmlrpc.php?rsd"/>
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.programcreek.com/wp-includes/wlwmanifest.xml"/>
+<link rel='prev' title='Standing on the Shoulders of Giants: My Big Lesson' href='http://www.programcreek.com/2013/07/standing-on-the-shoulders-of-giants-my-big-lesson/'/>
+<link rel='next' title='8 Minutes Introduction of Regular Expression' href='http://www.programcreek.com/2013/08/8-minutes-introduction-of-regular-expression/'/>
+<meta name="generator" content="WordPress 4.5.4"/>
+<link rel='shortlink' href='http://www.programcreek.com/?p=15685'/>
+<link rel="alternate" type="application/json+oembed" href="http://www.programcreek.com/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fwww.programcreek.com%2F2013%2F08%2Fleetcode-problem-classification%2F"/>
+<link rel="alternate" type="text/xml+oembed" href="http://www.programcreek.com/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fwww.programcreek.com%2F2013%2F08%2Fleetcode-problem-classification%2F&#038;format=xml"/>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-5732630628268628",
+    enable_page_level_ads: true
+  });
+</script>
+</head>
+<body id="home">
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-7639629-4']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<div id="menu">
+<div class="wrappermiddlewide">
+<div class="menu-prim-container"><ul id="menu-prim" class="menu"><li id="menu-item-7915" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-has-children menu-item-7915"><a href="http://www.programcreek.com">Program Creek</a>
+<ul class="sub-menu">
+<li id="menu-item-13384" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-13384"><a href="http://www.programcreek.com/r-tutorial-for-beginners/">R</a></li>
+<li id="menu-item-13386" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-13386"><a href="http://www.programcreek.com/software-engineering-research/">Research</a></li>
+<li id="menu-item-13385" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-13385"><a href="http://www.programcreek.com/machine-learning-for-java-developers/">Machine Learning</a></li>
+<li id="menu-item-10226" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10226"><a href="http://www.programcreek.com/about/">Contact</a></li>
+</ul>
+</li>
+<li id="menu-item-11059" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-11059"><a href="http://www.programcreek.com/simple-java/">Simple Java</a></li>
+<li id="menu-item-13092" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-13092"><a href="http://www.programcreek.com/simple-java-8-lambdas/">Java 8</a></li>
+<li id="menu-item-11524" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-11524"><a href="http://www.programcreek.com/2012/11/top-10-algorithms-for-coding-interview/">Coding Interview</a></li>
+<li id="menu-item-7559" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-7559"><a href="http://www.programcreek.com/java-tutorials/">Java</a>
+<ul class="sub-menu">
+<li id="menu-item-6939" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6939"><a href="http://www.programcreek.com/java-tutorials/java-basics/">Java Basics</a></li>
+<li id="menu-item-6551" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6551"><a href="http://www.programcreek.com/java-object-oriented-programming/">Java Object Oriented Concepts</a></li>
+<li id="menu-item-6559" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6559"><a href="http://www.programcreek.com/java-collections/">Java Collections &#038; Generics</a></li>
+<li id="menu-item-6542" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6542"><a href="http://www.programcreek.com/java-io/">Java File I/O</a></li>
+<li id="menu-item-6571" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6571"><a href="http://www.programcreek.com/java-database/">Java Database</a></li>
+<li id="menu-item-6565" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6565"><a href="http://www.programcreek.com/java-threads/">Java Multi-Threading</a></li>
+<li id="menu-item-6957" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6957"><a href="http://www.programcreek.com/java-xml-parsing/">Java XML Parsing</a></li>
+<li id="menu-item-7512" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7512"><a href="http://www.programcreek.com/advanced-topics/">Advanced Topics</a></li>
+</ul>
+</li>
+<li id="menu-item-6219" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6219"><a href="http://www.programcreek.com/java-design-patterns-in-stories/">DP Stories</a></li>
+<li id="menu-item-7237" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7237"><a href="http://www.programcreek.com/java-api-examples/index.php">Java Examples</a></li>
+<li id="menu-item-7872" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-7872"><a href="http://www.programcreek.com/popular-java-web-frameworks/">Frameworks</a>
+<ul class="sub-menu">
+<li id="menu-item-6019" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-6019"><a href="http://www.programcreek.com/2010/05/the-best-free-struts-2-tutorial/">Struts 2</a></li>
+<li id="menu-item-6457" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6457"><a href="http://www.programcreek.com/gwt/">GWT</a></li>
+<li id="menu-item-6047" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-6047"><a href="http://www.programcreek.com/best-eclipse-rcp-tutorials/">Eclipse</a>
+<ul class="sub-menu">
+<li id="menu-item-13454" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-13454"><a href="http://www.programcreek.com/eclipse-architecture-design/">Eclipse Architecture</a></li>
+<li id="menu-item-13453" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-13453"><a href="http://www.programcreek.com/develop-plug-ins-using-rcp/">RCP</a></li>
+<li id="menu-item-13455" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-13455"><a href="http://www.programcreek.com/2011/01/best-java-development-tooling-jdt-and-astparser-tutorials/">JDT</a></li>
+</ul>
+</li>
+<li id="menu-item-7984" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7984"><a href="http://www.programcreek.com/spring/">Spring</a></li>
+</ul>
+</li>
+<li id="menu-item-14897" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-14897"><a href="http://www.programcreek.com/python/">Python Examples</a></li>
+</ul></div> </div>
+<div class="clear"> </div>
+</div>
+ 
+<div id="wrap">
+<div class="wrappermiddle">
+ 
+<div id="content">
+<div class="entry-single">
+ 
+<h1 class="entrytitle" id="post-15685"> <a href="http://www.programcreek.com/2013/08/leetcode-problem-classification/" rel="bookmark">
+LeetCode Problem Classification </a>
+</h1>
+<div class="entrymeta">
+&nbsp;
+ 
+</strong>
+</div>
+ 
+<div class="entrybody">
+<p>An algorithm problem contains 3 parts: the input, the output and the solution. The input data structures can be an array, string, tree, liked list, matrix, etc. The algorithm used to solve the problem can be dynamic programming, BFS and DFS. It can also be a data structure, such as a heap, stack, hash set, hash map, etc. In this post, the algorithm problems are classified by their input data structure. Under each categories, the problems are tagged with their algorithm or data structure used to solve the problem. </p>
+<p><strong>1. Array/String</strong></p>
+<p>--Two Pointers--<br/>
+1) <a href="http://www.programcreek.com/2012/12/leetcode-solution-of-two-sum-in-java/">Two Sum</a>, <a href="http://www.programcreek.com/2014/03/two-sum-ii-input-array-is-sorted-java/"> Two Sum II</a>, <a href="http://www.programcreek.com/2014/03/two-sum-iii-data-structure-design-java/">Two Sum III</a>, <a href="http://www.programcreek.com/2012/12/leetcode-3sum/">3Sum</a>, <a href="http://www.programcreek.com/2013/02/leetcode-4sum-java/">4Sum</a>, <a href="http://www.programcreek.com/2013/02/leetcode-3sum-closest-java/">3Sum Closest</a><br/>
+2) <a href="http://www.programcreek.com/2014/05/leetcode-minimum-size-subarray-sum-java/">Minimum Size Subarray Sum</a><br/>
+3) <a href="http://www.programcreek.com/2013/01/leetcode-remove-duplicates-from-sorted-array-java/">Remove Duplicates from Sorted Array I</a>, <a href="http://www.programcreek.com/2013/01/leetcode-remove-duplicates-from-sorted-array-ii-java/">II</a>, <a href="http://www.programcreek.com/2014/04/leetcode-remove-element-java/">Remove Element </a>, <a href="http://www.programcreek.com/2014/05/leetcode-move-zeroes-java/">Move Zeroes</a><br/>
+4) <a href="http://www.programcreek.com/2014/03/leetcode-container-with-most-water-java/">Container With Most Water</a>, <a href="http://www.programcreek.com/2014/03/leetcode-candy-java/">Candy </a>, <a href="http://www.programcreek.com/2014/06/leetcode-trapping-rain-water-java/">Trapping Rain Water</a><br/>
+5) <a href="http://www.programcreek.com/2014/07/leetcode-summary-ranges-java/">Summary Ranges</a><br/>
+6) <a href="http://www.programcreek.com/2014/05/leetcode-one-edit-distance-java/">One Edit Distance</a><br/>
+7) <a href="http://www.programcreek.com/2012/12/leetcode-merge-sorted-array-java/">Merge Sorted Array</a><br/>
+8) <a href="http://www.programcreek.com/2014/08/leetcode-shortest-word-distance-java/">Shortest Word Distance</a>, <a href="http://www.programcreek.com/2014/07/leetcode-shortest-word-distance-ii-java/"> Shortest Word Distance II</a>, <a href="http://www.programcreek.com/2014/08/leetcode-shortest-word-distance-iii/">Shortest Word Distance III</a><br/>
+9) <a href="http://www.programcreek.com/2015/05/leetcode-intersection-of-two-arrays-java/"> Intersection of Two Arrays</a>, <a href="http://www.programcreek.com/2014/05/leetcode-intersection-of-two-arrays-ii-java/">Intersection of Two Arrays II</a><br/>
+10) <a href="http://www.programcreek.com/2014/07/leetcode-product-of-array-except-self-java/"> Product of Array Except Self</a><br/>
+11) <a href="http://www.programcreek.com/2015/09/leetcode-is-subsequence-java/">Is Subsequence</a><br/>
+12) <a href="http://www.programcreek.com/2014/09/leetcode-binary-watch-java/">Binary Watch</a></p>
+<p>--classic array problem--<br/>
+<a href="http://www.programcreek.com/2014/05/leetcode-kth-largest-element-in-an-array-java/">Kth Largest Element in an Array</a><br/>
+<a href="http://www.programcreek.com/2014/09/leetcode-remove-k-digits-java/">Remove K Digits</a></p>
+<p>--Finding a Number--<br/>
+<a href="http://www.programcreek.com/2014/05/leetcode-missing-number-java/">Missing Number</a><br/>
+<a href="http://www.programcreek.com/2015/06/leetcode-find-the-duplicate-number-java/">Find the duplicate number</a><br/>
+<a href="http://www.programcreek.com/2014/05/leetcode-first-missing-positive-java/">First Missing Positive </a></p>
+<p>--Binary Search--<br/>
+<a href="http://www.programcreek.com/2012/12/leetcode-median-of-two-sorted-arrays-java/">Median of Two Sorted Arrays</a><br/>
+<a href="http://www.programcreek.com/2013/01/leetcode-search-insert-position/">Search Insert Position</a><br/>
+Find Minimum in Rotated Sorted Array: <a href="http://www.programcreek.com/2014/02/leetcode-find-minimum-in-rotated-sorted-array/"> I</a>, <a href="http://www.programcreek.com/2014/03/leetcode-find-minimum-in-rotated-sorted-array-ii-java/">II</a><br/>
+<a href="http://www.programcreek.com/2014/04/leetcode-search-for-a-range-java/" title="LeetCode – Search for a Range (Java)" target="_blank">Search for a Range</a><br/>
+<a href="http://www.programcreek.com/2014/07/leetcode-guess-number-higher-or-lower-java/">Guess Number Higher or Lower</a><br/>
+<a href="http://www.programcreek.com/2014/05/leetcode-first-bad-version-java/">First Bad Version</a><br/>
+Search in Rotated Array:<a href="http://www.programcreek.com/2014/06/leetcode-search-in-rotated-sorted-array-java/">I</a>, <a href="http://www.programcreek.com/2014/06/leetcode-search-in-rotated-sorted-array-ii-java/">II</a><br/>
+<a href="http://www.programcreek.com/2014/04/leetcode-longest-increasing-subsequence-java/">Longest Increasing Subsequence</a><br/>
+<a href="http://www.programcreek.com/2016/08/leetcode-russian-doll-envelopes-java/">Russian Doll Envelopes</a></p>
+<p>--Stack--<br/>
+<a href="http://www.programcreek.com/2012/12/leetcode-evaluate-reverse-polish-notation/">Evaluate Reverse Polish Notation (Stack)</a><br/>
+<a href="http://www.programcreek.com/2012/12/leetcode-valid-parentheses-java/">Valid Parentheses</a><br/>
+<a href="http://www.programcreek.com/2014/06/leetcode-longest-valid-parentheses-java/">Longest Valid Parentheses</a><br/>
+<a href="http://www.programcreek.com/2013/01/leetcode-valid-palindrome-java/">Valid Palindrome</a><br/>
+<a href="http://www.programcreek.com/2014/02/leetcode-min-stack-java/">Min Stack</a></p>
+<p>--Stack--Largest Rectangle--<br/>
+<a href="http://www.programcreek.com/2014/05/leetcode-largest-rectangle-in-histogram-java/">Largest Rectangle in Histogram</a><br/>
+<a href="http://www.programcreek.com/2014/05/leetcode-maximal-rectangle-java/">Maximal Rectangle</a></p>
+<p>--Stack--Nested Object--<br/>
+<a href="http://www.programcreek.com/2014/08/leetcode-mini-parser-java/">Mini Parser</a><br/>
+<a href="http://www.programcreek.com/2014/05/leetcode-flatten-nested-list-iterator-java/">Flatten Nested List Iterator</a><br/>
+<a href="http://www.programcreek.com/2014/05/leetcode-nested-list-weight-sum-java/">Nested List Weight Sum</a><br/>
+<a href="http://www.programcreek.com/2014/08/leetcode-nested-list-weight-sum-ii-java/">Nested List Weight Sum II</a> (HashMap)<br/>
+<a href="http://www.programcreek.com/2014/08/leetcode-longest-absolute-file-path-java/">Longest Absolute File Path</a><br/>
+<a href="http://www.programcreek.com/2014/09/leetcode-decode-string-java/">Decode String </a></p>
+<p>--HashMap--<br/>
+<a href="http://www.programcreek.com/2014/05/leetcode-valid-anagram-java/">Valid Anagram</a>, <a href="http://www.programcreek.com/2014/05/leetcode-group-shifted-strings-java/">Group Shifted Strings</a><br/>
+<a href="http://www.programcreek.com/2014/05/leetcode-palindrome-pairs-java/">Palindrome Pairs</a><br/>
+<a href="http://www.programcreek.com/2014/08/leetcode-line-reflection-java/">Line Reflection</a></p>
+<p>--HashMap--Tracking--<br/>
+<a href="http://www.programcreek.com/2013/02/leetcode-longest-substring-without-repeating-characters-java/">Longest Substring Without Repeating Characters</a><br/>
+<a href="http://www.programcreek.com/2013/02/longest-substring-which-contains-2-unique-characters/">Longest Substring that contains 2 unique characters </a> [Google]<br/>
+<a href="http://www.programcreek.com/2014/06/leetcode-substring-with-concatenation-of-all-words-java/">Substring with Concatenation of All Words</a><br/>
+<a href="http://www.programcreek.com/2014/05/leetcode-minimum-window-substring-java/">Minimum Window Substring</a><br/>
+<a href="http://www.programcreek.com/2014/09/leetcode-longest-substring-with-at-least-k-repeating-characters-java/">Longest Substring with At Least K Repeating Characters</a></p>
+<p>--HashSet--<br/>
+<a href="http://www.programcreek.com/2014/05/leetcode-isomorphic-strings-java/">Isomorphic Strings</a><br/>
+<a href="http://www.programcreek.com/2013/01/leetcode-longest-consecutive-sequence-java/">Longest Consecutive Sequence</a> </p>
+<p>--Caching--<br/>
+Majority Element: <a href="http://www.programcreek.com/2014/02/leetcode-majority-element-java/">I</a>, <a href="http://www.programcreek.com/2014/07/leetcode-majority-element-ii-java/">II</a><br/>
+<a href="http://www.programcreek.com/2015/02/leetcode-increasing-triplet-subsequence-java/">Increasing Triplet Subsequence</a>, Find Top 2 Largest Elements</p>
+<p>--Rotate--<br/>
+<a href="http://www.programcreek.com/2015/03/rotate-array-in-java/" title="Rotate Array in Java" target="_blank">Rotate Array</a>, <a href="http://www.programcreek.com/2014/05/leetcode-reverse-words-in-a-string-ii-java/">Reverse Words in a String</a></p>
+<p>--Bucket Sort--<br/>
+<a href="http://www.programcreek.com/2014/04/leetcode-anagrams-java/" title="LeetCode – Anagrams (Java)" target="_blank">Group Anagrams</a></p>
+<p>--DFS--<br/>
+<a href="http://www.programcreek.com/2014/06/leetcode-wildcard-matching-java/">Wildcard Matching</a>, <a href="http://www.programcreek.com/2012/12/leetcode-regular-expression-matching-in-java/">Regular Expression Matching</a><br/>
+<a href="http://www.programcreek.com/2016/04/get-target-using-number-list-and-arithmetic-operations-google/">Get Target Using Number List And Arithmetic Operations </a><br/>
+<a href="http://www.programcreek.com/2014/04/leetcode-flip-game-java/">Flip Game</a>, <a href="http://www.programcreek.com/2014/05/leetcode-flip-game-ii-java/">Flip Game II</a><br/>
+<a href="http://www.programcreek.com/2014/05/leetcode-word-pattern-java/">Word Pattern</a>, <a href="http://www.programcreek.com/2014/07/leetcode-word-pattern-ii-java/">Word Pattern II</a><br/>
+<a href="http://www.programcreek.com/2014/05/leetcode-scramble-string-java/">Scramble String</a><br/>
+<a href="http://www.programcreek.com/2014/05/leetcode-remove-invalid-parentheses-java/">Remove Invalid Parentheses</a><br/>
+<a href="http://www.programcreek.com/2014/06/leetcode-shortest-palindrome-java/">Shortest Palindrome</a></p>
+<p><a href="http://www.programcreek.com/2014/08/leetcode-lexicographical-numbers-java/">Lexicographical Numbers</a></p>
+<p>--BFS--<br/>
+<a href="http://www.programcreek.com/2012/12/leetcode-word-ladder/">Word Ladder (BFS)</a>, <a href="http://www.programcreek.com/2014/06/leetcode-word-ladder-ii-java/">Word Ladder II (BFS)</a></p>
+<p>--Heap--<br/>
+<a href="http://www.programcreek.com/2014/05/leetcode-top-k-frequent-elements-java/">Top K Frequent Elements</a><br/>
+<a href="http://www.programcreek.com/2014/05/leetcode-meeting-rooms-ii-java/">Meeting Rooms II</a>, <a href="http://www.programcreek.com/2014/07/leetcode-meeting-rooms-java/">Meeting Rooms</a><br/>
+<a href="http://www.programcreek.com/2014/07/leetcode-range-addition-java/">Range Addition</a><br/>
+<a href="http://www.programcreek.com/2014/05/merge-k-sorted-arrays-in-java/">Merge k sorted arrays</a><br/>
+<a href="http://www.programcreek.com/2013/02/leetcode-merge-k-sorted-lists-java/">Merge k Sorted Lists</a><br/>
+<a href="http://www.programcreek.com/2014/08/leetcode-rearrange-string-k-distance-apart-java/">Rearrange String k Distance Apart</a></p>
+<p>--TreeSet--<br/>
+Contains Duplicate: <a href="http://www.programcreek.com/2014/05/leetcode-contains-duplicate-java/">I</a>, <a href="http://www.programcreek.com/2014/05/leetcode-contains-duplicate-ii-java/">II</a>, <a href="http://www.programcreek.com/2014/06/leetcode-contains-duplicate-iii-java/">III</a><br/>
+<a href="http://www.programcreek.com/2014/08/leetcode-max-sum-of-rectangle-no-larger-than-k-java/">Max Sum of Rectangle No Larger Than K</a><br/>
+<a href="http://www.programcreek.com/2016/08/maximum-sum-of-subarray-close-to-k/">Maximum Sum Of Subarray Close To K</a></p>
+<p>--Track min/max and update result--<br/>
+<a href="http://www.programcreek.com/2014/05/leetcode-h-index-java/">H-Index </a>, <a href="http://www.programcreek.com/2014/05/leetcode-h-index-ii-java/">H-Index II</a></p>
+<p>--Stream--(deque/caching/heap/treeset)<br/>
+<a href="http://www.programcreek.com/2014/05/leetcode-sliding-window-maximum-java/">Sliding Window Maximum</a><br/>
+<a href="http://www.programcreek.com/2014/05/leetcode-moving-average-from-data-stream-java/">Moving Average from Data Stream</a><br/>
+<a href="http://www.programcreek.com/2015/01/leetcode-find-median-from-data-stream-java/">Find Median from Data Stream</a><br/>
+<a href="http://www.programcreek.com/2014/08/leetcode-data-stream-as-disjoint-intervals-java/">Data Stream as Disjoint Intervals</a> </p>
+<p>--Sorting--<br/>
+<a href="http://www.programcreek.com/2014/02/leetcode-largest-number-java/">Largest Number</a><br/>
+<a href="http://www.programcreek.com/2012/11/leetcode-solution-merge-sort-linkedlist-in-java/">Mergesort</a><br/>
+<a href="http://www.programcreek.com/2012/11/quicksort-array-in-java/">Quicksort</a><br/>
+<a href="http://www.programcreek.com/2012/11/leetcode-solution-sort-a-linked-list-using-insertion-sort-in-java/">Insertion Sort</a>.<br/>
+<a href="http://www.programcreek.com/2014/03/leetcode-maximum-gap-java/">Maximum Gap (Bucket Sort)</a><br/>
+<a href="http://www.programcreek.com/2014/06/leetcode-sort-colors-java/" title="LeetCode – Sort Colors (Java)">Sort Colors (Counting Sort)</a></p>
+<p>--Interval--<br/>
+<a href="http://www.programcreek.com/2012/12/leetcode-merge-intervals/">Merge Intervals</a><br/>
+<a href="http://www.programcreek.com/2012/12/leetcode-insert-interval/"> Insert Interval</a></p>
+<p>--Implement data structure--<br/>
+<a href="http://www.programcreek.com/2015/03/implement-a-stack-using-an-array/">Implement a Stack Using an Array</a><br/>
+<a href="http://www.programcreek.com/2014/06/leetcode-implement-stack-using-queues-java/">Implement Stack using Queues</a><br/>
+<a href="http://www.programcreek.com/2014/07/leetcode-implement-queue-using-stacks-java/">Implement Queue using Stacks</a><br/>
+<a href="http://www.programcreek.com/2014/07/implement-a-queue-using-an-array-in-java/">Implement a Queue using an Array</a></p>
+<p>--Trie--<br/>
+<a href="http://www.programcreek.com/2014/05/leetcode-implement-trie-prefix-tree-java/" title="LeetCode – Implement Trie (Prefix Tree) (Java)" target="_blank">Implement Trie (Prefix Tree)</a><br/>
+<a href="http://www.programcreek.com/2014/05/leetcode-add-and-search-word-data-structure-design-java/">Add and Search Word - Data structure design (DFS)</a> </p>
+<p>--Segment Tree & Binary Index Tree--<br/>
+<a href="http://www.programcreek.com/2014/04/leetcode-range-sum-query-mutable-java/">Range Sum Query - Mutable</a><br/>
+<a href="http://www.programcreek.com/2014/06/leetcode-the-skyline-problem-java/">The Skyline Problem </a></p>
+<p>--Graph--(mainly topological sort)--<br/>
+<a href="http://www.programcreek.com/2012/12/leetcode-clone-graph-java/">Clone Graph</a><br/>
+<a href="http://www.programcreek.com/2014/05/leetcode-course-schedule-java/">Course Schedule </a>, <a href="http://www.programcreek.com/2014/06/leetcode-course-schedule-ii-java/">Course Schedule II </a>, <a href="http://www.programcreek.com/2014/07/leetcode-minimum-height-trees-java/">Minimum Height Trees</a><br/>
+<a href="http://www.programcreek.com/2015/03/leetcode-reconstruct-itinerary-java/">Reconstruct Itinerary</a><br/>
+<a href="http://www.programcreek.com/2014/05/graph-valid-tree-java/">Graph Valid Tree</a></p>
+<p>--Ugly Number--<br/>
+<a href="http://www.programcreek.com/2014/05/leetcode-ugly-number-java/">Ugly Number</a>, <a href="http://www.programcreek.com/2014/05/leetcode-ugly-number-ii-java/">Ugly Number II</a><br/>
+<a href="http://www.programcreek.com/2014/05/leetcode-super-ugly-number-java/">Super Ugly Number</a><br/>
+<a href="http://www.programcreek.com/2015/07/leetcode-find-k-pairs-with-smallest-sums-java/">Find K Pairs with Smallest Sums</a></p>
+<p>--Maximum subarray--<br/>
+<a href="http://www.programcreek.com/2013/02/leetcode-maximum-subarray-java/">Maximum Subarray</a><br/>
+<a href="http://www.programcreek.com/2014/03/leetcode-maximum-product-subarray-java/">Maximum Product Subarray</a></p>
+<p>--Word break--<br/>
+<a href="http://www.programcreek.com/2012/12/leetcode-solution-word-break/">Word Break</a><br/>
+<a href="http://www.programcreek.com/2014/03/leetcode-word-break-ii-java/">Word Break II</a></p>
+<p>--DP--<br/>
+<a href="http://www.programcreek.com/2013/03/leetcode-palindrome-partitioning-java/">Palindrome Partitioning</a><br/>
+<a href="http://www.programcreek.com/2014/04/leetcode-palindrome-partitioning-ii-java/">Palindrome Partitioning II </a><br/>
+<a href="http://www.programcreek.com/2014/03/leetcode-house-robber-java/">House Robber</a>, <a href="http://www.programcreek.com/2014/05/leetcode-house-robber-ii-java/">II</a>, <a href="http://www.programcreek.com/2015/03/leetcode-house-robber-iii-java/">III</a><br/>
+<a href="http://www.programcreek.com/2014/03/leetcode-jump-game-java/">Jump Game</a>, <a href="http://www.programcreek.com/2014/06/leetcode-jump-game-ii-java/">II</a><br/>
+<a href="http://www.programcreek.com/2014/02/leetcode-best-time-to-buy-and-sell-stock-java/">Best Time to Buy and Sell Stock </a>, <a href="http://www.programcreek.com/2014/02/leetcode-best-time-to-buy-and-sell-stock-ii-java/">II</a>, <a href="http://www.programcreek.com/2014/02/leetcode-best-time-to-buy-and-sell-stock-iii-java/">III </a>, <a href="http://www.programcreek.com/2014/03/leetcode-best-time-to-buy-and-sell-stock-iv-java/">IV </a><br/>
+<a href="http://www.programcreek.com/2014/03/leetcode-dungeon-game-java/">Dungeon Game </a><br/>
+<a href="http://www.programcreek.com/2014/05/leetcode-minimum-path-sum-java/">Minimum Path Sum</a><br/>
+<a href="http://www.programcreek.com/2014/05/leetcode-unique-paths-java/">Unique Paths</a><br/>
+<a href="http://www.programcreek.com/2014/06/leetcode-decode-ways-java/">Decode Ways</a><br/>
+<a href="http://www.programcreek.com/2015/04/leetcode-coin-change-java/">Coin Change</a><br/>
+<a href="http://www.programcreek.com/2014/05/leetcode-perfect-squares-java/">Perfect Squares</a></p>
+<p>--DP--2D--<br/>
+<a href="http://www.programcreek.com/2013/12/edit-distance-in-java/" title="Edit Distance in Java">Edit Distance</a><br/>
+<a href="http://www.programcreek.com/2013/01/leetcode-distinct-subsequences-total-java/">Distinct Subsequences Total</a><br/>
+<a href="http://www.programcreek.com/2013/12/leetcode-solution-of-longest-palindromic-substring-java/">Longest Palindromic Substring</a><br/>
+<a href="http://www.programcreek.com/2014/04/longest-common-subsequence-java/">Longest Common Subsequence</a><br/>
+<a href="http://www.programcreek.com/2015/04/longest-common-substring-java/">Longest Common Substring</a></p>
+<p>--Design data structure with time requirements--<br/>
+<a href="http://www.programcreek.com/2013/03/leetcode-lru-cache-java/">LRU Cache</a><br/>
+<a href="http://www.programcreek.com/2014/08/leetcode-insert-delete-getrandom-o1-java/">Insert Delete GetRandom O(1)</a><br/>
+<a href="http://www.programcreek.com/2014/08/leetcode-insert-delete-getrandom-o1-duplicates-allowed-java/">Insert Delete GetRandom O(1) - Duplicates allowed</a><br/>
+<a href="http://www.programcreek.com/2016/08/design-a-data-structure-with-insert-delete-getmostfrequent-of-o1/">Insert Delete GetMostFrequent O(1)</a><br/>
+<a href="http://www.programcreek.com/2014/08/leetcode-design-phone-directory-java/">Design Phone Directory</a><br/>
+<a href="http://www.programcreek.com/2014/08/leetcode-design-twitter-java/">Design Twitter</a></p>
+<p>--Other dbf/bfs--<br/>
+<a href="http://www.programcreek.com/2013/02/leetcode-permutations-java/">Permutations</a><br/>
+<a href="http://www.programcreek.com/2013/02/leetcode-permutations-ii-java/">Permutations II </a><br/>
+<a href="http://www.programcreek.com/2013/02/leetcode-permutation-sequence-java/">Permutation Sequence</a><br/>
+<a href="http://www.programcreek.com/2014/01/leetcode-generate-parentheses-java/">Generate Parentheses</a><br/>
+<a href="http://www.programcreek.com/2014/02/leetcode-combination-sum-java/">Combination Sum (DFS)</a>, <a href="http://www.programcreek.com/2014/04/leetcode-combination-sum-ii-java/">II (DFS)</a>, <a href="http://www.programcreek.com/2014/05/leetcode-combination-sum-iii-java/">III (DFS)</a>, <a href="http://www.programcreek.com/2014/07/leetcode-combination-sum-iv-java/">IV (DP)</a><br/>
+<a href="http://www.programcreek.com/2014/03/leetcode-combinations-java/" title="LeetCode – Combinations (Java)">Combinations (DFS)</a><br/>
+<a href="http://www.programcreek.com/2014/04/leetcode-letter-combinations-of-a-phone-number-java/">Letter Combinations of a Phone Number (DFS)</a><br/>
+<a href="http://www.programcreek.com/2014/06/leetcode-restore-ip-addresses-java/">Restore IP Addresses</a><br/>
+<a href="http://www.programcreek.com/2014/07/leetcode-factor-combinations-java/">Factor Combinations</a> (DFS)<br/>
+<a href="http://www.programcreek.com/2013/01/leetcode-subsets-java/">Subsets</a><br/>
+<a href="http://www.programcreek.com/2013/01/leetcode-subsets-ii-java/">Subsets II</a></p>
+<p>--Random--<br/>
+<a href="http://www.programcreek.com/2014/08/leetcode-linked-list-random-node-java/">Linked List Random Node</a><br/>
+<a href="http://www.programcreek.com/2014/08/leetcode-shuffle-an-array-java/">Shuffle an Array</a></p>
+<p>--Other--<br/>
+<a href="http://www.programcreek.com/2013/01/leetcode-triangle-java/">Triangle</a><br/>
+<a href="http://www.programcreek.com/2012/12/leetcode-string-to-integer-atoi/">String to Integer</a><br/>
+<a href="http://www.programcreek.com/2012/12/leetcode-implement-strstr-java/">Implement strStr()</a><br/>
+<a href="http://www.programcreek.com/2014/05/leetcode-zigzag-conversion-java/">ZigZag Conversion</a><br/>
+<a href="http://www.programcreek.com/2014/05/leetcode-add-binary-java/">Add Binary </a><br/>
+<a href="http://www.programcreek.com/2014/05/leetcode-length-of-last-word-java/">Length of Last Word</a><br/>
+<a href="http://www.programcreek.com/2014/05/leetcode-bulls-and-cows-java/">Bulls and Cows </a><br/>
+<a href="http://www.programcreek.com/2014/02/leetcode-longest-common-prefix-java/">Longest Common Prefix </a><br/>
+<a href="http://www.programcreek.com/2014/04/leetcode-simplify-path-java/">Simplify Path</a><br/>
+<a href="http://www.programcreek.com/2014/03/leetcode-compare-version-numbers-java/">Compare Version Numbers</a><br/>
+Pascal's Triangle: <a href="http://www.programcreek.com/2014/03/leetcode-pascals-triangle-java/">I</a>, <a href="http://www.programcreek.com/2014/04/leetcode-pascals-triangle-ii-java/">II</a><br/>
+<a href="http://www.programcreek.com/2014/03/leetcode-count-and-say-java/">Count and Say</a><br/>
+<a href="http://www.programcreek.com/2014/06/leetcode-basic-calculator-java/">Basic Calculator</a>, <a href="http://www.programcreek.com/2014/05/leetcode-basic-calculator-ii-java/">Basic Calculator II</a><br/>
+<a href="http://www.programcreek.com/2014/06/leetcode-rectangle-area-java/">Rectangle Area</a><br/>
+<a href="http://www.programcreek.com/2015/04/leetcode-reverse-vowels-of-a-string-java/">Reverse Vowels of a String </a><br/>
+<a href="http://www.programcreek.com/2014/02/leetcode-find-peak-element/">Find Peak Element</a><br/>
+<a href="http://www.programcreek.com/2014/05/leetcode-integer-to-english-words-java/">Integer to English Words</a><br/>
+<a href="http://www.programcreek.com/2014/05/leetcode-text-justification-java/">Text Justification </a><br/>
+<a href="http://www.programcreek.com/2014/03/leetcode-gas-station-java/">Gas Station</a><br/>
+<a href="http://www.programcreek.com/2015/03/leetcode-self-crossing-java/">Self Crossing</a><br/>
+<a href="http://www.programcreek.com/2015/01/leetcode-patching-array-java/">Patching Array</a><br/>
+<a href="http://www.programcreek.com/2014/04/leetcode-nim-game-java/">Nim Game</a><br/>
+<a href="http://www.programcreek.com/2014/05/leetcode-bulb-switcher-java/">Bulb Switcher</a><br/>
+<a href="http://www.programcreek.com/2014/05/leetcode-pain-fence-java/">Pain Fence</a><br/>
+<a href="http://www.programcreek.com/2014/05/leetcode-nested-list-weight-sum-java/">Nested List Weight Sum</a></p>
+<p><strong>2. Matrix</strong></p>
+<p>--sorted matrix--<br/>
+<a href="http://www.programcreek.com/2013/01/leetcode-search-a-2d-matrix-java/">Search a 2D Matrix</a><br/>
+<a href="http://www.programcreek.com/2014/04/leetcode-search-a-2d-matrix-ii-java/">Search a 2D Matrix II</a><br/>
+<a href="http://www.programcreek.com/2016/08/leetcode-kth-smallest-element-in-a-sorted-matrix-java/">Kth Smallest Element in a Sorted Matrix</a></p>
+<p>--queue--<br/>
+<a href="http://www.programcreek.com/2014/08/leetcode-design-snake-game-java/">Design Snake Game</a></p>
+<p>--bfs/dfs--<br/>
+<a href="http://www.programcreek.com/2012/12/leetcode-set-matrix-zeroes-java/">Set Matrix Zeroes</a><br/>
+<a href="http://www.programcreek.com/2013/01/leetcode-spiral-matrix-java/">Spiral Matrix</a><br/>
+<a href="http://www.programcreek.com/2014/05/leetcode-spiral-matrix-ii-java/">Spiral Matrix II</a><br/>
+<a href="http://www.programcreek.com/2013/01/leetcode-rotate-image-java/">Rotate Image</a> [Palantir]<br/>
+<a href="http://www.programcreek.com/2014/05/leetcode-minimum-path-sum-java/">Minimum Path Sum (DP)</a><br/>
+<a href="http://www.programcreek.com/2014/05/leetcode-unique-paths-java/">Unique Paths (DP)</a><br/>
+<a href="http://www.programcreek.com/2014/05/leetcode-unique-paths-ii-java/">Unique Paths II (DP)</a><br/>
+<a href="http://www.programcreek.com/2014/04/leetcode-number-of-islands-java/">Number of Islands (DFS/BFS)</a>, <a href="http://www.programcreek.com/2015/01/leetcode-number-of-islands-ii-java/">Number of Islands II</a> (Disjoint Set), <a href="http://www.programcreek.com/2014/05/leetcode-number-of-connected-components-in-an-undirected-graph-java/">Number of Connected Components in an Undirected Graph</a><br/>
+<a href="http://www.programcreek.com/2014/04/leetcode-surrounded-regions-java/">Surrounded Regions (BFS)</a><br/>
+<a href="http://www.programcreek.com/2014/06/leetcode-maximal-square-java/">Maximal Square</a><br/>
+<a href="http://www.programcreek.com/2014/06/leetcode-word-search-java/">Word Search (DFS)</a><br/>
+<a href="http://www.programcreek.com/2014/06/leetcode-word-search-ii-java/">Word Search II</a><br/>
+<a href="http://www.programcreek.com/2014/04/leetcode-range-sum-query-2d-immutable-java/">Range Sum Query 2D – Immutable</a><br/>
+<a href="http://www.programcreek.com/2014/05/leetcode-longest-increasing-path-in-a-matrix-java/">Longest Increasing Path in a Matrix (DFS)</a><br/>
+<a href="http://www.programcreek.com/2014/05/leetcode-shortest-distance-from-all-buildings-java/">Shortest Distance from All Buildings</a><br/>
+<a href="http://www.programcreek.com/2014/05/leetcode-game-of-life-java/">Game of Life</a><br/>
+<a href="http://www.programcreek.com/2014/05/leetcode-paint-house-java/">Paint House</a>, <a href="http://www.programcreek.com/2014/05/leetcode-paint-house-ii-java/">Paint House II</a><br/>
+<a href="http://www.programcreek.com/2014/05/leetcode-sudoku-solver-java/">Sudoku Solver (DFS)</a>, <a href="http://www.programcreek.com/2014/05/leetcode-valid-sudoku-java/">Valid Sudoku </a><br/>
+<a href="http://www.programcreek.com/2014/05/leetcode-walls-and-gates-java/">Walls and Gates (DFS/BFS)</a><br/>
+<a href="http://www.programcreek.com/2014/05/leetcode-tic-tac-toe-java/">Tic-Tac-Toe</a><br/>
+<a href="http://www.programcreek.com/2014/07/leetcode-best-meeting-point-java/">Best Meeting Point</a><br/>
+<a href="http://www.programcreek.com/2014/09/find-a-path-in-a-matrix/">Find a Path in a Matrix</a></p>
+<p><strong>3. Linked List</strong></p>
+<p><a href="http://www.programcreek.com/2012/12/add-two-numbers/">Add Two Numbers</a><br/>
+<a href="http://www.programcreek.com/2013/12/in-place-reorder-a-singly-linked-list-in-java/">Reorder List</a><br/>
+<a href="http://www.programcreek.com/2012/12/leetcode-linked-list-cycle/">Linked List Cycle</a><br/>
+<a href="http://www.programcreek.com/2012/12/leetcode-copy-list-with-random-pointer/">Copy List with Random Pointer</a><br/>
+<a href="http://www.programcreek.com/2012/12/leetcode-merge-two-sorted-lists-java/">Merge Two Sorted Lists</a><br/>
+<a href="http://www.programcreek.com/2015/03/leetcode-odd-even-linked-list-java/">Odd Even Linked List</a><br/>
+<a href="http://www.programcreek.com/2013/01/leetcode-remove-duplicates-from-sorted-list/">Remove Duplicates from Sorted List</a><br/>
+<a href="http://www.programcreek.com/2014/06/leetcode-remove-duplicates-from-sorted-list-ii-java/">Remove Duplicates from Sorted List II</a><br/>
+<a href="http://www.programcreek.com/2013/02/leetcode-partition-list-java/">Partition List</a><br/>
+<a href="http://www.programcreek.com/2014/02/leetcode-intersection-of-two-linked-lists-java/">Intersection of Two Linked Lists</a><br/>
+<a href="http://www.programcreek.com/2014/04/leetcode-remove-linked-list-elements-java/">Remove Linked List Elements</a><br/>
+<a href="http://www.programcreek.com/2014/04/leetcode-swap-nodes-in-pairs-java/">Swap Nodes in Pairs</a><br/>
+<a href="http://www.programcreek.com/2014/05/leetcode-reverse-linked-list-java/">Reverse Linked List</a>, <a href="http://www.programcreek.com/2014/06/leetcode-reverse-linked-list-ii-java/">Reverse Linked List II</a>, Print Linked List in Reversed Order<br/>
+<a href="http://www.programcreek.com/2014/05/leetcode-remove-nth-node-from-end-of-list-java/"> Remove Nth Node From End of List (Fast-Slow Pointers)</a><br/>
+<a href="http://www.programcreek.com/2014/07/leetcode-palindrome-linked-list-java/">Palindrome Linked List</a><br/>
+<a href="http://www.programcreek.com/2014/07/leetcode-delete-node-in-a-linked-list-java/">Delete Node in a Linked List</a><br/>
+<a href="http://www.programcreek.com/2014/05/leetcode-reverse-nodes-in-k-group-java/">Reverse Nodes in k-Group</a><br/>
+<a href="http://www.programcreek.com/2012/11/leetcode-solution-merge-sort-linkedlist-in-java/">Sort List</a><br/>
+<a href="http://www.programcreek.com/2014/08/leetcode-plus-one-linked-list-java/">Plus One Linked List</a></p>
+<p><strong>4. Tree</strong></p>
+<p>--traveral--<br/>
+Binary Tree Traversal: <a href="http://www.programcreek.com/2012/12/leetcode-solution-for-binary-tree-preorder-traversal-in-java/">Preorder</a>, <a href="http://www.programcreek.com/2012/12/leetcode-solution-of-binary-tree-inorder-traversal-in-java/">Inorder</a>, <a href="http://www.programcreek.com/2012/12/leetcode-solution-of-iterative-binary-tree-postorder-traversal-in-java/">Postorder</a>, <a href="http://www.programcreek.com/2014/04/leetcode-binary-tree-level-order-traversal-java/">Level Order</a>, <a href="http://www.programcreek.com/2014/04/leetcode-binary-tree-level-order-traversal-ii-java/"> Level Order II</a>, <a href="http://www.programcreek.com/2014/04/leetcode-binary-tree-vertical-order-traversal-java/">Vertical Order</a></p>
+<p>--dfs/bfs--</p>
+<p><a href="http://www.programcreek.com/2014/06/leetcode-invert-binary-tree-java/">Invert Binary Tree</a><br/>
+<a href="http://www.programcreek.com/2014/07/leetcode-kth-smallest-element-in-a-bst-java/">Kth Smallest Element in a BST</a><br/>
+<a href="http://www.programcreek.com/2014/04/leetcode-binary-tree-longest-consecutive-sequence-java/">Binary Tree Longest Consecutive Sequence</a><br/>
+<a href="http://www.programcreek.com/2012/12/leetcode-validate-binary-search-tree-java/">Validate Binary Search Tree</a><br/>
+<a href="http://www.programcreek.com/2013/01/leetcode-flatten-binary-tree-to-linked-list/">Flatten Binary Tree to Linked List</a><br/>
+<a href="http://www.programcreek.com/2013/01/leetcode-path-sum/">Path Sum (DFS or BFS)</a><br/>
+<a href="http://www.programcreek.com/2014/05/leetcode-path-sum-ii-java/">Path Sum II (DFS) </a><br/>
+<a href="http://www.programcreek.com/2013/01/construct-binary-tree-from-inorder-and-postorder-traversal/">Construct Binary Tree from Inorder and Postorder Traversal</a><br/>
+<a href="http://www.programcreek.com/2014/06/leetcode-construct-binary-tree-from-preorder-and-inorder-traversal-java/">Construct Binary Tree from Preorder and Inorder Traversal</a><br/>
+<a href="http://www.programcreek.com/2013/01/leetcode-convert-sorted-array-to-binary-search-tree-java/">Convert Sorted Array to Binary Search Tree</a><br/>
+<a href="http://www.programcreek.com/2013/01/leetcode-convert-sorted-list-to-binary-search-tree-java/">Convert Sorted List to Binary Search Tree</a><br/>
+<a href="http://www.programcreek.com/2013/02/leetcode-minimum-depth-of-binary-tree-java/">Minimum Depth of Binary Tree</a><br/>
+<a href="http://www.programcreek.com/2013/02/leetcode-binary-tree-maximum-path-sum-java/">Binary Tree Maximum Path Sum *</a><br/>
+<a href="http://www.programcreek.com/2013/02/leetcode-balanced-binary-tree-java/">Balanced Binary Tree</a><br/>
+<a href="http://www.programcreek.com/2014/03/leetcode-symmetric-tree-java/">Symmetric Tree</a><br/>
+<a href="http://www.programcreek.com/2014/04/leetcode-binary-search-tree-iterator-java/">Binary Search Tree Iterator </a><br/>
+<a href="http://www.programcreek.com/2014/04/leetcode-binary-tree-right-side-view-java/">Binary Tree Right Side View</a><br/>
+<a href="http://www.programcreek.com/2014/07/leetcode-lowest-common-ancestor-of-a-binary-search-tree-java/">Lowest Common Ancestor of a Binary Search Tree</a><br/>
+<a href="http://www.programcreek.com/2014/07/leetcode-lowest-common-ancestor-of-a-binary-tree-java/">1Lowest Common Ancestor of a Binary Tree</a><br/>
+<a href="http://www.programcreek.com/2015/01/leetcode-verify-preorder-serialization-of-a-binary-tree-java/">Verify Preorder Serialization of a Binary Tree</a><br/>
+<a href="http://www.programcreek.com/2014/05/leetcode-populating-next-right-pointers-in-each-node-java/">Populating Next Right Pointers in Each Node </a><br/>
+<a href="http://www.programcreek.com/2014/06/leetcode-populating-next-right-pointers-in-each-node-ii-java/">Populating Next Right Pointers in Each Node II </a><br/>
+<a href="http://www.programcreek.com/2014/05/leetcode-unique-binary-search-trees-java/">Unique Binary Search Trees (DP)</a><br/>
+<a href="http://www.programcreek.com/2014/05/leetcode-unique-binary-search-trees-ii-java/">Unique Binary Search Trees II (DFS)</a><br/>
+<a href="http://www.programcreek.com/2014/05/leetcode-sum-root-to-leaf-numbers-java/">Sum Root to Leaf Numbers (DFS)</a><br/>
+<a href="http://www.programcreek.com/2014/06/leetcode-count-complete-tree-nodes-java/">Count Complete Tree Nodes </a><br/>
+<a href="http://www.programcreek.com/2014/05/leetcode-closest-binary-search-tree-value-java/">Closest Binary Search Tree Value</a><br/>
+<a href="http://www.programcreek.com/2014/05/leetcode-binary-tree-paths-java/">Binary Tree Paths</a><br/>
+<a href="http://www.programcreek.com/2014/05/leetcode-maximum-depth-of-binary-tree-java/">Maximum Depth of Binary Tree</a><br/>
+<a href="http://www.programcreek.com/2014/05/leetcode-recover-binary-search-tree-java/">Recover Binary Search Tree</a><br/>
+<a href="http://www.programcreek.com/2012/12/check-if-two-trees-are-same-or-not/">Same Tree</a><br/>
+<a href="http://www.programcreek.com/2014/05/leetcode-serialize-and-deserialize-binary-tree-java/">Serialize and Deserialize Binary Tree</a><br/>
+<a href="http://www.programcreek.com/2014/05/leetcode-inorder-successor-in-bst-java/">Inorder Successor in BST</a><br/>
+<a href="http://www.programcreek.com/2014/07/leetcode-find-leaves-of-binary-tree-java/">Find Leaves of Binary Tree</a><br/>
+<a href="http://www.programcreek.com/2014/07/leetcode-largest-bst-subtree-java/">Largest BST Subtree</a></p>
+<p><strong>5. Bit Manipulation</strong></p>
+<p><a href="http://www.programcreek.com/2012/12/leetcode-solution-of-single-number-in-java/"> Single Number</a><br/>
+<a href="http://www.programcreek.com/2014/03/leetcode-single-number-ii-java/">Single Number II</a><br/>
+<a href="http://www.programcreek.com/2013/02/twitter-codility-problem-max-binary-gap/"> Maximum Binary Gap</a><br/>
+<a href="http://www.programcreek.com/2014/03/leetcode-number-of-1-bits-java/">Number of 1 Bits </a><br/>
+<a href="http://www.programcreek.com/2014/03/leetcode-reverse-bits-java/">Reverse Bits </a><br/>
+<a href="http://www.programcreek.com/2014/03/leetcode-repeated-dna-sequences-java/">Repeated DNA Sequences</a><br/>
+<a href="http://www.programcreek.com/2014/04/leetcode-bitwise-and-of-numbers-range-java/"> Bitwise AND of Numbers Range </a><br/>
+<a href="http://www.programcreek.com/2015/07/leetcode-sum-of-two-integers-java/">Sum of Two Integers</a><br/>
+<a href="http://www.programcreek.com/2015/03/leetcode-counting-bits-java/">Counting Bits</a><br/>
+<a href="http://www.programcreek.com/2014/04/leetcode-maximum-product-of-word-lengths-java/">Maximum Product of Word Lengths</a><br/>
+<a href="http://www.programcreek.com/2014/05/leetcode-gray-code-java/">Gray Code</a><br/>
+<a href="http://www.programcreek.com/2014/09/leetcode-utf-8-validation-java/">UTF-8 Validation</a></p>
+<p><strong>6. Math </strong></p>
+<p>--power--<br/>
+<a href="http://www.programcreek.com/2012/12/leetcode-powx-n/">Pow(x,n)</a>, <a href="http://www.programcreek.com/2014/07/leetcode-power-of-two-java/" title="LeetCode – Power of Two (Java)">Power of Two</a>, <a href="http://www.programcreek.com/2014/04/leetcode-power-of-three-java/">Power of Three</a>, <a href="http://www.programcreek.com/2015/04/leetcode-power-of-four-java/">Power of Four </a><br/>
+<a href="http://www.programcreek.com/2014/08/leetcode-super-pow-java/">Super Pow</a></p>
+<p>--/%--<br/>
+<a href="http://www.programcreek.com/2012/12/leetcode-reverse-integer/">Reverse Integer</a><br/>
+<a href="http://www.programcreek.com/2013/02/leetcode-palindrome-number-java/">Palindrome Number</a></p>
+<p><a href="http://www.programcreek.com/2014/09/leetcode-nth-digit-java/">Nth Digit</a><br/>
+<a href="http://www.programcreek.com/2014/03/leetcode-fraction-to-recurring-decimal-java/">Fraction to Recurring Decimal</a><br/>
+<a href="http://www.programcreek.com/2014/03/leetcode-excel-sheet-column-number-java/">Excel Sheet Column Number</a><br/>
+<a href="http://www.programcreek.com/2014/03/leetcode-excel-sheet-column-title-java/">Excel Sheet Column Title </a><br/>
+<a href="http://www.programcreek.com/2014/04/leetcode-factorial-trailing-zeroes-java/"> Factorial Trailing Zeroes</a><br/>
+<a href="http://www.programcreek.com/2014/04/leetcode-happy-number-java/">Happy Number</a><br/>
+<a href="http://www.programcreek.com/2014/04/leetcode-count-primes-java/">Count Primes</a><br/>
+<a href="http://www.programcreek.com/2014/05/leetcode-plus-one-java/">Plus One</a><br/>
+<a href="http://www.programcreek.com/2014/05/leetcode-divide-two-integers-java/">Divide Two Integers</a><br/>
+<a href="http://www.programcreek.com/2014/05/leetcode-multiply-strings-java/">Multiply Strings</a><br/>
+<a href="http://www.programcreek.com/2014/04/leetcode-max-points-on-a-line-java/">Max Points on a Line</a><br/>
+<a href="http://www.programcreek.com/2015/04/leetcode-integer-break-java/">Integer Break</a><br/>
+<a href="http://www.programcreek.com/2014/04/leetcode-add-digits-java/">Add Digits</a><br/>
+<a href="http://www.programcreek.com/2014/08/leetcode-largest-divisible-subset-java/">Largest Divisible Subset</a><br/>
+<a href="http://www.programcreek.com/2014/08/leetcode-count-numbers-with-unique-digits-java/">Count Numbers with Unique Digits</a></p>
+ 
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5732630628268628" data-ad-slot="6344454412" data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script><div class='yarpp-related'>
+<h3>You may also like ...</h3><ol>
+<li><a href="http://www.programcreek.com/2012/12/%e9%9d%a2%e8%af%9510%e5%a4%a7%e7%ae%97%e6%b3%95%e6%b1%87%e6%80%bb%ef%bc%8b%e5%b8%b8%e8%a7%81%e9%a2%98%e7%9b%ae%e8%a7%a3%e7%ad%94/" rel="bookmark" title="面试10大算法汇总＋常见题目解答">面试10大算法汇总＋常见题目解答 </a></li>
+<li><a href="http://www.programcreek.com/2013/01/leetcode-search-a-2d-matrix-java/" rel="bookmark" title="LeetCode &#8211; Search a 2D Matrix (Java)">LeetCode &#8211; Search a 2D Matrix (Java) </a></li>
+<li><a href="http://www.programcreek.com/2015/01/leetcode-verify-preorder-serialization-of-a-binary-tree-java/" rel="bookmark" title="LeetCode &#8211; Verify Preorder Serialization of a Binary Tree (Java)">LeetCode &#8211; Verify Preorder Serialization of a Binary Tree (Java) </a></li>
+<li><a href="http://www.programcreek.com/2014/05/leetcode-longest-increasing-path-in-a-matrix-java/" rel="bookmark" title="LeetCode &#8211; Longest Increasing Path in a Matrix  (Java)">LeetCode &#8211; Longest Increasing Path in a Matrix (Java) </a></li>
+</ol>
+</div>
+ 
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-5732630628268628" data-ad-slot="8149213617"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+ 
+<div class="sociable"></div>
+</div>
+ 
+ 
+Category >> <a href="http://www.programcreek.com/category/java-2/algorithms/" rel="category tag">Algorithms</a> &nbsp;
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
+<rdf:Description rdf:about="http://www.programcreek.com/2013/08/leetcode-problem-classification/" dc:identifier="http://www.programcreek.com/2013/08/leetcode-problem-classification/" dc:title="LeetCode Problem Classification" trackback:ping="http://www.programcreek.com/2013/08/leetcode-problem-classification/trackback/"/>
+</rdf:RDF>
+</div>
+ 
+<font color="green">If you want someone to read your code,
+please put the code inside <span style="color:red;">&lt;pre&gt;&lt;code&gt;</span>
+and
+<span style="color:red;">&lt;/code&gt;&lt;/pre&gt;</span>
+tags. For example:</font>
+<br>
+<pre>
+&lt;pre&gt;&lt;code&gt; 
+String foo = "bar";
+&lt;/code&gt;&lt;/pre&gt;
+</pre>
+<div id="disqus_thread">
+</div>
+<script type="text/javascript">
+var disqus_url = 'http://www.programcreek.com/2013/08/leetcode-problem-classification/';
+var disqus_identifier = '15685 http://www.programcreek.com/?p=15685';
+var disqus_container_id = 'disqus_thread';
+var disqus_shortname = 'programcreek';
+var disqus_title = "LeetCode Problem Classification";
+var disqus_config_custom = window.disqus_config;
+var disqus_config = function () {
+    /*
+    All currently supported events:
+    onReady: fires when everything is ready,
+    onNewComment: fires when a new comment is posted,
+    onIdentify: fires when user is authenticated
+    */
+    
+    
+    this.language = '';
+        this.callbacks.onReady.push(function () {
+
+        // sync comments in the background so we don't block the page
+        var script = document.createElement('script');
+        script.async = true;
+        script.src = '?cf_action=sync_comments&post_id=15685';
+
+        var firstScript = document.getElementsByTagName('script')[0];
+        firstScript.parentNode.insertBefore(script, firstScript);
+    });
+    
+    if (disqus_config_custom) {
+        disqus_config_custom.call(this);
+    }
+};
+
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<p>
+</p>
+</div>
+<div id="sidebar">
+<form action="http://www.programcreek.com/search/" id="cse-search-box">
+<div>
+<input type="hidden" name="cx" value="partner-pub-5732630628268628:9523372015"/>
+<input type="hidden" name="cof" value="FORID:10"/>
+<input type="hidden" name="ie" value="UTF-8"/>
+<input type="text" name="q" size="28"/>
+<input type="submit" name="sa" value="Search"/>
+</div>
+</form>
+<script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<div class="sidebarsep"></div>
+ 
+ 
+<ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-5732630628268628" data-ad-slot="2212528018"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+ 
+<div class="sidebarsep"></div>
+<ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-5732630628268628" data-ad-slot="2195947610"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<div class="sidebarsep"></div>
+ 
+<ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-5732630628268628" data-ad-slot="9882337616"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+ 
+<div class="sidebarsep"></div>
+ 
+<ins class="adsbygoogle" style="display:inline-block;width:300px;height:600px" data-ad-client="ca-pub-5732630628268628" data-ad-slot="5165994411"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<div class="sidebarsep"></div>
+</div></div>
+</div>
+<div id="footer">
+<p> Copyright &copy;&nbsp;2008 - 2016
+Program Creek
+</div>
+<script type="text/javascript">
+        // <![CDATA[
+        var disqus_shortname = 'programcreek';
+        (function () {
+            var nodes = document.getElementsByTagName('span');
+            for (var i = 0, url; i < nodes.length; i++) {
+                if (nodes[i].className.indexOf('dsq-postid') != -1) {
+                    nodes[i].parentNode.setAttribute('data-disqus-identifier', nodes[i].getAttribute('data-dsqidentifier'));
+                    url = nodes[i].parentNode.href.split('#', 1);
+                    if (url.length == 1) { url = url[0]; }
+                    else { url = url[1]; }
+                    nodes[i].parentNode.href = url + '#disqus_thread';
+                }
+            }
+            var s = document.createElement('script');
+            s.async = true;
+            s.type = 'text/javascript';
+            s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
+        // ]]>
+        </script>
+<link rel='stylesheet' id='yarppRelatedCss-css' href='http://www.programcreek.com/wp-content/plugins/yet-another-related-posts-plugin/style/related.css?ver=4.5.4' type='text/css' media='all'/>
+<script type='text/javascript' src='http://www.programcreek.com/wp-includes/js/wp-embed.min.js?ver=4.5.4'></script>
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
+ 
+<script type="text/javascript">
+var timeout    = 500;
+var closetimer = 0;
+var ddmenuitem = 0;
+
+function jsddm_open()
+{  jsddm_canceltimer();
+   jsddm_close();
+   ddmenuitem = $(this).find('ul').css('visibility', 'visible');}
+
+function jsddm_close()
+{  if(ddmenuitem) ddmenuitem.css('visibility', 'hidden');}
+
+function jsddm_timer()
+{  closetimer = window.setTimeout(jsddm_close, timeout);}
+
+function jsddm_canceltimer()
+{  if(closetimer)
+   {  window.clearTimeout(closetimer);
+      closetimer = null;}}
+
+$(document).ready(function()
+{  $('#menu-prim > li').bind('mouseover', jsddm_open)
+   $('#menu-prim > li').bind('mouseout',  jsddm_timer)});
+
+document.onclick = jsddm_close;
+</script>
+</body>
+</html>

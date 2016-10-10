@@ -1,0 +1,11 @@
+Encounter problems
+	Are there any quick-execption for this
+	If String {
+		Range
+		Case sensitive?
+		Special characters, spaces.
+	}
+	If integer {
+		32 or 64
+		Overflow possibility
+	}
