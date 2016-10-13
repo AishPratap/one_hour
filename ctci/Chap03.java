@@ -2,22 +2,52 @@ import java.util.*;
 
 public class Chap03 {
 	public static void main(String[] args) throws Exception {
-		MinStack stack = new MinStack();
-		stack.push(1);
-		stack.push(2);
-		stack.push(-3);
-		stack.push(10);
-		stack.pop();
-		stack.pop();
+		Queue<Integer> queue = new LinkedList<>();
+		for (int i = 0; i < 10; ++i) {
+			queue.add(i);
+		}
+		System.out.println(queue.peek());
+		while (!queue.isEmpty()) {
+			System.out.println(queue.poll());
+		}
+	}
+	/*
+	 * Sort a stack so that the largest elements lie on top
+	 * You can use only one more stack to do this shit.
+	 * Time: O(n^2); Space: O(n)
+	 */
+	public static void stackSort(Stack<Integer> stack) {
+		if (stack == null || stack.isEmpty() || stack.size() == 1) {
+			return;
+		}
 
-		System.out.println(stack.getMin());
-		stack.dump();
+		Stack<Integer> holder = new Stack<>();
+		boolean sorted = false;
+		while (!sorted) {
+			sorted = true;
+			while (!stack.isEmpty()) {
+				int pre = holder.isEmpty() ? Integer.MAX_VALUE : holder.peek();
+				int cur = stack.pop();
+				if (cur > pre) {
+					sorted = false;
+					while (!holder.isEmpty()) {
+						stack.push(holder.pop());
+					}
+					stack.push(cur);
+				} else {
+					holder.push(cur);
+				}
+			}
+		}
+		while (!holder.isEmpty()) {
+			stack.push(holder.pop());
+		}
 	}
 }
 
-/**
+/*/**
  * Implement a stack using one array of integer
- */
+   */
 class ArrayStack {
 	private int[] array;
 	private int top;
@@ -33,7 +63,7 @@ class ArrayStack {
 		if (top == size - 1) {
 			throw new Exception("Stack is full");
 		}
-		
+
 		array[++top] = val;
 	}
 
@@ -45,6 +75,9 @@ class ArrayStack {
 	}
 }
 
+/**
+ * Implement a stack that support push, pop and min in O(1)
+ */
 class MinStack {
 	private Stack<Integer> stack;
 	private Stack<Integer> minStack;
@@ -78,6 +111,9 @@ class MinStack {
 	}
 }
 
+/**
+ * Implement three stacks in one single array
+ */
 class TripleStack {
 	private int[] array;
 	private int[] head;
@@ -89,7 +125,7 @@ class TripleStack {
 		this.head = new int[3];
 		this.tail = new int[3];
 		this.top = new int[3];
-		
+
 		for (int i = 0; i < 3; ++i) {
 			this.head[i] = i * size;
 			this.tail[i] = (i + 1) * size - 1;
@@ -124,5 +160,39 @@ class TripleStack {
 
 	public void dump() {
 		System.out.println(Arrays.toString(array));
+	}
+}
+
+/**
+ * Implement a queue using two stacks
+ */
+class MyQueue {
+	private Stack<Integer> enqueueStack = new Stack<>();
+	private Stack<Integer> dequeueStack = new Stack<>();
+
+	/**
+	 * Time: O(n)
+	 */
+	public void enqueue(int val) {
+		if (enqueueStack.isEmpty()) {
+			dumpStack(dequeueStack, enqueueStack);
+		}
+		enqueueStack.push(val);
+	}
+
+	/**
+	 * Time: O(n)
+	 */
+	public int dequeue() {
+		if (dequeueStack.isEmpty()) {
+			dumpStack(enqueueStack, dequeueStack);
+		}
+		return dequeueStack.pop();
+	}
+
+	private void dumpStack(Stack<Integer> from, Stack<Integer> to) {
+		while (!from.isEmpty()) {
+			to.push(from.pop());
+		}
 	}
 }
