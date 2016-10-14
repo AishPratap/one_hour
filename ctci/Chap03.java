@@ -2,14 +2,17 @@ import java.util.*;
 
 public class Chap03 {
 	public static void main(String[] args) throws Exception {
-		Queue<Integer> queue = new LinkedList<>();
-		for (int i = 0; i < 10; ++i) {
-			queue.add(i);
+		SetOfStack stacks = new SetOfStack(5);
+		for (int i = 0; i < 37; ++i) {
+			stacks.push(i);
 		}
-		System.out.println(queue.peek());
-		while (!queue.isEmpty()) {
-			System.out.println(queue.poll());
+		for (int i = 0; i < 5; ++i) {
+			stacks.pop(5);
+			stacks.pop(6);
 		}
+		stacks.pop(7);
+		stacks.pop();
+		stacks.dump();
 	}
 	/*
 	 * Sort a stack so that the largest elements lie on top
@@ -194,5 +197,100 @@ class MyQueue {
 		while (!from.isEmpty()) {
 			to.push(from.pop());
 		}
+	}
+}
+
+class SetOfStack {
+	private final int limit;
+	private ArrayList<Stack<Integer>> stackList;
+
+	public SetOfStack(int limit) {
+		this.limit = limit;
+		stackList = new ArrayList<>();
+	}
+
+	public void push(int val) {
+		if (stackList.isEmpty() || isCurrentStackFull()) {
+			stackList.add(new Stack<Integer>());
+		}
+		
+		int lastIndex = stackList.size() - 1;
+		Stack<Integer> currentStack = stackList.get(lastIndex);
+		currentStack.push(val);
+	}
+
+	public int pop() {
+		int result = Integer.MIN_VALUE;
+
+		if (stackList.isEmpty()) {
+			return Integer.MIN_VALUE;
+		}
+	
+		int lastIndex = stackList.size() - 1;
+		if (lastIndex >= 0) {
+			Stack<Integer> currentStack = stackList.get(lastIndex);
+			result = currentStack.pop();
+		}
+
+		shrinkStacks();
+		
+		return result;
+	}
+	
+	public int pop(int index) {
+		int result= Integer.MAX_VALUE;
+		if (stackList.isEmpty()) {
+			return result;
+		}
+
+		int maxIndex = stackList.size() - 1;
+		if (index < 0 || index > maxIndex) {
+			return result;
+		}
+
+		Stack<Integer> currentStack = stackList.get(index);
+		result = currentStack.pop();
+		shrinkStacks();
+
+		return result;
+	}
+
+	public void dump() {
+		for (int i = 0; i < stackList.size(); ++i) {
+			System.out.println("Stack #" + i + ": ");
+			System.out.println(stackList.get(i));
+		}
+	}
+
+	/**
+	 * Given the stackList is not empty or null
+	 */
+	private boolean isCurrentStackFull() {
+		int lastIndex = stackList.size() - 1;
+		Stack<Integer> currentStack = stackList.get(lastIndex);
+		return currentStack.size() == limit;
+	}
+
+	/**
+	 * Given the stackList is not empty or null
+	 */
+	private boolean isLastStackEmpty() {
+		int lastIndex = stackList.size() - 1;
+		Stack<Integer> currentStack = stackList.get(lastIndex);
+		return currentStack.isEmpty();
+	}
+
+	/**
+	 * Make sure there will be no open and empty stacks
+	 */
+	private void shrinkStacks() {
+		while (isLastStackEmpty()) {
+			deleteLastStack();
+		}
+	}
+
+	private void deleteLastStack() {
+		int lastIndex = stackList.size() - 1;
+		stackList.remove(lastIndex);
 	}
 }
