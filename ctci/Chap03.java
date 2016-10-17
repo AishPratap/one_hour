@@ -2,17 +2,7 @@ import java.util.*;
 
 public class Chap03 {
 	public static void main(String[] args) throws Exception {
-		SetOfStack stacks = new SetOfStack(5);
-		for (int i = 0; i < 37; ++i) {
-			stacks.push(i);
-		}
-		for (int i = 0; i < 5; ++i) {
-			stacks.pop(5);
-			stacks.pop(6);
-		}
-		stacks.pop(7);
-		stacks.pop();
-		stacks.dump();
+		hanoi(3, 1, 2, 3);
 	}
 	/*
 	 * Sort a stack so that the largest elements lie on top
@@ -44,6 +34,16 @@ public class Chap03 {
 		}
 		while (!holder.isEmpty()) {
 			stack.push(holder.pop());
+		}
+	}
+
+	public static void hanoi(int n, int a, int b, int c) {
+		if (n <= 1) {
+			System.out.println(a + "->" + c);
+		} else {
+			hanoi(n - 1, a, c, b);
+			hanoi(1, a, b, c);
+			hanoi(n - 1, b, a, c);
 		}
 	}
 }
@@ -292,5 +292,96 @@ class SetOfStack {
 	private void deleteLastStack() {
 		int lastIndex = stackList.size() - 1;
 		stackList.remove(lastIndex);
+	}
+}
+
+class AnimalShelter {
+	private final Queue<Animal> dogQueue = new LinkedList<>();
+	private final Queue<Animal> catQueue = new LinkedList<>();
+	private int id = 0;
+
+	public void enqueue(Animal animal) {
+		animal.setNumber(id++);
+		if (animal instanceof Dog) {
+			dogQueue.add(animal);
+		} else {
+			catQueue.add(animal);
+		}
+	}
+
+	public Animal dequeueAny() {
+		if (dogQueue.isEmpty() && catQueue.isEmpty()) {
+			return null;
+		} else if (dogQueue.isEmpty()) {
+			return catQueue.poll();
+		} else if (catQueue.isEmpty()) {
+			return dogQueue.poll();
+		}
+
+		Animal dog = dogQueue.peek();
+		Animal cat = catQueue.peek();
+
+		return dog.getNumber() < cat.getNumber()
+			? dogQueue.poll() : catQueue.poll();
+	}
+
+	public Dog dequeueDog() {
+		if (dogQueue.isEmpty()) {
+			return null;
+		}
+		return (Dog) dogQueue.poll();
+	}
+
+	public Cat dequeueCat() {
+		if (catQueue.isEmpty()) {
+			return null;
+		}
+		return (Cat) catQueue.poll();
+	}
+}
+
+interface Animal {
+	String getType();
+	int getNumber();
+	void setNumber(int number);
+}
+
+class Dog implements Animal {
+	private int number;
+
+	public String getType() {
+		return "Dog";
+	}
+
+	public int getNumber() {
+		return number;
+	}
+
+	public void setNumber(int number) {
+		this.number = number;
+	}
+
+	public String toString() {
+		return getType();
+	}
+}
+
+class Cat implements Animal  {
+	private int number;
+
+	public String getType() {
+		return "Cat";
+	}
+
+	public void setNumber(int number) {
+		this.number = number;
+	}
+
+	public String toString() {
+		return getType();
+	}
+
+	public int getNumber() {
+		return number;
 	}
 }
