@@ -2,23 +2,9 @@ import java.util.*;
 
 public class Chap04 {
 	public static void main(String[] args) {
-		BinNode[] nodes = new BinNode[10];
-		for (int i = 0; i < 10; ++i) {
-			nodes[i] = new BinNode(i);
-		}
-
-		nodes[0].left = nodes[1];
-		nodes[0].right = nodes[2];
-		nodes[1].left = nodes[3];
-		nodes[1].right = nodes[4];
-		nodes[2].left = nodes[5];
-		nodes[4].left = nodes[6];
-		nodes[4].right = nodes[7];
-		//nodes[7].right = nodes[8];
-		//nodes[8].right = nodes[9];
-		
-		boolean balanced = isBalanced(nodes[0]);
-		System.out.println(balanced);
+		int[] data = {0,1,2,3,4,5,6,7,8,9};
+		BinNode root = generateTree(data);
+		System.out.println(isBST(root));
 	}
 
 	/**
@@ -105,6 +91,91 @@ public class Chap04 {
 		boolean right = isBalanced(root.right);
 
 		return current && left && right;
+	}
+
+	/**
+	 * Generate the shortest bintree from a sorted array
+	 * Time: O(n)
+	 */
+	public static BinNode generateTree(int[] data, int left, int right) {
+		if (left == right) {
+			return new BinNode(data[left]);
+		} else if (left > right) {
+			return null;
+		}
+		int mid = (left + right) / 2;
+		BinNode midNode = new BinNode(data[mid]);
+		BinNode leftNode = generateTree(data, left, mid - 1);
+		BinNode rightNode = generateTree(data, mid + 1, right);
+		midNode.left = leftNode;
+		midNode.right = rightNode;
+
+		return midNode;
+	}
+	
+	public static BinNode generateTree(int[] data) {
+		if (data == null || data.length == 0) {
+			return null;
+		}
+
+		return generateTree(data, 0, data.length - 1);
+	}
+
+	/**
+	 * Print the layers of a binary tree
+	 * Time: O(n)
+	 */
+	public static void genLayers(BinNode root) {
+		if (root == null) {
+			System.out.println("Root is null");
+			return;
+		}
+		
+		Queue<BinNode> layerQueue = new LinkedList<>();
+		layerQueue.add(root);
+
+		ArrayList<LinkedList<BinNode>> result = new ArrayList<>();
+
+		while (!layerQueue.isEmpty()) {
+			result.add(new LinkedList<BinNode>(layerQueue));
+			Queue<BinNode> buffer = new LinkedList<>();
+			while (!layerQueue.isEmpty()) {
+				buffer.add(layerQueue.poll());
+			}
+
+			while (!buffer.isEmpty()) {
+				BinNode curNode = buffer.poll();
+				if (curNode.left != null) {
+					layerQueue.add(curNode.left);
+				}
+				if (curNode.right != null) {
+					layerQueue.add(curNode.right);
+				}
+			}
+		}
+
+		int layerNo = 0;
+		for (LinkedList<BinNode> queue : result) {
+			System.out.println("Layer " + layerNo++);
+			for (BinNode node : queue) {
+				System.out.print(node.val + " ");
+			}
+			System.out.println();
+		}
+	}
+
+	public static boolean isBST(BinNode root) {
+		return isBST(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
+	}
+
+	public static boolean isBST(BinNode root, int left, int right) {
+		if (root == null) {
+			return true;
+		}
+
+		return	(root.val <= right && root.val > left) &&
+				isBST(root.left, left, root.val) &&
+				isBST(root.right, root.val, right);
 	}
 }
 
