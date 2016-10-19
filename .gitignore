@@ -3,4 +3,8 @@ a.out
 a.exe
 *.swp
 *.class
+*.jpg
+*.mp4
+*.mov
+*.png
 /ctci/nbproject/private/
