@@ -2,9 +2,9 @@ import java.util.*;
 
 public class Chap04 {
 	public static void main(String[] args) {
-		int[] data = {0,1,2,3,4,5,6,7,8,9};
+		int[] data = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
 		BinNode root = generateTree(data);
-		System.out.println(isBST(root));
+		System.out.println(lowestCommonAncestor(3, 6, root));
 	}
 
 	/**
@@ -26,33 +26,33 @@ public class Chap04 {
 		return height(root, -1);
 	}
 
-	public static void PreOrder(BinNode root) {
+	public static void preOrder(BinNode root) {
 		if (root == null) {
 			return;
 		}
 
 		System.out.print(root.val + " ");
-		PreOrder(root.left);
-		PreOrder(root.right);
+		preOrder(root.left);
+		preOrder(root.right);
 	}
 
-	public static void InOrder(BinNode root) {
+	public static void inOrder(BinNode root) {
 		if (root == null) {
 			return;
 		}
 
-		InOrder(root.left);
+		inOrder(root.left);
 		System.out.print(root.val + " ");
-		InOrder(root.right);
+		inOrder(root.right);
 	}
 
-	public static void PostOrder(BinNode root) {
+	public static void postOrder(BinNode root) {
 		if (root == null) {
 			return;
 		}
 
-		PostOrder(root.left);
-		PostOrder(root.right);
+		postOrder(root.left);
+		postOrder(root.right);
 		System.out.print(root.val + " ");
 	}
 
@@ -177,6 +177,24 @@ public class Chap04 {
 				isBST(root.left, left, root.val) &&
 				isBST(root.right, root.val, right);
 	}
+
+	/**
+	 * Given that those nodes are not null
+	 * Node0 is smaller than Node1 and they both belongs to a tree
+	 * O(h): h is the height of the tree
+	 */
+	public static int lowestCommonAncestor(int node0,
+			int node1, BinNode root) {
+
+		while (!(root.val >= node0 && root.val < node1)) {
+			if (root.val >= node0) {
+				root = root.left;
+			} else {
+				root = root.right;
+			}
+		}
+		return root.val;
+	}
 }
 
 class BinNode {
@@ -187,5 +205,112 @@ class BinNode {
 
 	public BinNode(int val) {
 		this.val= val;
+	}
+
+	public void addRight(BinNode node) {
+		this.right = node;
+		this.parent = this;
+	}
+
+	public void addLeft(BinNode node) {
+		this.left = node;
+		this.parent = this;
+	}
+}
+
+class DirectedGraph {
+	private int size;
+	private ArrayList<HashSet<Integer>> data;
+
+	public DirectedGraph(int size) {
+		this.size = size;
+		data = new ArrayList<>();
+		for (int i = 0; i < size; ++i) {
+			data.add(new HashSet<Integer>());
+		}
+	}
+	/**
+	 * O(1) amortized time
+	 */
+	public void addVertex() {
+		data.add(new HashSet<Integer>());
+	}
+
+	/**
+	 * O(1)
+	 */
+	public void addEdge(int src, int dest) {
+		data.get(src).add(dest);
+	}
+
+	/**
+	 * O(1)
+	 */
+	public boolean isConnected(int src, int dest) {
+		return data.get(src).contains(dest);
+	}
+
+	public void dump() {
+		for (int i = 0; i < data.size(); ++i) {
+			System.out.print("Node: " + i + ": ");
+			for (int it : data.get(i)) {
+				System.out.print(it + " ");
+			}
+			System.out.println();
+		}
+	}
+
+	/**
+	 * O(v + e) : all the edges and vertices are checked
+	 */
+	public boolean isInterConnected(int src, int dest) {
+		Queue<Integer> queue = new LinkedList<>();
+		HashSet<Integer> visited = new HashSet<>();
+
+		queue.add(src);
+		
+		while (!queue.isEmpty()) {
+			int cur = queue.poll();
+
+			if (cur == dest) {
+				return true;
+			}
+
+			visited.add(cur);
+
+			for (int it : data.get(cur)) {
+				if (!visited.contains(it)) {
+					queue.add(it);
+				}
+			}
+		}
+
+		return false;
+	}
+
+	public int disConnectedComponents() {
+		HashSet<Integer> visited = new HashSet<>();
+		int result = 0;
+
+		for (int i = 0; i < size; ++i) {
+			if (!visited.contains(i)) {
+				result += 1;
+				DFSMark(i, visited);
+			}
+		}
+		
+		return result;
+	}
+
+	/**
+	 * O(e + v): all nodes and edges are checked
+	 */
+	private void DFSMark(int node, HashSet<Integer> visited) {
+		visited.add(node);
+		for (int it : data.get(node)) {
+			if (!visited.contains(it)) {
+				DFSMark(it, visited);
+			}
+		}
 	}
 }
