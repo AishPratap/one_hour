@@ -2,9 +2,53 @@ import java.util.*;
 
 public class Chap04 {
 	public static void main(String[] args) {
-		int[] data = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
-		BinNode root = generateTree(data);
-		System.out.println(lowestCommonAncestor(3, 6, root));
+		BinNode node90 = new BinNode(90);
+		BinNode node50 = new BinNode(50);
+		BinNode node150 = new BinNode(150);
+		BinNode node20 = new BinNode(20);
+		BinNode node75 = new BinNode(75);
+		BinNode node95 = new BinNode(95);
+		BinNode node175 = new BinNode(175);
+		BinNode node5 = new BinNode(5);
+		BinNode node25 = new BinNode(25);
+		BinNode node66 = new BinNode(66);
+		BinNode node80 = new BinNode(80);
+		BinNode node92 = new BinNode(92);
+		BinNode node111 = new BinNode(111);
+		BinNode node166 = new BinNode(166);
+		BinNode node200 = new BinNode(200);
+
+		node90.addRight(node150);
+		node90.addLeft(node50);
+
+		node50.addLeft(node20);
+		node50.addRight(node75);
+
+		node150.addLeft(node95);
+		node150.addRight(node175);
+
+		node20.addLeft(node5);
+		node20.addRight(node25);
+
+		node75.addLeft(node66);
+		node75.addRight(node80);
+
+		node95.addLeft(node92);
+		node95.addRight(node111);
+
+		node175.addLeft(node166);
+		node175.addRight(node200);
+
+		BinNode n50 = new BinNode(50);
+		BinNode n20 = new BinNode(20);
+		BinNode n75 = new BinNode(75);
+		BinNode n66 = new BinNode(66);
+
+		n50.addRight(n75);
+		n50.addLeft(n20);
+
+		n75.addLeft(n66);
+		System.out.println(n50.isSubTree(node90));
 	}
 
 	/**
@@ -107,8 +151,8 @@ public class Chap04 {
 		BinNode midNode = new BinNode(data[mid]);
 		BinNode leftNode = generateTree(data, left, mid - 1);
 		BinNode rightNode = generateTree(data, mid + 1, right);
-		midNode.left = leftNode;
-		midNode.right = rightNode;
+		midNode.addLeft(leftNode);
+		midNode.addRight(rightNode);
 
 		return midNode;
 	}
@@ -195,6 +239,22 @@ public class Chap04 {
 		}
 		return root.val;
 	}
+
+	/**
+	 * Given a vertex in a binary search tree, find the next node (in-order)
+	 * Time: O(n)
+	 */
+	public static BinNode nextInOrder(BinNode node) {
+		if (node.hasRight()) {
+			return node.nearestRightChild();
+		}
+
+		if (node.isRightChild()) {
+			return node.nearestRightParent();
+		}
+
+		return node.parent;
+	}
 }
 
 class BinNode {
@@ -209,12 +269,106 @@ class BinNode {
 
 	public void addRight(BinNode node) {
 		this.right = node;
-		this.parent = this;
+		node.parent = this;
 	}
 
 	public void addLeft(BinNode node) {
 		this.left = node;
-		this.parent = this;
+		node.parent = this;
+	}
+
+	public boolean hasLeft() {
+		return this.left != null;
+	}
+
+	public boolean hasRight() {
+		return this.right != null;
+	}
+
+	public boolean isRightChild() {
+		if (this == null || this.parent == null) {
+			return false;
+		}
+
+		return (this.parent.right == this);
+	}
+
+	public BinNode nearestRightChild() {
+		if (this == null || !this.hasRight()) {
+			return null;
+		}
+
+		BinNode iterator = this.right;
+
+		while (iterator.hasLeft()) {
+			iterator = iterator.left;
+		}
+
+		return iterator;
+	}
+
+	public BinNode nearestRightParent() {
+		if (this == null || this.parent == null) {
+			return null;
+		}
+
+		BinNode iterator = this;
+		while (iterator.isRightChild()) {
+			iterator = iterator.parent;
+		}
+
+		return iterator.parent;
+	}
+
+	public String toString() {
+		return Integer.toString(this.val);
+	}
+
+	/**
+	 * Check if a binary tree is a subtree of another
+	 * Assume that this and bigRoot is not null
+	 * Time: O(n^2) ; Space: O(n)
+	 */
+	public boolean isSubTree(BinNode bigRoot) {
+		Queue<BinNode> queue = new LinkedList<>();
+
+		queue.add(bigRoot);
+		while (!queue.isEmpty()) {
+			BinNode current = queue.poll();
+			if (this.isIdentical(current)) {
+				return true;
+			}
+			if (current.hasLeft()) {
+				queue.add(current.left);
+			}
+			if (current.hasRight()) {
+				queue.add(current.right);
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * Check if two trees share the same structure
+	 * O(n)
+	 */
+	public boolean isIdentical(BinNode compare) {
+		if (this == null || compare == null) {
+			return true;
+		}
+
+		boolean cur = this.val == compare.val;
+		boolean left = true;
+		if (this.left != null) {
+			left = this.left.isIdentical(compare.left);
+		}
+		boolean right = true;
+		if (this.right != null) {
+			right = this.right.isIdentical(compare.right);
+		}
+
+		return cur && left && right;
 	}
 }
 
