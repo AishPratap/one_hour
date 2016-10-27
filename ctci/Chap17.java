@@ -264,4 +264,30 @@ public class Chap17 {
 			}
 		}
 	}
+
+	
+}
+
+class BiNode {
+
+	public int data;
+	public BiNode left;
+	public BiNode right;
+
+	public BiNode(int data) {
+		this.data = data;
+	}
+}
+
+class NodeContainer {
+	
+	public BiNode head;
+
+	public void convert2LinkedList() {
+		if (head == null || (head.left == null && head.right == null)) {
+			break;
+		}
+
+		
+	}
 }
