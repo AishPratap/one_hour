@@ -3,9 +3,9 @@ import java.util.*;
 public class Chap17 {
 
 	public static void main(String[] args) {
-		int n = 25;
-		System.out.println(trailingZero(n));
-		System.out.println(naiveTrailingZero(n));
+		int[] data = {1, 2, 4, 7, 10, 11, 7, 12, 6, 7, 16, 18, 19};
+		int[] data2 = {1,1,1,1,1,1,2};
+		minimumRange(data2);	
 	}
 
 	/**
@@ -121,5 +121,85 @@ public class Chap17 {
 		}
 
 		return result;
+	}
+
+	/**
+	 * Return the maximum number without if-else and comparison oprerations
+	 */
+	public static int tryHardMax(int a, int b) {
+		return -1;
+	}
+
+	/**
+	 * Find the minimum range to sort
+	 * Valid argument guarantee
+	 * Time: O(n)
+	 */
+	public static void minimumRange(int[] data) {
+		if (data == null || data.length <= 1) {
+			System.out.println("No need to sort!");
+			return;
+		}
+
+		int left= 0, right = data.length - 1;
+		while (true) {
+			if (left >= data.length - 1 || data[left] > data[left + 1]) {
+				break;
+			}
+			left += 1;
+		}
+
+		while (true) {
+			if (right <= 0 || data[right] < data[right - 1]) {
+				break;
+			}
+			right -= 1;
+		}
+
+		if (left >= right) {
+			// Already a sorted array
+			System.out.println("The array is already sorted");
+			return;
+		}
+
+		// Find max and min for the interval
+		int min = Integer.MAX_VALUE, max = Integer.MIN_VALUE;
+		for (int i = left; i <= right; ++i) {
+			max = Math.max(max, data[i]);
+			min = Math.min(min, data[i]);
+		}
+
+		// Expend to the left
+		while (true) {
+			if (left <= 0) {
+				break;
+			}
+
+			if (min >= data[left - 1]) {
+				break;
+			}
+			
+			left -= 1;
+			if (left >= 0) {
+				min = Math.min(min, data[left]);
+			}
+		}
+
+		// Expand to the right
+		while (true) {
+			if (right >= data.length - 1) {
+				break;
+			}
+
+			if (max <= data[right + 1]) {
+				break;
+			}
+			right += 1;
+			if (right <= data.length - 1) {
+				max = Math.max(max, data[right]);
+			}
+		}	
+
+		System.out.println("Sort from " + left + " to " + right);
 	}
 }
