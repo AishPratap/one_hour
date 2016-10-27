@@ -3,9 +3,8 @@ import java.util.*;
 public class Chap17 {
 
 	public static void main(String[] args) {
-		int[] data = {1, 2, 4, 7, 10, 11, 7, 12, 6, 7, 16, 18, 19};
-		int[] data2 = {1,1,1,1,1,1,2};
-		minimumRange(data2);	
+		int[] data = { 2, -8, 3, -2, 4, -1 };
+		System.out.println(largestContiuousSum(data));
 	}
 
 	/**
@@ -201,5 +200,29 @@ public class Chap17 {
 		}	
 
 		System.out.println("Sort from " + left + " to " + right);
+	}
+
+	/**
+	 * Kadane's Algorithm
+	 * O(n)
+	 */
+	public static int largestContiuousSum(int[] data) {
+		if (data == null || data.length == 0) {
+			return 0;
+		}
+
+		if (data.length == 1) {
+			return data[0];
+		}
+
+		int maxSoFar = data[0];
+		int max = maxSoFar;
+
+		for (int i = 1; i < data.length; ++i) {
+			max = Math.max(max + data[i], data[i]);
+			maxSoFar = Math.max(maxSoFar, max);
+		}
+
+		return maxSoFar;	
 	}
 }
