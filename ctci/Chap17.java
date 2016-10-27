@@ -3,8 +3,13 @@ import java.util.*;
 public class Chap17 {
 
 	public static void main(String[] args) {
-		int[] data = { 2, -8, 3, -2, 4, -1 };
-		System.out.println(largestContiuousSum(data));
+		for (int i = 0; i < 7; ++i) {
+			int test = rand7();
+			while (test != i) {
+				test = rand7();
+			}
+			System.out.println("Passed " + i);
+		}
 	}
 
 	/**
@@ -224,5 +229,17 @@ public class Chap17 {
 		}
 
 		return maxSoFar;	
+	}
+
+	/**
+	 * Given rand7 implement rand5
+	 */
+	public static int rand5() {
+		Random rand = new Random();
+		return rand.nextInt(5);
+	}
+
+	public static int rand7() {
+		return rand5() + rand5() / 2;
 	}
 }
