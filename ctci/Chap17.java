@@ -3,13 +3,8 @@ import java.util.*;
 public class Chap17 {
 
 	public static void main(String[] args) {
-		for (int i = 0; i < 7; ++i) {
-			int test = rand7();
-			while (test != i) {
-				test = rand7();
-			}
-			System.out.println("Passed " + i);
-		}
+		int[] data = {4,1,2,3,4,5,6,7,8,9};
+		pairSum(data, 10);
 	}
 
 	/**
@@ -241,5 +236,32 @@ public class Chap17 {
 
 	public static int rand7() {
 		return rand5() + rand5() / 2;
+	}
+
+	/**
+	 * Find all pairs in an array that sum to a specific value
+	 * In case of duplication: display once
+	 * Time: O(n)
+	 */
+	public static void pairSum(int[] data, int sum) {
+		Set<Integer> dataSet = new HashSet<>();
+		Set<Integer> paired = new HashSet<>();
+
+		for (int it : data) {
+			dataSet.add(it);
+		}
+
+		for (int it : data) {
+			if (paired.contains(it)) {
+				continue;
+			}
+
+			int wanted = sum - it;
+			if (dataSet.contains(wanted)) {
+				System.out.println(it + " and " + wanted);
+				paired.add(it);
+				paired.add(wanted);
+			}
+		}
 	}
 }
