@@ -3,6 +3,9 @@ import java.util.*;
 public class Chap17 {
 
 	public static void main(String[] args) {
+		int n = 25;
+		System.out.println(trailingZero(n));
+		System.out.println(naiveTrailingZero(n));
 	}
 
 	/**
@@ -63,5 +66,60 @@ public class Chap17 {
 		}
 
 		return 0;
+	}
+
+	/**
+	 * Calculate the number of trailing zero of n factorial
+	 */
+	public static int trailingZero(int n) {
+		if (n < 5) {
+			return 0;
+		}
+
+		long result = 24;
+		for (int i = 5; i <= n; ++i) {
+			result *= i;
+			result = truncate(result);
+		}
+
+		return trailing(result);
+	}
+
+	public static int naiveTrailingZero(int n) {
+		long result = 1;
+		for (int i = 2; i <= n; ++i) {
+			result *= i;
+		}
+
+		return trailing(result);
+	}
+
+	public static long truncate(long n) {
+		int level = 0;
+		long digit = 0;
+		while (n > 0) {
+			digit = n % 10;
+			n /= 10;
+			if (digit != 0) {
+				break;
+			}
+			level += 1;
+		}
+		long result = (long) Math.pow(10, level) * digit;
+		return result;
+	}
+
+	public static int trailing(long n) {
+		int result = 0;
+		while (n > 0) {
+			if (n % 10 == 0) {
+				result += 1;
+			} else {
+				break;
+			}
+			n /= 10;
+		}
+
+		return result;
 	}
 }
