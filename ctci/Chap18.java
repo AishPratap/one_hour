@@ -3,11 +3,15 @@ import java.util.*;
 public class Chap18 {
 
 	public static void main(String[] args) {
-		System.out.println(add(85, 25));
+		shuffle();
+		shuffle();
+		shuffle();
+		shuffle();
 	}
 
 	/**
 	 * Add two positive integers without addition operator
+	 * Time: O(n): n the number of bits
 	 */
 	public static int add(int a, int b) {
 		int result = 0;
@@ -58,5 +62,22 @@ public class Chap18 {
 		}
 
 		return result;
+	}
+
+	public static void shuffle() {
+		int[] deck = new int[52];
+		boolean[] existed= new boolean[52];
+		Random rand = new Random();
+
+		for (int i = 0; i < 52; ++i) {
+			int cand = rand.nextInt(52);
+			while (existed[cand]) {
+				cand = rand.nextInt(52);
+			}
+			existed[cand] = true;
+			deck[i] = cand;
+		}
+
+		System.out.println(Arrays.toString(deck));
 	}
 }
