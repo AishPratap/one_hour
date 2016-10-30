@@ -3,10 +3,11 @@ import java.util.*;
 public class Chap18 {
 
 	public static void main(String[] args) {
-		shuffle();
-		shuffle();
-		shuffle();
-		shuffle();
+		int[] data = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+		pickFromArray(data, 4);	
+		for (int i = 0; i < 15; ++i) {
+			pickFromArray(data, 5);			
+		}
 	}
 
 	/**
@@ -64,6 +65,10 @@ public class Chap18 {
 		return result;
 	}
 
+	/**
+	 * Shuffle a deck of card
+	 * Time O(n)  | n * prob
+	 */
 	public static void shuffle() {
 		int[] deck = new int[52];
 		boolean[] existed= new boolean[52];
@@ -79,5 +84,31 @@ public class Chap18 {
 		}
 
 		System.out.println(Arrays.toString(deck));
+	}
+
+	/**
+	 * Generate m random elements from an array of n
+	 */
+	public static void pickFromArray(int[] data, int n) {
+		if (n <= 0 || data == null || data.length == 0) {
+			System.out.println("Invalid");
+			return;
+		}
+
+		int[] picked = new int[n];
+		Random rand = new Random();
+		boolean[] flag = new boolean[data.length];
+
+		for (int i = 0; i < n; ++i) {
+			int pickNext = rand.nextInt(data.length);
+			while (flag[pickNext]) {
+				pickNext = rand.nextInt(data.length);
+			}
+
+			flag[pickNext] = true;
+			picked[i] = data[pickNext];
+		}
+
+		System.out.println(Arrays.toString(picked));
 	}
 }
