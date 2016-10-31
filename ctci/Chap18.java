@@ -3,11 +3,11 @@ import java.util.*;
 public class Chap18 {
 
 	public static void main(String[] args) {
-		int[] data = {1, 2, 3, 4, 5, 6, 7, 8, 9};
-		pickFromArray(data, 4);	
+		Random rand = new Random();
 		for (int i = 0; i < 15; ++i) {
-			pickFromArray(data, 5);			
+			System.out.print(rand.nextInt(1000) + " ");
 		}
+		System.out.println();
 	}
 
 	/**
@@ -110,5 +110,20 @@ public class Chap18 {
 		}
 
 		System.out.println(Arrays.toString(picked));
+	}
+}
+
+class Median {
+	
+	public List<Integer> data = new ArrayList<>();
+	public sortedFlag = false;	
+
+	public void add(int a) {
+		sortedFlag = false;
+		data.add(a);
+	}
+
+	public int getMedian() {
+
 	}
 }
