@@ -42,7 +42,7 @@ public class Chap18 {
 				}
 			} else {
 				curBit = 0;
-				
+
 				if (carry) {
 					curBit = 1;
 					carry = false;
@@ -114,9 +114,9 @@ public class Chap18 {
 }
 
 class Median {
-	
+
 	public List<Integer> data = new ArrayList<>();
-	public sortedFlag = false;	
+	public boolean sortedFlag = false;
 
 	public void add(int a) {
 		sortedFlag = false;
@@ -124,6 +124,8 @@ class Median {
 	}
 
 	public int getMedian() {
-
+		if (sortedFlag) {
+		}
+		return 0;
 	}
 }
