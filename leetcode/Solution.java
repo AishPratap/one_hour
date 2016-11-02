@@ -3,7 +3,8 @@ import java.util.*;
 public class Solution {
 
 	public static void main(String[] args) {
-		System.out.println(isPowerOfFour(4));
+		String test = "";
+		System.out.println(reverseString(test));
 	}
 
 	/**
@@ -33,5 +34,24 @@ public class Solution {
 		}
 
 		return (counter % 2 == 0);
+	}
+
+	/**
+	 * Reverse String : 344
+	 *
+	 * Time: O(n)
+	 */
+	public static String reverseString(String s) {
+		char[] array = s.toCharArray();
+		int i = 0, j = array.length - 1;
+		while (i < j) {
+			char temp = array[i];
+			array[i] = array[j];
+			array[j] = temp;
+			i += 1;
+			j -= 1;
+		}
+
+		return new String(array);
 	}
 }
