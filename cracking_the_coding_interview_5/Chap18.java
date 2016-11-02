@@ -111,6 +111,74 @@ public class Chap18 {
 
 		System.out.println(Arrays.toString(picked));
 	}
+
+	/**
+	 * Mutation distance, a variation of 18.10
+	 * Time: O(n^2)
+	 */
+	public static int findMutationDistance(String start, String end, String[] bank) {
+		/* Load data to HashSet  */
+		Map<String, Integer> path = new HashMap<>();
+		for (String word : bank) {
+			path.put(word, -1);
+		}
+
+		//System.out.println("DEBUG:bankSet: " + dataSet);
+
+		/* If the end sequence is not there  */
+		if (!path.containsKey(end)) {
+			return -1;
+		}
+
+		/* BFS */
+		Queue<String> queue = new LinkedList<>();
+		int counter = -1;
+
+		queue.add(start);
+		path.put(start, 0);
+
+		while (!queue.isEmpty()) {
+			String current = queue.poll();
+			//System.out.println("DEBUG:current: " + current);
+			int pathSoFar = path.get(current);
+			path.remove(current);
+
+			if (current.equals(end)) {
+				return pathSoFar;
+			}
+
+			List<String> next = nextWords(current, path);
+			//System.out.println("DEBUG:next: " + next);
+			for (String word : next) {
+				path.put(word, pathSoFar + 1);
+				queue.add(word);
+			}
+		}
+
+		return -1;
+	}
+
+	public static List<String> nextWords(String current, Map<String, Integer> path) {
+		char[] tokens = {'A', 'C', 'T', 'G'};
+		List<String> result = new LinkedList<>();
+
+		for (int i = 0; i < current.length(); ++i) {
+			char[] array = current.toCharArray();
+			for (char c : tokens) {
+				if (c == array[i]) {
+					continue;
+				}
+				array[i] = c;
+				String str = new String(array);
+				if (path.containsKey(str)) {
+					result.add(str);
+				}
+			}
+		}
+
+		//System.out.println("DEBUG:path: " + path);
+		return result;
+	}
 }
 
 class Median {
