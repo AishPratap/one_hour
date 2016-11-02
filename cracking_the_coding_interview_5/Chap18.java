@@ -3,11 +3,13 @@ import java.util.*;
 public class Chap18 {
 
 	public static void main(String[] args) {
+		Median med = new MedianImp1();
 		Random rand = new Random();
+
 		for (int i = 0; i < 15; ++i) {
-			System.out.print(rand.nextInt(1000) + " ");
+			med.add(rand.nextInt(1000));
+			System.out.println(med.median());
 		}
-		System.out.println();
 	}
 
 	/**
@@ -181,19 +183,42 @@ public class Chap18 {
 	}
 }
 
-class Median {
+interface Median {
+	void add(int val);
+	double median();
+}
 
-	public List<Integer> data = new ArrayList<>();
-	public boolean sortedFlag = false;
+class MedianImp1 implements Median {
 
-	public void add(int a) {
-		sortedFlag = false;
-		data.add(a);
+	List<Integer> data = new ArrayList<>();
+	boolean sorted = false;
+
+	/*  O(1) */
+	public void add(int val) {
+		if (!data.isEmpty() && val < data.get(data.size() - 1)) {
+			sorted = false;
+		}
+		data.add(val);
 	}
 
-	public int getMedian() {
-		if (sortedFlag) {
+	/*  O(nlogn) */
+	public double median() {
+		if (!sorted) {
+			data.sort(null);
+			sorted = true;
 		}
-		return 0;
+
+		int mid = data.size() / 2;
+		
+		System.out.println(data);
+
+		if (data.size() % 2 == 0) {
+			double v0 = (double) data.get(mid - 1);
+			double v1 = (double) data.get(mid);
+
+			return (v0 + v1) / 2.0d;
+		} else {
+			return (double) data.get(mid);
+		}
 	}
 }
