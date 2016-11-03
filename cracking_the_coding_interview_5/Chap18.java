@@ -3,13 +3,20 @@ import java.util.*;
 public class Chap18 {
 
 	public static void main(String[] args) {
-		Median med = new MedianImp1();
-		Random rand = new Random();
 
-		for (int i = 0; i < 15; ++i) {
-			med.add(rand.nextInt(1000));
-			System.out.println(med.median());
-		}
+		String[] strings = {
+			"dogwalkererere",
+			"cat",
+			"banana",
+			"dog",
+			"nana",
+			"walk",
+			"walker",
+			"dogwalker",
+			"erere"
+		};
+
+		System.out.println(longestConcatenation(strings));
 	}
 
 	/**
@@ -180,6 +187,49 @@ public class Chap18 {
 
 		//System.out.println("DEBUG:path: " + path);
 		return result;
+	}
+
+	/**
+	 * Find the logest string which is the concatenation of
+	 * of other Strings.
+	 *
+	 * Time: O(nm) n: length of data, m: length of the strings
+	 */
+	public static String longestConcatenation(String[] data) {
+		if (data == null || data.length < 2) {
+			return null;
+		}
+	
+		String result = "";
+
+		/* O(nlogn)  */
+		Arrays.sort(data);
+		/* O(n) */
+		Set<String> set = new HashSet<>(Arrays.asList(data));
+
+		/* O(nm) */
+		for (int i = data.length - 1; i > 0; --i) {
+			String cur = data[i];
+			String pre = data[i - 1];
+
+			if (cur.length() <=  pre.length()) {
+				continue;
+			}
+
+			/* O(m) */
+			String curSub = cur.substring(0, pre.length());
+
+			/* O(m) */
+			if (curSub.equals(pre)) {
+				String remain = cur.substring(pre.length());
+				if (set.contains(remain)) {
+					return cur;
+				}
+			}
+		}
+
+		// Temp
+		return null;
 	}
 }
 
