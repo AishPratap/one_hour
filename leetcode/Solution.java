@@ -3,20 +3,8 @@ import java.util.*;
 public class Solution {
 
 	public static void main(String[] args) {
-		List<Integer> list = new ArrayList<>();
-		MedianFinder  med = new MedianFinder ();
-		Random rand = new Random();
-		for (int i = 0; i < 12; ++i) {
-			int val = rand.nextInt(1000);
-			System.out.println(val);
-
-			list.add(val);
-			list.sort(null);
-			System.out.println(list);
-
-			med.addNum(val);
-			System.out.println("DEBUG:med: " + med.findMedian());
-		}
+		int[] data = {0, 1, 3};
+		System.out.println(missingNumber(data));
 	}
 
 	/**
@@ -65,6 +53,17 @@ public class Solution {
 		}
 
 		return new String(array);
+	}
+
+	public static int missingNumber(int[] nums) {
+		int size = nums.length;
+		long sum = (size * (size + 1)) / 2;
+
+		for (int it : nums) {
+			sum -= it;
+		}
+
+		return (int) sum;
 	}
 }
 
