@@ -3,8 +3,20 @@ import java.util.*;
 public class Solution {
 
 	public static void main(String[] args) {
-		String test = "";
-		System.out.println(reverseString(test));
+		List<Integer> list = new ArrayList<>();
+		MedianFinder  med = new MedianFinder ();
+		Random rand = new Random();
+		for (int i = 0; i < 12; ++i) {
+			int val = rand.nextInt(1000);
+			System.out.println(val);
+
+			list.add(val);
+			list.sort(null);
+			System.out.println(list);
+
+			med.addNum(val);
+			System.out.println("DEBUG:med: " + med.findMedian());
+		}
 	}
 
 	/**
@@ -55,3 +67,33 @@ public class Solution {
 		return new String(array);
 	}
 }
+
+class MedianFinder {
+
+	public Queue<Integer> maxQueue =
+		new PriorityQueue<>(Collections.reverseOrder());
+
+	public Queue<Integer> minQueue = new PriorityQueue<>();
+
+	// Adds a number into the data structure.
+	public void addNum(int num) {
+		maxQueue.add(num);
+		minQueue.add(maxQueue.poll());
+		
+		if (maxQueue.size() < minQueue.size()) {
+			maxQueue.add(minQueue.poll());
+		}
+	}
+
+	// Returns the median of current data stream
+	public double findMedian() {
+		if (maxQueue.size() == minQueue.size()) {
+			double first = (double) maxQueue.peek();
+			double second = (double) minQueue.peek();
+
+			return (first + second) / 2.0d;
+		} else {
+			return (double) maxQueue.peek();
+		}
+	}
+};
