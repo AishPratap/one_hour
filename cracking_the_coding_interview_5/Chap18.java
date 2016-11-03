@@ -191,7 +191,7 @@ public class Chap18 {
 		if (data == null || data.length < 2) {
 			return null;
 		}
-	
+
 		String result = "";
 
 		/* O(nlogn)  */
@@ -224,46 +224,35 @@ public class Chap18 {
 		return null;
 	}
 }
+class MedianFinder {
 
-interface Median {
-	void add(int val);
-	double median();
-}
+	public Queue<Integer> maxQueue =
+		new PriorityQueue<>(Collections.reverseOrder());
 
-class MedianImp1 implements Median {
+	public Queue<Integer> minQueue = new PriorityQueue<>();
 
-	List<Integer> data = new ArrayList<>();
-	boolean sorted = false;
+	// Adds a number into the data structure.
+	public void addNum(int num) {
+		maxQueue.add(num);
+		minQueue.add(maxQueue.poll());
 
-	/*  O(1) */
-	public void add(int val) {
-		if (!data.isEmpty() && val < data.get(data.size() - 1)) {
-			sorted = false;
+		if (maxQueue.size() < minQueue.size()) {
+			maxQueue.add(minQueue.poll());
 		}
-		data.add(val);
 	}
 
-	/*  O(nlogn) */
-	public double median() {
-		if (!sorted) {
-			data.sort(null);
-			sorted = true;
-		}
+	// Returns the median of current data stream
+	public double findMedian() {
+		if (maxQueue.size() == minQueue.size()) {
+			double first = (double) maxQueue.peek();
+			double second = (double) minQueue.peek();
 
-		int mid = data.size() / 2;
-		
-		System.out.println(data);
-
-		if (data.size() % 2 == 0) {
-			double v0 = (double) data.get(mid - 1);
-			double v1 = (double) data.get(mid);
-
-			return (v0 + v1) / 2.0d;
+			return (first + second) / 2.0d;
 		} else {
-			return (double) data.get(mid);
+			return (double) maxQueue.peek();
 		}
 	}
-}
+};
 
 /**
  * For the shake of simplicity, let's assume that the text only contains
