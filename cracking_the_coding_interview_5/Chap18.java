@@ -3,20 +3,12 @@ import java.util.*;
 public class Chap18 {
 
 	public static void main(String[] args) {
-
-		String[] strings = {
-			"dogwalkererere",
-			"cat",
-			"banana",
-			"dog",
-			"nana",
-			"walk",
-			"walker",
-			"dogwalker",
-			"erere"
-		};
-
-		System.out.println(longestConcatenation(strings));
+		String test = "this is sample text this is sparta this is madness this sparta";
+		WordDistance distance = new WordDistance(test);
+		System.out.println(distance.distance("this", "madness"));
+		System.out.println(distance.distance("sparta", "madness"));
+		System.out.println(distance.distance("sparta", "sparta"));
+		System.out.println(distance.distance("this", "madness"));
 	}
 
 	/**
@@ -270,5 +262,121 @@ class MedianImp1 implements Median {
 		} else {
 			return (double) data.get(mid);
 		}
+	}
+}
+
+/**
+ * For the shake of simplicity, let's assume that the text only contains
+ * a-z and spaces as delimieters
+ */
+class WordDistance {
+
+	public Map<String, List<Integer>> data;
+
+	/**
+	 * Load shit into memory
+	 * Time: O(n) n is the number of tokens
+	 * Space: O(n)
+	 */
+	public WordDistance(String text) {
+		data = new HashMap<>();
+		StringTokenizer token = new StringTokenizer(text);
+
+		int tokenCounter = 0;
+
+		while (token.hasMoreTokens()) {
+			String curToken = token.nextToken();
+			if (!data.containsKey(curToken)) {
+				data.put(curToken, new ArrayList<>());
+			}
+
+			data.get(curToken).add(tokenCounter);
+			tokenCounter += 1;
+		}
+		//System.out.println("DEBUB:data: " + data);
+	}
+
+	public int distance(String word0, String word1) {
+		if (!data.containsKey(word0) || !data.containsKey(word1)) {
+			/* No words found in the dictionary */
+			return -1;
+		}
+
+		List<Integer> list0 = data.get(word0);
+		List<Integer> list1 = data.get(word1);
+
+		//System.out.println("DEBUG:list0: " + list0);
+		//System.out.println("DEBUG:list1: " + list1);
+
+		return minDif(list0, list1);
+	}
+
+	/**
+	 * Time: O(m): the number of occurence of two words
+	 */
+	private int minDif(List<Integer> list0, List<Integer> list1) {
+		int curNum = -1, preNum = -1;
+		boolean curState = false, preState = false;
+		int index0 = 0, index1 = 0;
+
+
+		//System.out.println("DEBUG:list0: " + list0);
+		//System.out.println("DEBUG:list1: " + list1);
+
+		curState = list0.get(index0) <= list1.get(index1);
+
+		//System.out.println("DEBUG:curState: " + curState);
+		if (curState) {
+			curNum = list0.get(index0);
+			index0 += 1;
+		} else {
+			curNum = list1.get(index1);
+			index1 += 1;
+		}
+
+		int result = Integer.MAX_VALUE;
+
+		while (index0 < list0.size() || index1 < list1.size()) {
+			int top0 = Integer.MAX_VALUE, top1 = Integer.MAX_VALUE;
+			if (index0 < list0.size()) {
+				top0 = list0.get(index0);
+			}
+
+			if (index1 < list1.size()) {
+				top1 = list1.get(index1);
+			}
+
+			//System.out.println("DEBUG:top0: " + top0);
+			//System.out.println("DEBUG:top1: " + top1);
+
+			preState = curState;
+			curState = top0 <= top1;
+
+			preNum = curNum;
+
+			if (curState) {
+				curNum = list0.get(index0);
+				index0 += 1;
+			} else {
+				curNum = list1.get(index1);
+				index1 += 1;
+			}
+
+			//System.out.println("DEBUG:prestate: " + preState);
+			//System.out.println("DEBUG:curState: " + curState);
+
+			if (preState != curState) {
+				//System.out.println("DEBUG:preState!=curState: ");
+				int dif = Math.abs(curNum - preNum);
+				result = Math.min(result, dif);
+				//System.out.println("DEBUG:dif: " + dif);
+				//System.out.println("DEBUG:result: " + result);
+				if (result == 1) {
+					break;
+				}
+			}
+		}
+
+		return result;
 	}
 }
