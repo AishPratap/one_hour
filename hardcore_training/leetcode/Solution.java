@@ -3,13 +3,8 @@ import java.util.*;
 public class Solution {
 
 	public static void main(String[] args) {
-		RandomizedSet set = new RandomizedSet();
-		set.insert(1);
-		set.insert(2);
-
-		for (int i = 0; i < 12; ++i) {
-			System.out.println(set.getRandom());
-		}
+		int[] data = {0, 100, 4, 200, 1, 3, 2, -1};
+		System.out.println(longestConsecutive(data));
 	}
 
 	/**
@@ -69,6 +64,42 @@ public class Solution {
 		}
 
 		return (int) sum;
+	}
+
+	/**
+	 * Constrait: O(n) runtime
+	 */
+	public static int longestConsecutive(int[] nums) {
+		Map<Integer, Integer> map = new HashMap<>();
+		for (int it : nums) {
+			map.put(it, 0);
+		}
+
+		for (int it : nums) {
+			if (map.get(it) == 0) {
+				mark(it, map);
+			}
+		}
+
+		int max = 1;
+
+		for (Map.Entry<Integer, Integer> it : map.entrySet()) {
+			max = Math.max(max, it.getValue());
+		}
+
+		return max;
+	}
+
+	public static void mark(int num, Map<Integer, Integer> map) {
+		int next = num + 1;
+		if (!map.containsKey(next)) {
+			map.put(num, 1);
+		} else if (map.get(next) > 0) {
+			map.put(num, map.get(next) + 1);
+		} else {
+			mark(next, map);
+			map.put(num, map.get(next) + 1);
+		}
 	}
 }
 
