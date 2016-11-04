@@ -3,11 +3,12 @@ import java.util.*;
 public class Solution {
 
 	public static void main(String[] args) {
-		SummaryRanges range = new SummaryRanges();
-		int[] data = {1, 3, 7, 2, 6};
-		for (int it : data) {
-			range.addNum(it);
-			System.out.println(range.getIntervals());
+		RandomizedSet set = new RandomizedSet();
+		set.insert(1);
+		set.insert(2);
+
+		for (int i = 0; i < 12; ++i) {
+			System.out.println(set.getRandom());
 		}
 	}
 
@@ -136,7 +137,7 @@ class SummaryRanges {
 
 	public void addNum(int val) {
 		Interval curInterval = new Interval(val, val);
-		
+
 		Interval ceiling = set.higher(curInterval);
 		Interval floor = set.floor(curInterval);
 
@@ -149,22 +150,55 @@ class SummaryRanges {
 				set.remove(ceiling);
 			}
 		}
-		
+
 		if (floor != null) {
 			if (floor.start == val || val <= floor.end) {
 				return;
 			}
-			
+
 			if (val == floor.end + 1) {
 				curInterval.start = floor.start;
 				set.remove(floor);
 			}
 		}
-		
+
 		set.add(curInterval);
 	}
 
 	public List<Interval> getIntervals() {
 		return new ArrayList<>(set);
+	}
+}
+
+class RandomizedSet {
+
+	public Set<Integer> set;
+	public Random rand;
+
+	/** Initialize your data structure here. */
+	public RandomizedSet() {
+		set = new HashSet<>();
+		rand = new Random();
+	}
+
+	/** Inserts a value to the set. Returns true if the set did not already contain the specified element. */
+	public boolean insert(int val) {
+		return set.add(val);
+	}
+
+	/** Removes a value from the set. Returns true if the set contained the specified element. */
+	public boolean remove(int val) {
+		return set.remove(val);
+	}
+
+	/** Get a random element from the set. */
+	public int getRandom() {
+		int step = rand.nextInt(set.size());
+		Iterator<Integer> iterator = set.iterator();
+		for (int i = 0; i < step; ++i) {
+			iterator.next();
+		}
+
+		return iterator.next();
 	}
 }
