@@ -3,8 +3,12 @@ import java.util.*;
 public class Solution {
 
 	public static void main(String[] args) {
-		int[] data = {0, 1, 3};
-		System.out.println(missingNumber(data));
+		SummaryRanges range = new SummaryRanges();
+		int[] data = {1, 3, 7, 2, 6};
+		for (int it : data) {
+			range.addNum(it);
+			System.out.println(range.getIntervals());
+		}
 	}
 
 	/**
@@ -78,7 +82,7 @@ class MedianFinder {
 	public void addNum(int num) {
 		maxQueue.add(num);
 		minQueue.add(maxQueue.poll());
-		
+
 		if (maxQueue.size() < minQueue.size()) {
 			maxQueue.add(minQueue.poll());
 		}
@@ -96,3 +100,71 @@ class MedianFinder {
 		}
 	}
 };
+
+class Interval {
+	int start;
+	int end;
+	Interval() { start = 0; end = 0; }
+	Interval(int s, int e) { start = s; end = e; }
+
+	public String toString() {
+		StringBuilder result = new StringBuilder();
+
+		result
+			.append('[')
+			.append(start)
+			.append(", ")
+			.append(end)
+			.append(']');
+
+		return result.toString();
+	}
+}
+
+class SummaryRanges {
+
+	public TreeSet<Interval> set;
+
+	/** Initialize your data structure here. */
+	public SummaryRanges() {
+		set = new TreeSet<>(new Comparator<Interval>() {
+			public int compare(Interval obj0, Interval obj1) {
+				return obj0.start - obj1.start;
+			}
+		});
+	}
+
+	public void addNum(int val) {
+		Interval curInterval = new Interval(val, val);
+		
+		Interval ceiling = set.higher(curInterval);
+		Interval floor = set.floor(curInterval);
+
+		//System.out.println("DEBUG:floor: " + floor);
+		//System.out.println("DEBUG:ceiling: " + ceiling);
+
+		if (ceiling != null) {
+			if (val == ceiling.start - 1) {
+				curInterval.end = ceiling.end;
+				set.remove(ceiling);
+			}
+		}
+		
+		if (floor != null) {
+			if (floor.start == val || val <= floor.end) {
+				return;
+			}
+			
+			if (val == floor.end + 1) {
+				curInterval.start = floor.start;
+				set.remove(floor);
+			}
+		}
+		
+		set.add(curInterval);
+	}
+
+	public List<Interval> getIntervals() {
+		return new ArrayList<>(set);
+	}
+}
