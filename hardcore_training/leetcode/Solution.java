@@ -3,8 +3,8 @@ import java.util.*;
 public class Solution {
 
 	public static void main(String[] args) {
-		int[] data = {0, 100, 4, 200, 1, 3, 2, -1};
-		System.out.println(longestConsecutive(data));
+		int[] data = {1, 3, 4, 2, 2};
+		System.out.println(findDuplicate(data));
 	}
 
 	/**
@@ -100,6 +100,21 @@ public class Solution {
 			mark(next, map);
 			map.put(num, map.get(next) + 1);
 		}
+	}
+
+	public static int findDuplicate(int[] nums) {
+		int oneStep = nums[0];
+		int twoStep = nums[nums[0]];
+
+		while (oneStep != twoStep) {
+			System.out.println("DEBUG: oneStep: " + oneStep);
+			System.out.println("DEBUG: twoStep: " + twoStep);
+
+			oneStep = nums[oneStep];
+			twoStep = nums[nums[twoStep]];
+		}
+
+		return oneStep;
 	}
 }
 
