@@ -3,8 +3,9 @@ import java.util.*;
 public class Solution {
 
 	public static void main(String[] args) {
-		int[] data = {1, 3, 4, 2, 2};
-		System.out.println(findDuplicate(data));
+		System.out.println(canConstruct("a", "b"));
+		System.out.println(canConstruct("aa", "ab"));
+		System.out.println(canConstruct("aa", "aab"));
 	}
 
 	/**
@@ -115,6 +116,54 @@ public class Solution {
 		}
 
 		return oneStep;
+	}
+
+	/**
+	 * Return true if ransomNote can be constructed by magazine
+	 */
+	public static boolean canConstruct(String ransomNote, String magazine) {
+		Map<Character, Integer> ransomMap =
+			new HashMap<>();
+		Map<Character, Integer> magazineMap =
+			new HashMap<>();
+
+		for (int i = 0; i < ransomNote.length(); ++i) {
+			char cur = ransomNote.charAt(i);
+			if (!ransomMap.containsKey(cur)) {
+				ransomMap.put(cur, 0);
+			}
+
+			ransomMap.put(cur, ransomMap.get(cur) + 1);
+		}
+
+		for (int i = 0; i < magazine.length(); ++i) {
+			char cur = magazine.charAt(i);
+			if (!magazineMap.containsKey(cur)) {
+				magazineMap.put(cur, 0);
+			}
+
+			magazineMap.put(cur, magazineMap.get(cur) + 1);
+		}
+
+		for (Map.Entry<Character, Integer> entry : 
+				ransomMap.entrySet()) {
+			char cur = entry.getKey();
+			int ransomCurOcc = entry.getValue();
+
+			//System.out.println("DEBUG:cur: " + cur);
+
+			if (!magazineMap.containsKey(cur)) {
+				return false;
+			}
+
+			int magazineCurOcc = magazineMap.get(cur);
+
+			if (ransomCurOcc > magazineCurOcc) {
+				return false;
+			}
+		}
+
+		return true;
 	}
 }
 
