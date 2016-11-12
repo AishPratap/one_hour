@@ -3,9 +3,10 @@ import java.util.*;
 public class Solution {
 
 	public static void main(String[] args) {
-		System.out.println(canConstruct("a", "b"));
-		System.out.println(canConstruct("aa", "ab"));
-		System.out.println(canConstruct("aa", "aab"));
+		String str0 = "foobar";
+		String str1 = "foo";
+
+		System.out.println(minDistance(str0, str1));
 	}
 
 	/**
@@ -164,6 +165,42 @@ public class Solution {
 		}
 
 		return true;
+	}
+
+	public static int minDistance(String word1, String word2) {
+		int len1 = word1.length();
+		int len2 = word2.length();
+		int[][] matrix = new int[len2 + 1][len1 + 1];
+
+		for (int i = 0; i <= len2; ++i) {
+			for (int j = 0; j <= len1; ++j) {
+				if (i == 0) {
+					matrix[i][j] = j;
+					continue;
+				}
+
+				if (j == 0) {
+					matrix[i][j] = i;
+					continue;
+				}
+
+				int val0 = matrix[i- 1][j - 1];
+				int val1 = matrix[i - 1][j] + 1;
+				int val2 = matrix[i][j - 1] + 1;
+
+				char char1 = word1.charAt(j - 1);
+				char char2 = word2.charAt(i - 1);	
+
+				if (char1 != char2) {
+					val0 += 1;
+				}
+
+				matrix[i][j] =
+					Math.min(val0, Math.min(val1, val2));
+			}
+		}
+
+		return matrix[len2][len1];
 	}
 }
 
