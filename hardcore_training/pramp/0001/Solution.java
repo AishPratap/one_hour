@@ -26,4 +26,35 @@ public class Solution {
 			}
 		}	
 	}
+
+	/* Floor: less than or equal value  */
+	public static Node floor(Node root, int val) {
+		
+		if (root == null) {
+			return null;
+		}
+
+		Node result = null;
+
+		Node iterator = root;
+		while (iterator != null) {
+			if (iterator.val == val) {
+				result = iterator;
+				break;
+			} else if (val < iterator.val) {
+				iterator = iterator.left;
+			} else {
+				result = iterator;
+				iterator = iterator.right;
+			}
+		}
+
+		return result;
+	}
+}
+
+class Node {
+
+	int val;
+	Node left, right;
 }
