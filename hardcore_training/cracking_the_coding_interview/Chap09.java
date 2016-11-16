@@ -150,6 +150,11 @@ public class Chap09 {
 		
 	}
 
+	/**
+	 * Time: O(4^n)
+	 * Space: O(n)
+	 * Suppose that the image is a x b so n = max9a, b)
+	 */
 	public static void paintFill(int x, int y, int targetColor, int newColor, int[][] canvas) {
 		if (canvas[y][x]!= targetColor) {
 			return;
