@@ -144,4 +144,24 @@ public class Chap09 {
 		dumpPara(open + 1, close, n, str + "(");
 		dumpPara(open, close + 1, n, str + ")");
 	}
+
+	/* Implement the paint-filling feature in paint  */
+	public static void paintFill(int color, int x, int y, int[][] canvas) {
+		
+	}
+
+	public static void paintFill(int x, int y, int targetColor, int newColor, int[][] canvas) {
+		if (canvas[y][x]!= targetColor) {
+			return;
+		}
+
+		// Fill the current pixel
+		canvas[y][x] = newColor;
+
+		// Do the same for 4 adjacent pixels
+		paintFill(x + 1, y, targetColor, newColor, canvas);
+		paintFill(x - 1, y, targetColor, newColor, canvas);
+		paintFill(x, y + 1, targetColor, newColor, canvas);
+		paintFill(x, y - 1, targetColor, newColor, canvas);
+	}
 }
