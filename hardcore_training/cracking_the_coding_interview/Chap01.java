@@ -1,9 +1,29 @@
 import java.util.*;
+import java.io.*;
 
 public class Chap01 {
 
-	public static void main(String[] args) {
-		
+	public static void main(String[] args) throws Exception {
+		Scanner scan = new Scanner(new File("input.txt"));
+
+		int n = scan.nextInt();
+
+		int[][] matrix = new int[n][n];
+
+		for (int i = 0; i < n; ++i) {
+			for (int j = 0; j < n; ++j) {
+				matrix[i][j] = scan.nextInt();
+			}
+		}
+
+		rotate90(matrix);
+
+		for (int i = 0; i < n; ++i) {
+			for (int j = 0; j < n; ++j) {
+				System.out.print(matrix[i][j] + " ");
+			}
+			System.out.println();
+		}
 	}
 
 	/**
@@ -265,5 +285,34 @@ public class Chap01 {
 		}
 
 		return builder.toString();
+	}
+
+	/**
+	 * matrix is nxn
+	 */
+	public static void rotate90(int[][] matrix) {
+		int size = matrix.length;
+		
+		for (int i = 0; i < size; ++i) {
+			for (int j = i + 1; j < size; ++j) {
+				int temp = matrix[i][j];
+				matrix[i][j] = matrix[j][i];
+				matrix[j][i] = temp;
+			}
+		}
+
+		for (int i = 0; i < size; ++i) {
+			int left = 0;
+			int right = size - 1;
+
+			while (left < right) {
+				int temp = matrix[i][left];
+				matrix[i][left] = matrix[i][right];
+				matrix[i][right] = temp;
+
+				left += 1;
+				right -= 1;
+			}
+		}
 	}
 }
