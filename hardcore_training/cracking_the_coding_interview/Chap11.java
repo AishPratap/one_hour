@@ -3,15 +3,8 @@ import java.util.*;
 public class Chap11 {
 
 	public static void main(String[] args) {
-		Person[] people = new Person[6];
-		people[0] = new Person(65, 100);
-		people[1] = new Person(70, 150);
-		people[2] = new Person(56, 120);
-		people[3] = new Person(75, 190);
-		people[4] = new Person(60, 95);
-		people[5] = new Person(68, 110);
-
-		sortCircus(people);
+		String[] data = {"at", "ball", "", "", "", "ball", "", "car", "", "", "dad", "", ""};
+		System.out.println(binSearchEmpty("ball", data));
 	}
 
 	/**
@@ -55,7 +48,7 @@ public class Chap11 {
 		if (array == null || array.length == 0) {
 			return -1;
 		}
-	
+
 		int border  = -1;
 
 		for (int i = 0; i < array.length - 1; ++i) {
@@ -69,7 +62,7 @@ public class Chap11 {
 			// No rotation
 			return Arrays.binarySearch(array, val);	
 		}
-	
+
 		if (val <= array[array.length - 1]) {
 			return Arrays.binarySearch(array, border + 1,
 					array.length, val);
@@ -92,9 +85,9 @@ public class Chap11 {
 			if (
 					weightList.isEmpty() || 
 					weightList.get(weightList.size() - 1).isOk2Stack(it)
-			) {
+			   ) {
 				weightList.add(it);
-			}
+			   }
 		}
 
 		Arrays.sort(people, (Person a, Person b) -> {
@@ -106,14 +99,61 @@ public class Chap11 {
 			if (
 					heightList.isEmpty() ||
 					heightList.get(heightList.size() - 1).isOk2Stack(it)
-			) {
+			   ) {
 				heightList.add(it);
-			}
+			   }
 		}
 
 		System.out.println(weightList);
 		System.out.println(heightList);
-	}	
+	}
+
+	public static int binSearchEmpty(String key, String[] data) {
+		return binSearchEmpty(0, data.length - 1, key, data);
+	}
+
+	public static int binSearchEmpty(int left, int right,
+			String key, String[] data) {
+
+		if (left > right) {
+			return -1;
+		}
+
+		int mid = (left + right) / 2;
+		int goLeft = mid;
+		int goRight = mid;
+
+		while (goLeft >= left || goRight <= right) {
+			if (goRight <= right && !data[goRight].isEmpty()) {
+				mid = goRight;
+				break;
+			}
+
+			if (goLeft >= left && !data[goLeft].isEmpty()) {
+				mid = goLeft;
+				break;
+			}
+			goLeft -= 1;
+			goRight += 1;
+		}
+
+		if (data[mid].isEmpty()) {
+			return -1;
+		}
+
+		if (data[mid] == key) {
+			return mid;
+		}
+
+		else if (data[mid].isEmpty()) {
+		}
+
+		if (key.compareTo(data[mid]) < 0) {
+			return binSearchEmpty(left, mid - 1, key, data);
+		} else {
+			return binSearchEmpty(mid + 1, right, key, data);
+		}
+	}
 }
 
 class StringComparator implements Comparator<String> {
