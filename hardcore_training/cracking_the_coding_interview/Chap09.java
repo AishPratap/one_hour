@@ -2,6 +2,7 @@ import java.util.*;
 
 public class Chap09 {
 	public static void main(String[] args) {
+		dumpPara(3);
 	}
 
 	/**
@@ -123,18 +124,24 @@ public class Chap09 {
 	/**
 	 * Dump a set of valid paratheses
 	 * Input: 3; Ouput:  ((())), (()()), (())(), ()(()), ()()()
-	 * HARD
+	 * Time: O(2^n)A
+	 * Space: 
 	 */
 	public static void dumpPara(int n) {
-
+		dumpPara(0, 0, n, "");
 	}
 
-	/**
-	 * Box: height, depth, width, the box below must be larger than above
-	 * in every attribute, build the tallest stack of box
-	 * DYNAMIC PROGRAMMING
-	 */
-	public static int tallStack(int[] heights, int[] width, int[] depth) {
+	public static void dumpPara(int open, int close, int n, String str) {
+		if (close > open || open > n) {
+			return;
+		}
 
+		if (open == close && open == n) {
+			System.out.println(str);
+			return;
+		}
+
+		dumpPara(open + 1, close, n, str + "(");
+		dumpPara(open, close + 1, n, str + ")");
 	}
 }
