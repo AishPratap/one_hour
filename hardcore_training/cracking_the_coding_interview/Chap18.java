@@ -224,6 +224,11 @@ public class Chap18 {
 		return null;
 	}
 }
+
+/**
+ * addNum: O(logn)
+ * findMedian: O(1)
+ */
 class MedianFinder {
 
 	public Queue<Integer> maxQueue =
