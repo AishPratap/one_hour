@@ -1,10 +1,22 @@
 import java.util.*;
+import java.io.*;
 
 public class Chap11 {
 
-	public static void main(String[] args) {
-		String[] data = {"at", "ball", "", "", "", "ball", "", "car", "", "", "dad", "", ""};
-		System.out.println(binSearchEmpty("ball", data));
+	public static void main(String[] args) throws Exception {
+		Scanner scan = new Scanner(new File("input"));
+		int n = scan.nextInt();
+		int key = scan.nextInt();
+		int[][] data = new int[n][n];
+
+		for (int i = 0; i < n; ++i) {
+			for (int j = 0; j < n; ++j) {
+				data[i][j] = scan.nextInt();
+			}
+		}
+
+		int[] result = binarySearchMatrix(data, key);
+		System.out.println(Arrays.toString(result));
 	}
 
 	/**
@@ -153,6 +165,67 @@ public class Chap11 {
 		} else {
 			return binSearchEmpty(mid + 1, right, key, data);
 		}
+	}
+
+	/**
+	 * Given a sorted matrix, find an element
+	 * Complexity: O(lognN*logM)
+	 */
+	public static int[] binarySearchMatrix(int[][] data, int key) {
+		return binarySearchMatrix(data, key, 0, data.length - 1);
+	}
+
+	public static int[] binarySearchMatrix(int[][] data, int key,
+			int lowRow, int highRow) {
+		System.out.println("DEBUG:lowRow: " + lowRow);
+		System.out.println("DEBUG:hiRow: " + highRow);
+		if (lowRow > highRow) {
+			return new int[] {-1, -1};
+		}
+
+		int mid = (lowRow + highRow) / 2;
+		int[] curRow = data[mid];
+
+		if (contains(key, curRow)) {
+			int index = Arrays.binarySearch(curRow, key);
+			System.out.println("DEBUB:index:" + index);
+			if (index >= 0) {
+				return new int[] {mid, index};
+			}
+
+			int higher = mid + 1;
+			int lower = mid - 1;
+
+			while ((lower >= lowRow && contains(key, data[lower])) || 
+					(higher <= highRow && contains(key, data[higher]))) {
+				if (contains(key, data[lower])) {
+					index = Arrays.binarySearch(data[lower], key);
+					if (index > 0) {
+						return new int[] {lower, index};
+					}
+				}
+
+				if (contains(key, data[higher])) {
+					index = Arrays.binarySearch(data[higher], key);
+					if (index > 0) {
+						return new int[] {higher, index};
+					}
+				}
+
+				lower -= 1;
+				higher += 1;
+					}
+
+			return new int[] {-1, -1};
+		} else if (key < curRow[0]) {
+			return binarySearchMatrix(data, key, lowRow, mid - 1);
+		} else {
+			return binarySearchMatrix(data, key, mid + 1, highRow);
+		}
+	}
+
+	public static boolean contains(int key, int[] data) {
+		return key <= data[data.length - 1] && key >= data[0];
 	}
 }
 
