@@ -4,11 +4,8 @@ import java.io.*;
 public class Solution {
 
 	public static void main(String[] args) {
-		String test = "practice makes perfect";
-		char[] data = test.toCharArray();
-		wordReverse(data);
-
-		System.out.println(Arrays.toString(data));
+		int[] h = {10, 0, 6, 15, 8};
+		System.out.println(drone(h));		
 	}
 
 	/**
@@ -39,5 +36,18 @@ public class Solution {
 			left += 1;
 			right -= 1;
 		}
+	}
+
+	/**
+	 * https://www.pramp.com/question/BrLMj8M2dVUoY95A9x3X
+	 * We only care about the height
+	 */
+	public static int drone(int[] height) {
+		int max = height[0];
+		for (int i = 0; i < height.length; ++i) {
+			max = Math.max(max, height[i]);
+		}
+
+		return max - height[0];
 	}
 }
