@@ -50,4 +50,33 @@ public class Solution {
 
 		return max - height[0];
 	}
+
+	public static int[] timePlanner(int dur, int[][] timeA,
+			int[][] timeB) {
+		Arrays.sort(timeA, (int[] a, int[] b) -> {
+			return a[0] - b[0];
+		});
+
+		Arrays.sort(timeB, (int[] a, int[] b) -> {
+			return a[0] - b[0];
+		});
+
+		int i = 0, j = 0;
+		while (i < timeA.length && j < timeB.length) {
+			int start = Math.max(timeA[i][0], timeB[j][0]);
+			int end = Math.min(timeA[i][1], timeB[j][1]);
+
+			if (start + dur <= end) {
+				return new int[] {start, start + dur};
+			}
+
+			if (timeA[i][1] < timeB[j][1]) {
+				i += 1;
+			} else {
+				j += 1;
+			}
+		}
+
+		return null;
+	}
 }
