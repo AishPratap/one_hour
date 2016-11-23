@@ -3,8 +3,8 @@ import java.util.*;
 public class Solution {
 
 	public static void main(String[] args) {
-		int[] data = {1, 0};
-		System.out.println(findMin(data));
+		int[] data = {4,5,6,7,0,1,2};
+		System.out.println(search(data, 69));
 	}
 
 	/**
@@ -255,7 +255,7 @@ public class Solution {
 		if (nums.length == 1) {
 			return nums[0];
 		}
-		return nums[findMin(nums, 0, nums.length - 1)];
+		return findMin(nums, 0, nums.length - 1);
 	}
 
 	public static int findMin(int[] nums, int left, int right) {
@@ -266,6 +266,38 @@ public class Solution {
 			return findMin(nums, mid + 1, right);
 		} else {
 			return nums[left] < nums[mid + 1] ? left : mid + 1;
+		}
+	}
+
+	/**
+	 * Suppose a sorted array is rotated at some pivot
+	 * unknown to you beforehand.
+	 */
+	public static int search(int[] nums, int target) {
+		int pivot = findMin(nums);
+		if (pivot == 0) {
+			return binarySearch(nums, target, 0, nums.length - 1);
+		}
+	
+		return Math.max(binarySearch(nums, target, 0, pivot - 1),
+				binarySearch(nums, target, pivot, nums.length - 1));
+	}	
+
+	public static int binarySearch(int[] data, int key,
+			int left, int right) {
+
+		if (left > right) {
+			return -1;
+		}
+
+		int mid = (left + right) / 2;
+
+		if (key == data[mid]) {
+			return mid;
+		} else if (key < data[mid]){
+			return binarySearch(data, key, left, mid - 1);
+		} else {
+			return binarySearch(data, key, mid + 1, right);
 		}
 	}
 }
