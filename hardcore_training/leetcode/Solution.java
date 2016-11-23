@@ -272,6 +272,9 @@ public class Solution {
 	/**
 	 * Suppose a sorted array is rotated at some pivot
 	 * unknown to you beforehand.
+	 *
+	 * Time O(logn)
+	 * Space O(1)
 	 */
 	public static int search(int[] nums, int target) {
 		int pivot = findMin(nums);
