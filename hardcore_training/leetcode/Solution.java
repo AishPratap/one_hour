@@ -3,9 +3,8 @@ import java.util.*;
 public class Solution {
 
 	public static void main(String[] args) {
-		String[] words = {"abcd", "dcba", "lls", "s", "sssll"};
-
-		System.out.println(palindromePairs(words));
+		int[] data = {1, 0};
+		System.out.println(findMin(data));
 	}
 
 	/**
@@ -243,6 +242,31 @@ public class Solution {
 		}
 
 		return true;
+	}
+
+	/**
+	 * Suppose a sorted array is rotated at some pivot
+	 * unknown to you beforehand.
+	 *
+	 * Time: O(logn)
+	 * Space: O(1)
+	 */
+	public static int findMin(int[] nums) {
+		if (nums.length == 1) {
+			return nums[0];
+		}
+		return nums[findMin(nums, 0, nums.length - 1)];
+	}
+
+	public static int findMin(int[] nums, int left, int right) {
+		int mid = (left + right) / 2;
+		if (nums[left] > nums[mid]) {
+			return findMin(nums, left, mid);
+		} else if (nums[mid + 1] > nums[right]) {
+			return findMin(nums, mid + 1, right);
+		} else {
+			return nums[left] < nums[mid + 1] ? left : mid + 1;
+		}
 	}
 }
 
