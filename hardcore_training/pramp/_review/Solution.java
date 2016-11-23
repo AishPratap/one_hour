@@ -41,6 +41,8 @@ public class Solution {
 	/**
 	 * https://www.pramp.com/question/BrLMj8M2dVUoY95A9x3X
 	 * We only care about the height
+	 * Time: O(n)
+	 * Space O(1)
 	 */
 	public static int drone(int[] height) {
 		int max = height[0];
@@ -51,6 +53,11 @@ public class Solution {
 		return max - height[0];
 	}
 
+	/**
+	 * https://www.pramp.com/question/3QnxW6xoPLTNl5jX5Lg1
+	 * Time: O(nlogn + mlogm)
+	 * Space: O(1)
+	 */
 	public static int[] timePlanner(int dur, int[][] timeA,
 			int[][] timeB) {
 		Arrays.sort(timeA, (int[] a, int[] b) -> {
