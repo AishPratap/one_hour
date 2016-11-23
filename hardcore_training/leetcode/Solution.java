@@ -3,10 +3,9 @@ import java.util.*;
 public class Solution {
 
 	public static void main(String[] args) {
-		String str0 = "foobar";
-		String str1 = "foo";
+		String[] words = {"abcd", "dcba", "lls", "s", "sssll"};
 
-		System.out.println(minDistance(str0, str1));
+		System.out.println(palindromePairs(words));
 	}
 
 	/**
@@ -201,6 +200,49 @@ public class Solution {
 		}
 
 		return matrix[len2][len1];
+	}
+
+	/**
+	 * Given a list of unique words, find all pairs of distinct
+	 * indices (i, j) in the given list,
+	 * so that the concatenation of the two words
+	 */
+	public static List<List<Integer>> palindromePairs(String[] words) {
+		List<List<Integer>> result = new ArrayList<>();
+		for (int i = 0; i < words.length; ++i) {
+			for (int j = 0; j < words.length; ++j) {
+				if (i == j) {
+					continue;
+				}
+
+				if (isPalindrome(words[i], words[j])) {
+					List<Integer> pair =
+						new ArrayList<>();
+					pair.add(i);
+					pair.add(j);
+
+					result.add(pair);
+				}
+			}
+		}
+
+		return result;
+	}
+
+	public static boolean isPalindrome(String a, String b) {
+		String concat = a + b;
+		int i = 0, j = concat.length() - 1;
+
+		while (i < j) {
+			if (concat.charAt(i) != concat.charAt(j)) {
+				return false;
+			}
+
+			i += 1;
+			j -= 1;
+		}
+
+		return true;
 	}
 }
 
