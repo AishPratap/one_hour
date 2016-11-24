@@ -367,6 +367,28 @@ public class Solution {
 		}
 		return maxSoFar;
 	}
+
+	/**
+	 * Write a program to check whether a given number is an ugly number
+	 */
+	public static boolean isUgly(int num) {
+		if (num <= 0) {
+			return false;
+		}
+
+		if (num == 1) {
+			return true;
+		}
+
+		int[] div = {2, 3, 5};
+		for (int it : div) {
+			while (num % it == 0) {
+				num /= it;
+			}
+		}
+
+		return num == 1;
+	}
 }
 
 class MedianFinder {
