@@ -4,8 +4,8 @@ import java.io.*;
 public class Algorithms {
 
 	public static void main(String[] args) {
-		int[] data = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
-		System.out.println(kadane(data));
+		int[] data = {-2, -3, 4, -1, -2, 1, 5, -3};
+		System.out.println(Arrays.toString(kadane2(data)));
 	}
 
 	/**
@@ -54,5 +54,38 @@ public class Algorithms {
 		}
 
 		return maxSoFar;
+	}
+
+	/**
+	 * Kadane's algorithm to find the largest subarray problem
+	 * Returns a tuple of 3, contains start, end index and the sum
+	 */
+	public static int[] kadane2(int[] data) {
+		if (data == null || data.length == 0) {
+			return null;
+		}
+
+		int start = 0, end = 0;
+		int max = data[0], maxSoFar = data[0];
+
+		for (int i = 1; i < data.length; ++i) {
+			if (max + data[i] < data[i]) {
+				max = data[i];
+			} else {
+				max += data[i];
+			}
+
+			if (max > maxSoFar) {
+				maxSoFar = max;
+				if (max == data[i]) {
+					start = i;
+					end = i;
+				} else {
+					end = i;
+				}
+			}
+		}
+
+		return new int[] {start, end, maxSoFar};
 	}
 }
