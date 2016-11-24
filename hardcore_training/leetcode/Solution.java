@@ -160,7 +160,7 @@ public class Solution {
 			if (ransomCurOcc > magazineCurOcc) {
 				return false;
 			}
-		}
+				}
 
 		return true;
 	}
@@ -281,7 +281,7 @@ public class Solution {
 		if (pivot == 0) {
 			return binarySearch(nums, target, 0, nums.length - 1);
 		}
-	
+
 		return Math.max(binarySearch(nums, target, 0, pivot - 1),
 				binarySearch(nums, target, pivot, nums.length - 1));
 	}	
@@ -329,7 +329,7 @@ public class Solution {
 				if (envelopes[j][1] < envelopes[i][1] 
 						&& envelopes[j][0] < envelopes[i][0]) {
 					max = Math.max(max, len[j]);
-				}
+						}
 			}
 
 			max += 1;
@@ -337,6 +337,34 @@ public class Solution {
 			maxSoFar = Math.max(max, maxSoFar);
 		}
 
+		return maxSoFar;
+	}
+
+	/**
+	 * Given an unsorted array of integers, find the length of
+	 * longest increasing subsequence
+	 */
+	public static int lengthOfLIS(int[] data) {
+		if (data == null || data.length == 0) {
+			return 0;
+		}
+
+		int[] length = new int[data.length];
+		length[0] = 1;
+
+		int maxSoFar = 1;
+
+		for (int i = 1; i < data.length; ++i) {
+			int max = 0;
+			for (int j = 0; j < i; ++j) {
+				if (data[j] < data[i]) {
+					max = Math.max(max, length[j]);
+				}
+			}
+
+			length[i] = max + 1;
+			maxSoFar = Math.max(length[i], maxSoFar);
+		}
 		return maxSoFar;
 	}
 }
