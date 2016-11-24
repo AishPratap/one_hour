@@ -303,6 +303,42 @@ public class Solution {
 			return binarySearch(data, key, mid + 1, right);
 		}
 	}
+
+	public static int maxEnvelopes(int[][] envelopes) {
+		if (envelopes == null || envelopes.length == 0) {
+			return 0;
+		}
+
+		Arrays.sort(envelopes, (int[] a, int[] b) -> {
+			if (a[0] != b[0]) {
+				return a[0] - b[0];
+			}
+
+			return a[1] - b[1];
+		});
+
+		int maxSoFar = 1;
+		int[] len = new int[envelopes.length];
+
+		len[0] = 1;
+
+		for (int i = 1; i < envelopes.length; ++i) {
+			int max = 0;
+
+			for (int j = 0; j < i; ++j) {
+				if (envelopes[j][1] < envelopes[i][1] 
+						&& envelopes[j][0] < envelopes[i][0]) {
+					max = Math.max(max, len[j]);
+				}
+			}
+
+			max += 1;
+			len[i] = max;
+			maxSoFar = Math.max(max, maxSoFar);
+		}
+
+		return maxSoFar;
+	}
 }
 
 class MedianFinder {
