@@ -86,4 +86,56 @@ public class Solution {
 
 		return null;
 	}
+
+	/**
+	 * https://www.pramp.com/question/EmYgnOgVd4IElnjAnQqn
+	 *       p0u 
+	 *       |
+	 *       |
+	 *       p0----*----p1
+	 *
+	 *       Time: O(4^n)
+	 *       Space O(n)
+	 *
+	 *       n is the depth
+	 */
+	public static void drawHTree(double x, double y, double length, int depth) {
+		if (depth <= 0) {
+			return;
+		}
+
+		double xp0 = x - length / 2;
+		double yp0 = y;
+
+		double xp1 = x + length / 2;
+		double yp1 = y;
+
+		double xp0u = xp0;
+		double yp0u = yp0 + length / 2;
+
+		double xp0d = xp0;
+		double yp0d = yp0 - length / 2;
+
+		double xp1u = xp1;
+		double yp1u = yp1 + length / 2;
+
+		double xp1d = xp1;
+		double yp1d = yp1 - length / 2;
+
+		drawLine(xp0, yp0, xp1, yp1);
+		drawLine(xp0u, yp0u, xp0d, yp0d);
+		drawLine(xp1u, yp1u, xp1d, yp1d);
+
+		double newLength = Math.sqrt(length);
+
+		drawHTree(xp0u, yp0u, newLength, depth - 1);
+		drawHTree(xp0d, yp0d, newLength, depth - 1);
+		drawHTree(xp1u, yp1u, newLength, depth - 1);
+		drawHTree(xp1d, yp1d, newLength, depth - 1);
+	}
+
+	public static void drawLine(double x0, double y0,
+			double x1, double y1) {
+		// Dummy function
+	}
 }
