@@ -86,35 +86,4 @@ public class Solution {
 
 		return null;
 	}
-
-	/**
-	 * https://www.pramp.com/question/r1Kw0vwG6OhK9AEGAyWV
-	 * Assume that grants are not an empty array,
-	 * and budget is a positive double
-	 */
-	public static double findCap(double[] grants, double budget) {
-		Arrays.sort(grants);
-
-		double[] acSum = new double[grants.length];
-		double tempSum = 0;
-
-		for (int i = 0; i < grants.length; ++i) {
-			tempSum += grants[i];
-			acSum[i] = tempSum;
-		}
-
-		if (acSum[acSum.length - 1] <= budget) {
-			return grants[grants.length - 1];
-		}
-
-
-	}
-
-	public static double cappedSum(int affectedPos, double cap,
-			double[] acSum) {
-
-		int n = acSum.length;
-		return acSum[affectedPos - 1] + (n - affectedPos) * cap;
-	}
-
 }
