@@ -126,7 +126,7 @@ public class Solution {
 		drawLine(xp0u, yp0u, xp0d, yp0d);
 		drawLine(xp1u, yp1u, xp1d, yp1d);
 
-		double newLength = Math.sqrt(length);
+		double newLength = length / Math.sqrt(2);
 
 		drawHTree(xp0u, yp0u, newLength, depth - 1);
 		drawHTree(xp0d, yp0d, newLength, depth - 1);
@@ -138,4 +138,30 @@ public class Solution {
 			double x1, double y1) {
 		// Dummy function
 	}
+
+	/**
+	 * https://www.pramp.com/question/pK6A4GA5YES09qKmqG33
+	 * Time: Best and average: O(logn)
+	 * Time: Worst: O(n)
+	 * Space: O(1)
+	 */
+	public Node largestSmaller(Node root, int val) {
+		Node result = null;
+
+		while (root != null) {
+			if (root.val < val) {
+				result = root;
+				root = root.right;
+			} else {
+				root = root.left;
+			}
+		}
+
+		return result;
+	}
+}
+
+class Node {
+	int val;
+	Node left, right;
 }
