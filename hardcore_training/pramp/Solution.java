@@ -159,6 +159,36 @@ public class Solution {
 
 		return result;
 	}
+
+	public static void flatMap(Map<String, Object> input) {
+		Map<String, String> output = new HashMap<>();
+		flatMap(input, output, "");
+	}
+
+	/**
+	 * Flat a map
+	 * Time: O(n)
+	 * Space: O(n)
+	 * Need to see the analysis again
+	 */
+	public static void flatMap(Map<String, Object> input, 
+			Map<String, String> output, String preKey) {
+		for (Map.Entry<String, Object> entry : input.entrySet()) {
+			String key = "";
+			if (preKey.isEmpty()) {
+				key = entry.getKey();
+			} else {
+				key = preKey + "." + entry.getKey();
+			}
+
+			if (entry.getValue() instanceof String) {
+				output.put(key, (String) entry.getValue());
+			} else {
+				flatMap((Map<String, Object>) entry.getValue(),
+							output, key);
+			}
+		}
+	}
 }
 
 class Node {
