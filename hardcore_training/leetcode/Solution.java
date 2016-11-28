@@ -3,8 +3,9 @@ import java.util.*;
 public class Solution {
 
 	public static void main(String[] args) {
-		int[] data = {4,5,6,7,0,1,2};
-		System.out.println(search(data, 69));
+		int[] data = {0,1,2,4,5,7};
+		List<String> result = summaryRanges(data);
+		System.out.println(result);
 	}
 
 	/**
@@ -388,6 +389,34 @@ public class Solution {
 		}
 
 		return num == 1;
+	}
+
+	/**
+	 * Given a sorted integer array without duplicates,
+	 * return the summary of its ranges.
+	 */
+	public static List<String> summaryRanges(int[] nums) {
+		List<String> result = new ArrayList<>();
+		int p0 = 0;
+		while (p0 < nums.length) {
+			int p1 = p0 + 1;
+			while (p1 < nums.length && nums[p1] == nums[p1 - 1] + 1) {
+				p1 += 1;
+			}
+			if (p0 == p1 - 1) {
+				result.add(nums[p0] + "");
+			} else {
+				StringBuilder builder = new StringBuilder();
+				builder
+					.append(nums[p0])
+					.append("->")
+					.append(nums[p1 - 1]);
+				result.add(builder.toString());
+			}
+			p0 = p1;
+		}
+
+		return result;
 	}
 }
 
