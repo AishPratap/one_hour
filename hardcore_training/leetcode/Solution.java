@@ -418,6 +418,89 @@ public class Solution {
 
 		return result;
 	}
+
+	/**
+	 * Chekc if the sudoku matrix is valid
+	 */
+	public static boolean isValidSudoku(char[][] board) {
+		for (int i = 0; i < 9; ++i) {
+			if (!isValidRow(board[i])) {
+				return false;
+			}
+
+			if (!isValidCol(board, i)) {
+				return false;
+			}
+		}
+
+		for (int i = 0; i < 9; i += 3) {
+			for (int j = 0; j < 9; j += 3) {
+				if (!isValidSegment(board, i, j)) {
+					return false;
+				}
+			}
+		}
+
+		return true;
+	}
+
+	public static boolean isValidRow(char[] row) {
+		Set<Character> set = new HashSet<>();
+		for (char it : row) {
+			if (it == '.') {
+				continue;
+			}
+
+			if (set.contains(it)) {
+				return false;
+			}
+
+			set.add(it);
+		}
+
+		return true;
+	}
+
+	public static boolean isValidCol(char[][] board, int col) {
+		Set<Character> set = new HashSet<>();
+
+		for (int i = 0; i < 9; ++i) {
+			char cur = board[i][col];
+			
+			if (cur == '.') {
+				continue;
+			}
+
+			if (set.contains(cur)) {
+				return false;
+			}
+
+			set.add(cur);
+		}
+
+		return true;
+	}
+
+	public static boolean isValidSegment(char[][] board, int x, int y) {
+		Set<Character> set = new HashSet<>();
+
+		for (int i = 0; i < 3; ++i) {
+			for (int j = 0; j < 3; ++j) {
+				char cur = board[x + i][y + j];
+				if (cur == '.') {
+					continue;
+				}
+
+				if (set.contains(cur)) {
+					return false;
+				}
+
+				set.add(cur);
+			}
+		}
+
+		return true;
+	}
 }
 
 class MedianFinder {
