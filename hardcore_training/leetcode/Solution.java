@@ -1,11 +1,35 @@
 import java.util.*;
+import java.io.*;
 
 public class Solution {
 
-	public static void main(String[] args) {
-		int[] data = {0,1,2,4,5,7};
-		List<String> result = summaryRanges(data);
-		System.out.println(result);
+	public static void main(String[] args) throws Exception {
+		Scanner scanner = new Scanner(new File("input"));
+		char[][] board = new char[9][9];
+
+		String line = scanner.nextLine();
+		int index = 0;
+
+		for (int i = 0; i < 9; ++i) {
+			for (int j = 0; j < 9; ++j) {
+				board[i][j] = line.charAt(index++);
+			}
+		}
+
+		solveSudoku(board);
+		printSudoku(board);
+	}
+
+	public static void printSudoku(char[][] board) {
+		for (int i = 0; i < 9; ++i) {
+			for (int j = 0; j < 9; ++j) {
+				System.out.print(board[i][j]);
+				System.out.print(" ");
+			}
+			System.out.println();
+		}
+
+		System.out.println();
 	}
 
 	/**
@@ -496,6 +520,115 @@ public class Solution {
 				}
 
 				set.add(cur);
+			}
+		}
+
+		return true;
+	}
+
+	/**
+	 * Solve a goddamn sudoku board
+	 */
+	public static void solveSudoku(char[][] board) {
+		List<int[]> slots = new ArrayList<>();
+		boolean[] flag = {false};
+		for (int i = 0; i < 9; ++i) {
+			for (int j = 0; j < 9; ++j) {
+				if (board[i][j] == '.') {
+					slots.add(new int[] {i, j});
+				}
+			}
+		}
+
+		solveSudoku(board, slots, slots.size(), flag);
+	}
+
+	public static void solveSudoku(char[][] board,
+			List<int[]> slots, int slotNo, boolean[] flag) {
+		
+		if (slotNo <= 0) {
+			//printSudoku(board);
+			flag[0] = true;
+			return;
+		}
+
+		int x = slots.get(slotNo - 1)[0];
+		int y = slots.get(slotNo - 1)[1];
+
+		for (char i = '1'; i <= '9'; ++i) {
+			board[x][y] = i;
+			if (isValidAt(board, x, y)) {
+				solveSudoku(board, slots, slotNo - 1, flag);
+			}
+			if (flag[0]) {
+				break;
+			}
+			board[x][y] = '.';
+		}
+	}
+
+	public static boolean isValidAt(char[][] board, int x, int y) {
+		int sx = (x / 3) * 3;
+		int sy = (y / 3) * 3;
+
+		return isValidAtRow(board, x) &&
+			isValidAtCol(board, y) &&
+			isValidAtSegment(board, sx, sy);
+	}
+
+	public static boolean isValidAtRow(char[][] board, int x) {
+		Set<Character> set = new HashSet<>();
+		for (int i = 0; i < 9; ++i) {
+			char c = board[x][i];
+	
+			if (c == '.') {
+				continue;
+			}
+
+			if (set.contains(c)) {
+				return false;
+			}
+
+			set.add(c);
+		}
+
+		return true;
+	}
+
+	public static boolean isValidAtCol(char[][] board, int y) {
+		Set<Character> set = new HashSet<>();
+		for (int i = 0; i < 9; ++i) {
+			char c = board[i][y];
+
+			if (c == '.') {
+				continue;
+			}
+
+			if (set.contains(c)) {
+				return false;
+			}
+
+			set.add(c);
+		}
+
+		return true;
+	}
+
+	public static boolean isValidAtSegment(char[][] board, int sx, int sy) {
+		Set<Character> set = new HashSet<>();
+		for (int i = 0; i < 3; ++i) {
+			for (int j = 0; j < 3; ++j) {
+				char c = board[sx + i][sy + j];
+
+				if (c == '.') {
+					continue;
+				}
+
+				if (set.contains(c)) {
+					return false;
+				}
+
+				set.add(c);
 			}
 		}
 
