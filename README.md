@@ -1,4 +1,4 @@
-# Dojo
-Time to kill on some boring days -_-
-<br/>
-Problems solved: https://1drv.ms/x/s!AroJ4lDoyX-zer0Xdd91W96Y6Ak
+# Code Gym
+
+To check total lines of code: git ls-files | xargs wc -l
+Sep 1, 2016: 33120 total
