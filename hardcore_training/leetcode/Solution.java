@@ -4,8 +4,8 @@ import java.io.*;
 public class Solution {
 
 	public static void main(String[] args) throws Exception {
-		int[] data = {};
-		System.out.println(countSmaller(data));
+		int[][] data = {new int[] {1, 1}};
+		System.out.println(searchMatrix3(data, 2));
 	}
 
 	public static void printSudoku(char[][] board) {
@@ -708,7 +708,75 @@ public class Solution {
 		}
 
 		return false;
-	}	
+	}
+
+	/**
+	 * Find an element in a matrix, given that all rows are sorted
+	 * as well as the first column
+	 *
+	 * O(nlogm)	Can be optimized by considering n and m
+	 */
+	public static  boolean searchMatrix2(int[][] matrix, int target) {
+		if (matrix == null || matrix.length == 0) {
+			return false;
+		}
+
+		for (int[] it : matrix) {
+			if (it[0] > target) {
+				break;
+			}
+
+			if (it[it.length - 1] < target) {
+				continue;
+			}
+
+			if (Arrays.binarySearch(it, target) >= 0) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * Find an element in a matrix, given that all rows are sorted,
+	 * and the first integer of each row is larger than the last one
+	 * from the previous row
+	 */
+	public static boolean searchMatrix3(int[][] matrix, int target) {
+		if (matrix == null || matrix.length == 0) {
+			return false;
+		}
+
+		int size = matrix.length * matrix[0].length;
+
+		return searchMatrix3(matrix, target, 0, size - 1);
+	}
+
+	public static boolean searchMatrix3(int[][] matrix, int target,
+			int left, int right) {
+
+		if (left > right) {
+			return false;
+		}
+
+		int mid = (left + right) / 2;
+		
+		int cols = matrix[0].length;
+		int j = mid % cols;
+		int i = mid / cols;
+
+		//System.out.println("DEBUG:i: " + i);
+		//System.out.println("DEBUG:j: " + j);
+
+		if (matrix[i][j] < target) {
+			return searchMatrix3(matrix, target, mid + 1, right);
+		} else if (matrix[i][j] > target) {
+			return searchMatrix3(matrix, target, left, mid - 1);
+		} else {
+			return true;
+		}
+	}
 }
 
 class Node {
