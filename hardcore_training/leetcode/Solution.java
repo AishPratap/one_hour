@@ -677,6 +677,38 @@ public class Solution {
 
 		return Arrays.asList(result);
 	}
+
+	/**
+	 * Given a matrix, both dimensions are sorted
+	 * Find out if that matrix contains a key
+	 *
+	 * Time complexity: O(n + m)
+	 */
+	public static boolean searchMatrix(int[][] matrix, int target) {
+		if (matrix == null || matrix.length == 0) {
+			return false;
+		}
+
+		int rows = matrix.length;
+		int cols = matrix[0].length;
+
+		int i = rows - 1;
+		int j = 0;
+
+		while (i >= 0 && j < cols) {
+			int cur = matrix[i][j];
+			
+			if (cur < target) {
+				j += 1;
+			} else if (cur > target) {
+				i -= 1;	
+			} else {
+				return true;
+			}
+		}
+
+		return false;
+	}	
 }
 
 class Node {
