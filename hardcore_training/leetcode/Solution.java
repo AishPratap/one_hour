@@ -4,20 +4,8 @@ import java.io.*;
 public class Solution {
 
 	public static void main(String[] args) throws Exception {
-		Scanner scanner = new Scanner(new File("input"));
-		char[][] board = new char[9][9];
-
-		String line = scanner.nextLine();
-		int index = 0;
-
-		for (int i = 0; i < 9; ++i) {
-			for (int j = 0; j < 9; ++j) {
-				board[i][j] = line.charAt(index++);
-			}
-		}
-
-		solveSudoku(board);
-		printSudoku(board);
+		int[] data = {};
+		System.out.println(countSmaller(data));
 	}
 
 	public static void printSudoku(char[][] board) {
@@ -633,6 +621,73 @@ public class Solution {
 		}
 
 		return true;
+	}
+
+	/**
+	 * You are given an integer array nums and you have to return a
+	 * new counts array, the counts array has the property where
+	 * counts[i] is the number of smaller elements to the right of nums[i].
+	 */
+	public static List<Integer> countSmaller(int[] nums) {
+		if (nums == null || nums.length == 0) {
+			return new ArrayList<>();
+		}
+
+		int len = nums.length;
+		Integer[] result = new Integer[len];
+
+		result[len - 1] = 0;
+		Node root = new Node(nums[len - 1]);
+
+		for (int i = len - 2; i >= 0; --i) {
+			int counter = 0;
+			int counter2 = 0;
+			Node iterator = root;
+
+			int cur = nums[i];
+			
+			while (true) {
+				if (cur > iterator.val) {
+					counter += iterator.nLeft;
+					counter2 += 1;
+
+					if (iterator.right == null) {
+						iterator.right =
+							new Node(cur);
+						result[i] = counter + counter2;
+						break;
+					}
+
+					iterator=iterator.right;
+				} else {
+					iterator.nLeft += 1;
+
+					if (iterator.left == null) {
+						iterator.left =
+							new Node(cur);
+						result[i] = counter + counter2;
+						break;
+					}
+
+					iterator = iterator.left;
+				}
+			}
+
+		}
+
+		return Arrays.asList(result);
+	}
+}
+
+class Node {
+	int val;
+	int nLeft;
+	Node left, right;
+
+	public Node(int val) {
+		this.val = val;
+		this.nLeft = 0;
+		this.left = this.right = null;
 	}
 }
 
