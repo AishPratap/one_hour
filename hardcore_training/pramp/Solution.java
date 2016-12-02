@@ -4,8 +4,9 @@ import java.io.*;
 public class Solution {
 
 	public static void main(String[] args) {
-		int[] h = {10, 0, 6, 15, 8};
-		System.out.println(drone(h));		
+		String str = "hoangkhoi";
+		char[] arr = {'o', 'k'};
+		System.out.println(smallestSubstring(str, arr));
 	}
 
 	/**
@@ -188,6 +189,63 @@ public class Solution {
 							output, key);
 			}
 		}
+	}
+
+	/**
+	 * Given a string and an array which contains unique characters
+	 * Return the smallest substring which contains all of those char
+	 * 
+	 * Time: O(n * m)
+	 * Space: O(m)
+	 */
+
+	public static String smallestSubstring(String str, char[] arr) {
+		int i = -1, j = -1;
+		int resultI = -1, resultJ = -1;
+		int min = Integer.MAX_VALUE;
+
+		Map<Character, Integer> map = new HashMap<>();
+		for (char c : arr) {
+			map.put(c, 0);
+		}
+
+		while (j + 1 < str.length()) {
+			j += 1;
+			char c = str.charAt(j);
+			if (map.containsKey(c)) {
+				map.put(c, map.get(c) + 1);
+			}
+
+			while (isOK(map)) {
+			i += 1;
+				if (j - i < min) {
+					min = j - i;
+					resultI = i;
+					resultJ = j;
+				}
+
+				char d = str.charAt(i);
+				if (map.containsKey(d)) {
+					map.put(d, map.get(d) - 1);
+				}
+			}
+		}
+		
+		return str.substring(resultI, resultJ + 1);
+	}
+
+	public static boolean isOK(Map<Character, Integer> map) {
+		for (Map.Entry<Character, Integer> it : map.entrySet()) {
+			if (it.getValue() <= 0) {
+				return false;
+			}	
+		}
+
+		return true;
+	}
+
+	public static void debug(String msg, String val) {
+		System.out.println(msg + ": " + val);
 	}
 }
 
