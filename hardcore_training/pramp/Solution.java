@@ -3,10 +3,29 @@ import java.io.*;
 
 public class Solution {
 
-	public static void main(String[] args) {
-		String str = "hoangkhoi";
-		char[] arr = {'o', 'k'};
-		System.out.println(smallestSubstring(str, arr));
+	public static void main(String[] args) throws Exception {
+		File file = new File("input");
+		Scanner scan = new Scanner(file);
+		int rows = scan.nextInt();
+		int cols = scan.nextInt();
+
+
+		int[][] data = new int[rows][cols];
+		for (int i = 0; i < rows; ++i) {
+			for (int j = 0; j < cols; ++j) {
+				data[i][j] = scan.nextInt();
+			}
+		}
+	
+		for (int[] row : data) {
+			for (int col : row) {
+				System.out.print(col + " ");
+			}
+			System.out.println();
+		}
+
+		System.out.println();
+		printSprial(data);
 	}
 
 	/**
@@ -246,6 +265,55 @@ public class Solution {
 
 	public static void debug(String msg, String val) {
 		System.out.println(msg + ": " + val);
+	}
+
+	/**
+	 * Print a matrix in sprial order
+	 */
+
+	/*
+	1 2 3 4 5 6 7
+	8 9 0 1 2 3 4
+	5 6 7 8 9 0 1
+	2 3 4 5 6 7 8
+	9 0 1 2 3 4 5
+
+	 * */
+	public static void printSprial(int[][] matrix) {
+		int rows = matrix.length;
+		int cols = matrix[0].length;
+		
+		int layers = (Math.min(rows, cols) + 1) / 2;
+
+		for (int i = 0; i < layers; ++i) {
+			peelOnion(matrix, i);
+		}
+
+		System.out.println();
+	}
+
+	public static void peelOnion(int[][] matrix, int layer) {
+		int left = layer;
+		int right = matrix[0].length - layer - 1;
+
+		int up = layer;
+		int down = matrix.length - layer - 1;
+
+		for (int i = left; i < right; ++i) {
+			System.out.print(matrix[up][i] + " ");
+		}
+
+		for (int i = up; i < down; ++i) {
+			System.out.print(matrix[i][right] + " ");
+		}
+
+		for (int i = right; i > left; --i) {
+			System.out.print(matrix[down][i] + " ");
+		}
+
+		for (int i = down; i > up; --i) {
+			System.out.print(matrix[i][left] + " ");
+		}
 	}
 }
 
