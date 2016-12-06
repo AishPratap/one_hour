@@ -4,11 +4,11 @@ import java.io.*;
 public class Solution {
 
 	public static void main(String[] args) throws Exception {
-		int[] a = {1,5,8,10,16,71};
-		int[] b = {2,6,15,18};
-// 1 2 5 6 8 10 15 16 18 71
-		double val = findMedianSortedArraysNaive(a, b);
-		System.out.println(val);
+		int[] data = {1,3,2,1,2,3,1,3,1,2,2,1};
+
+		sortColors(data);
+
+		System.out.println(Arrays.toString(data));
 	}
 
 	public static void printSudoku(char[][] board) {
@@ -847,6 +847,25 @@ public class Solution {
 		}
 
 		return result;
+	}
+
+	/**
+	 * Sort the colors
+	 * Time O(n)
+	 * Space O(1)
+	 */
+	public static void sortColors(int[] nums) {
+		int[] counter = new int[3];
+		for (int it : nums) {
+			counter[it - 1] += 1;
+		}
+
+		int index = 0;
+		for (int i = 0; i < 3; ++i) {
+			for (int j = 0; j < counter[i]; ++j) {
+				nums[index++] = i + 1;
+			}
+		}
 	}
 }
 
