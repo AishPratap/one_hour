@@ -4,8 +4,11 @@ import java.io.*;
 public class Solution {
 
 	public static void main(String[] args) throws Exception {
-		int[][] data = {new int[] {1, 1}};
-		System.out.println(searchMatrix3(data, 2));
+		int[] a = {1,5,8,10,16,71};
+		int[] b = {2,6,15,18};
+// 1 2 5 6 8 10 15 16 18 71
+		double val = findMedianSortedArraysNaive(a, b);
+		System.out.println(val);
 	}
 
 	public static void printSudoku(char[][] board) {
@@ -478,7 +481,7 @@ public class Solution {
 
 		for (int i = 0; i < 9; ++i) {
 			char cur = board[i][col];
-			
+
 			if (cur == '.') {
 				continue;
 			}
@@ -533,7 +536,7 @@ public class Solution {
 
 	public static void solveSudoku(char[][] board,
 			List<int[]> slots, int slotNo, boolean[] flag) {
-		
+
 		if (slotNo <= 0) {
 			//printSudoku(board);
 			flag[0] = true;
@@ -568,7 +571,7 @@ public class Solution {
 		Set<Character> set = new HashSet<>();
 		for (int i = 0; i < 9; ++i) {
 			char c = board[x][i];
-	
+
 			if (c == '.') {
 				continue;
 			}
@@ -645,7 +648,7 @@ public class Solution {
 			Node iterator = root;
 
 			int cur = nums[i];
-			
+
 			while (true) {
 				if (cur > iterator.val) {
 					counter += iterator.nLeft;
@@ -697,7 +700,7 @@ public class Solution {
 
 		while (i >= 0 && j < cols) {
 			int cur = matrix[i][j];
-			
+
 			if (cur < target) {
 				j += 1;
 			} else if (cur > target) {
@@ -761,7 +764,7 @@ public class Solution {
 		}
 
 		int mid = (left + right) / 2;
-		
+
 		int cols = matrix[0].length;
 		int j = mid % cols;
 		int i = mid / cols;
@@ -776,6 +779,74 @@ public class Solution {
 		} else {
 			return true;
 		}
+	}
+
+	/**
+	 * Given two sorted array, find the median
+	 */
+	public static double findMedianSortedArraysNaive(int[] nums1, int[] nums2) {
+		int p1 = 0, p2 = 0;
+
+		int index = -1;
+		int val1 = 0, val2 = 0;
+		int size = nums1.length + nums2.length;
+
+		double result = 0;
+
+		while (p1 < nums1.length || p2 < nums2.length) {
+			if (p1 >= nums1.length) {
+				val1 = nums2[p2];
+				p2 += 1;
+			} else if (p2 >= nums2.length) {
+				val1 = nums1[p1];
+				p1 += 1;
+			} else {
+				int n1 = nums1[p1];
+				int n2 = nums2[p2];
+
+				if (n1 < n2) {
+					val1 = n1;
+					p1 += 1;
+				} else {
+					val1 = n2;
+					p2 += 1;
+				}
+			}
+
+			index += 1;
+			
+			if (index == (size - 1) / 2) {
+				if (size % 2 == 0) {
+					if (p1 >= nums1.length) {
+						val2 = nums2[p2];
+						p2 += 1;
+					} else if (p2 >= nums2.length) {
+						val2 = nums1[p1];
+						p1 += 1;
+					} else {
+						int n1 = nums1[p1];
+						int n2 = nums2[p2];
+
+						if (n1 < n2) {
+							val2 = n1;
+							p1 += 1;
+						} else {
+							val2 = n2;
+							p2 += 1;
+						}
+					}
+
+					result = ((double) val1 + val2) / 2;
+				} else {
+					result = (double) val1;
+				}
+
+				break;
+			}
+
+		}
+
+		return result;
 	}
 }
 
