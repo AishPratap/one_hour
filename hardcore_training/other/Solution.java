@@ -67,34 +67,4 @@ public class Solution {
 
 		return true;
 	}
-	/**
-	
-	  abcdefhijklmnopq
-	         ^
-	           ^
-	algorithm:
-	
-	input: str
-
-	p0 = 0, p1 = 0
-	max = -1
-	start = 0, end = 0;
-
-	while p1 < str.len:
-		if sub(p0, p1) is unique:
-			if (p1 - p0 > max):
-				max = p1 - p0
-				start = p0
-				end = p1
-			p1 += 1
-		else:
-			p0 += 1
-
-	return substring(start, end + 1)
-
-	how to check the uniqueness
-	map of char and int
-		more than 1 -> duplicated
-
-	 */
 }
