@@ -4,15 +4,8 @@ import java.io.*;
 public class Array {
 
 	public static void main(String[] args) {
-		Interval[] ar = {
-			new Interval(2, 3),
-			new Interval(4, 5),
-			new Interval(6, 7),
-			new Interval(8, 9),
-			new Interval(1, 10)
-		};
-
-		List<Interval> result = merge2(Arrays.asList(ar));
+		int[] data = {0};
+		int result = findMin(data);
 		System.out.println(result);
 	}
 
@@ -132,6 +125,34 @@ public class Array {
 		// a.end >= b.start and a.end <= b.end or other wayA
 		return (a.end >= b.start && a.end <= b.end) ||
 			(b.end >= a.start && b.end <= a.end);
+	}
+
+	/**
+	 *  153. Find Minimum in Rotated Sorted Array 
+	 *  Suppose a sorted array is rotated at some
+	 *  pivot unknown to you beforehand.
+	 *  Time: O(logn)
+	 *  Space: O(1)
+	 */
+	public static int findMin(int[] nums) {
+		if (nums.length == 1 || nums[0] < nums[nums.length - 1]) {
+			return nums[0];
+		}
+
+		return findMin(nums, 0, nums.length - 1);
+	}
+
+	public static int findMin(int[] nums, int start, int end) {
+		if (end - start == 1) {
+			return Math.min(nums[start], nums[end]);
+		}
+
+		int mid = (start + end) / 2;
+		if (nums[start] > nums[mid]) {
+			return findMin(nums, start, mid);
+		} else {
+			return findMin(nums, mid, end);
+		}
 	}
 }
 
