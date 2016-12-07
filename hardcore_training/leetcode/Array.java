@@ -12,7 +12,7 @@ public class Array {
 			new Interval(1, 10)
 		};
 
-		List<Interval> result = merge(Arrays.asList(ar));
+		List<Interval> result = merge2(Arrays.asList(ar));
 		System.out.println(result);
 	}
 
@@ -98,31 +98,41 @@ public class Array {
 		return new ArrayList<>(set);
 	}
 
+	/**
+	 * Another better approach
+	 * Surprisingly, this solution does take more time than
+	 * the previous one
+	 */
+	public static List<Interval> merge2(List<Interval> intervals) {
+		intervals.sort((Interval a, Interval b) -> {
+			return a.start - b.start;
+		});
+
+		Stack<Interval> result = new Stack<>();
+
+		for (Interval it : intervals) {
+			if (result.isEmpty()) {
+				result.push(it);
+				continue;
+			}
+			
+			if (isOverlapped(result.peek(), it)) {
+				Interval top = result.pop();
+				it.start = Math.min(top.start, it.start);
+				it.end = Math.max(top.end, it.end);
+			}
+
+			result.add(it);
+		}
+
+		return new ArrayList<>(result);
+	}	
+
 	public static boolean isOverlapped(Interval a, Interval b) {
 		// a.end >= b.start and a.end <= b.end or other wayA
 		return (a.end >= b.start && a.end <= b.end) ||
 			(b.end >= a.start && b.end <= a.end);
 	}
-	/*
-		[1,3],[2,6],[8,10],[15,18],
-		*
-		1,3
-		15, 18
-
-		input: list<interval>
-
-		treeset - comparison is based on start time
-		for each interval in the list:
-			floor = treeset.floor(cur_interval)
-			if floor is not null:
-				cur_interval is overlapped with floor:
-					cur_interval.start = min()
-					cur_interval.end = max()
-					treeset.remove(floor)
-			treeset.add(cur_interval)
-			
-			do the same with ceiling
-	 * */
 }
 
 class Interval {
