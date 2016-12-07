@@ -12,6 +12,12 @@ public class Array {
 	/**
 	 *  Given an unsorted integer array,
 	 *  find the first missing positive integer.
+	 *
+	 *  Time: O(n)
+	 *  Space: O(1)
+	 *
+	 *  The only trick here to use a bucketsort-like algorithm to put
+	 *  the elements at the right indices
 	 */
 	public static int firstMissingPositive(int[] data) {
 		for (int i = 0; i < data.length; ++i) {
