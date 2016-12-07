@@ -4,8 +4,15 @@ import java.io.*;
 public class Array {
 
 	public static void main(String[] args) {
-		int[] data = {0};
-		int result = firstMissingPositive(data);
+		Interval[] ar = {
+			new Interval(2, 3),
+			new Interval(4, 5),
+			new Interval(6, 7),
+			new Interval(8, 9),
+			new Interval(1, 10)
+		};
+
+		List<Interval> result = merge(Arrays.asList(ar));
 		System.out.println(result);
 	}
 
@@ -49,4 +56,90 @@ public class Array {
 
 		return data.length + 1;
 	}
+
+	/**
+	 *  56. Merge Intervals 
+	 *  Given a collection of intervals, merge all overlapping intervals.
+	 *  Time: O(nlogn)
+	 *  Space: O(n)
+	 */
+	public static List<Interval> merge(List<Interval> intervals) {
+		// Handle empty list
+		if (intervals == null || intervals.isEmpty()) {
+			return new ArrayList<Interval>();
+		}	
+
+		TreeSet<Interval> set = new TreeSet<>((Interval a, Interval b) -> {
+			return a.start - b.start;
+		});
+
+		for (Interval it : intervals) {
+			Interval ceiling = set.ceiling(it);
+
+			while (ceiling != null && isOverlapped(it, ceiling)) {
+				it.start = Math.min(it.start, ceiling.start);
+				it.end = Math.max(it.end, ceiling.end);
+				set.remove(ceiling);
+				ceiling = set.ceiling(it);
+			}
+			
+			Interval floor = set.floor(it);
+			while (floor != null && isOverlapped(it, floor)) {
+				it.start = Math.min(it.start, floor.start);
+				it.end = Math.max(it.end, floor.end);
+				set.remove(floor);
+
+				floor = set.floor(it);
+			}
+
+			set.add(it);
+		}
+
+		return new ArrayList<>(set);
+	}
+
+	public static boolean isOverlapped(Interval a, Interval b) {
+		// a.end >= b.start and a.end <= b.end or other wayA
+		return (a.end >= b.start && a.end <= b.end) ||
+			(b.end >= a.start && b.end <= a.end);
+	}
+	/*
+		[1,3],[2,6],[8,10],[15,18],
+		*
+		1,3
+		15, 18
+
+		input: list<interval>
+
+		treeset - comparison is based on start time
+		for each interval in the list:
+			floor = treeset.floor(cur_interval)
+			if floor is not null:
+				cur_interval is overlapped with floor:
+					cur_interval.start = min()
+					cur_interval.end = max()
+					treeset.remove(floor)
+			treeset.add(cur_interval)
+			
+			do the same with ceiling
+	 * */
+}
+
+class Interval {
+      int start;
+      int end;
+      Interval() { start = 0; end = 0; }
+      Interval(int s, int e) { start = s; end = e; }
+
+      public String toString() {
+	      StringBuilder builder = new StringBuilder();
+	      builder.
+		      append('[').
+		      append(start).
+		      append(", ").
+		      append(end).
+		      append(']');
+
+	      return builder.toString();
+      }
 }
