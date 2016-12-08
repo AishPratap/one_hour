@@ -154,6 +154,56 @@ public class Array {
 			return findMin(nums, mid, end);
 		}
 	}
+
+	/**
+	 * 57. Insert Interval  
+	 * Given a set of non-overlapping intervals,
+	 * insert a new interval into the intervals (merge if necessary).
+	 * You may assume that the intervals were
+	 * initially sorted according to their start times.
+	 *
+	 * Time O(n)
+	 * Space O(n)
+	 */
+	public static List<Interval> insert(List<Interval> data, Interval insert) {
+		Stack<Interval>	stack = new Stack<>();
+
+		boolean inserted = false;
+		int index = 0;
+
+		while (index < data.size() || !inserted) {
+			if (inserted) {
+				addInterval(data.get(index), stack);
+				index += 1;
+			} else if (index >= data.size()) {
+				addInterval(insert, stack);
+				inserted = true;
+			} else if (data.get(index).start < insert.start) {
+				addInterval(data.get(index), stack);
+				index += 1;
+			} else {
+				addInterval(insert, stack);
+				inserted = true;
+			}
+		}
+		
+		return new ArrayList<>(stack);
+	}
+
+	public static void addInterval(Interval obj, Stack<Interval> stack) {
+		if (stack.isEmpty()) {
+			stack.push(obj);
+			return;
+		}
+
+		if (isOverlapped(stack.peek(), obj)) {
+			Interval top = stack.pop();
+			obj.start = Math.min(obj.start, top.start);
+			obj.end = Math.max(obj.end, top.end);
+		}
+
+		stack.push(obj);
+	}
 }
 
 class Interval {
