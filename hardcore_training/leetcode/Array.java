@@ -4,9 +4,6 @@ import java.io.*;
 public class Array {
 
 	public static void main(String[] args) {
-		int[] data = {0};
-		int result = findMin(data);
-		System.out.println(result);
 	}
 
 	/**
@@ -203,6 +200,49 @@ public class Array {
 		}
 
 		stack.push(obj);
+	}
+
+	/**
+	 *  45. Jump Game II 
+	 *   Given an array of non-negative integers, you are initially
+	 *   positioned at the first index of the array.
+	 *
+	 *   BFS
+	 *   Time: O(n)
+	 *   Space: O(n)
+	 */
+	public static int jump(int[] nums) {
+		if (nums == null || nums.length == 0) {
+			return 0;
+		}
+
+		int[] step = new int[nums.length];
+		for (int i = 1; i < step.length; ++i) {
+			step[i] = Integer.MAX_VALUE;
+		}
+		boolean[] visited = new boolean[nums.length];
+
+		Queue<Integer> queue = new LinkedList<>();
+		queue.add(0);
+
+		while (!queue.isEmpty()) {
+			int cur = queue.poll();
+			visited[cur] = true;	
+
+			if (cur == nums.length - 1) {
+				break;
+			}
+
+			for (int i = 1; i <= nums[cur]; ++i) {
+				int next = cur + i;
+				if (next < nums.length && !visited[next]) {
+					queue.add(next);
+					step[next] = Math.min(step[next], step[cur] + 1);
+				}
+			}
+		}
+
+		return step[nums.length - 1];
 	}
 }
 
