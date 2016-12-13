@@ -4,28 +4,9 @@ import java.io.*;
 public class Solution {
 
 	public static void main(String[] args) throws Exception {
-		File file = new File("input");
-		Scanner scan = new Scanner(file);
-		int rows = scan.nextInt();
-		int cols = scan.nextInt();
-
-
-		int[][] data = new int[rows][cols];
-		for (int i = 0; i < rows; ++i) {
-			for (int j = 0; j < cols; ++j) {
-				data[i][j] = scan.nextInt();
-			}
-		}
-	
-		for (int[] row : data) {
-			for (int col : row) {
-				System.out.print(col + " ");
-			}
-			System.out.println();
-		}
-
-		System.out.println();
-		printSprial(data);
+		int[] a = {5,6,7,4,2,5,6};
+		int[] b = {6,8,1,2};
+		System.out.println(duplicated2(a, b));
 	}
 
 	/**
@@ -314,6 +295,56 @@ public class Solution {
 		for (int i = down; i > up; --i) {
 			System.out.print(matrix[i][left] + " ");
 		}
+	}
+
+	/**
+	 * Find the Duplicates
+	 * https://www.pramp.com/question/15oxrQx6LjtQj9JK9XlA
+	 */
+	public static List<Integer> duplicated(int[] arr1, int[] arr2) {
+		if (   arr1 == null ||
+			arr2 == null ||
+			arr1.length == 0 ||
+			arr2.length == 0 ) {
+		
+			return new ArrayList<>();
+		}
+
+		Set<Integer> set = new HashSet<>();
+		for (int it : arr1) {
+			set.add(it);
+		}
+
+		List<Integer> result = new ArrayList<>();
+
+		for (int it : arr2) {
+			if (set.contains(it)) {
+				result.add(it);
+			}
+		}
+
+		return result;
+	}
+
+	/* Assume that arr1 is very large  */
+	public static List<Integer> duplicated2(int[] arr1, int[] arr2)	 {
+		if (   arr1 == null ||
+			arr2 == null ||
+			arr1.length == 0 ||
+			arr2.length == 0 ) {
+		
+			return new ArrayList<>();
+		}
+
+		Arrays.sort(arr1);
+		List<Integer> result = new ArrayList<>();	
+		for (int it : arr2) {
+			if (Arrays.binarySearch(arr1, it) >= 0) {
+				result.add(it);
+			}
+		}
+
+		return result;
 	}
 }
 
