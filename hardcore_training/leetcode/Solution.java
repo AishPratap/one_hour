@@ -20,9 +20,49 @@ public class Solution {
 		System.out.println();
 	}
 
-	/**
-	 * #302 Power of Four
-	 *
+    /**
+     * Deep copy a linkedlist with random node
+     */
+    public RandomListNode copyRandomList(RandomListNode root) {
+        if (root == null) {
+            return null;
+        }
+        
+        RandomListNode iterator = root;
+        RandomListNode head = new RandomListNode(0);    // dummy
+        RandomListNode tail = head;
+        Map<RandomListNode, RandomListNode> originCopy = new HashMap<>();
+        Map<RandomListNode, RandomListNode> copyOrigin = new HashMap<>();
+        
+        while (iterator != null) {
+            tail.next = new RandomListNode(iterator.label);
+            tail = tail.next;
+            originCopy.put(iterator, tail);
+            copyOrigin.put(tail, iterator);
+            
+            iterator = iterator.next;
+        }
+        
+        head = head.next;
+        iterator = head;
+        while (iterator != null) {
+            RandomListNode origin = copyOrigin.get(iterator);
+            RandomListNode randomOrigin = origin.random;
+            if (randomOrigin != null) {
+                iterator.random = originCopy.get(randomOrigin);
+            } else {
+                iterator.random = null;
+            }
+            
+            iterator = iterator.next;
+        }
+        tail.next = null;
+        return head;
+    }
+    
+    /**
+     * #302 Power of Four
+     *
 	 * Becareful of negative number
 	 * Time: O(logn)
 	 */
