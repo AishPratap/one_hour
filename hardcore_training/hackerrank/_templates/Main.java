@@ -6,8 +6,9 @@ import java.util.*;
 
 public class Main {
 
-	public static void main(String[] args) {
-		InputStream inputStream = System.in;
+	public static void main(String[] args) throws Exception {
+		boolean fileInput = true;
+		InputStream inputStream = fileInput ? new FileInputStream("input.txt") : System.in;
 		OutputStream outputStream = System.out;
 		InputReader in = new InputReader(inputStream);
 		PrintWriter out = new PrintWriter(outputStream);
