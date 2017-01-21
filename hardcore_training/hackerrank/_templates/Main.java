@@ -4,7 +4,7 @@
 import java.io.*;
 import java.util.*;
 
-public class Main {
+public class %FILE% {
 
 	public static void main(String[] args) throws Exception {
 		boolean fileInput = true;
@@ -60,6 +60,41 @@ public class Main {
 		public float nextFloat() {
 			return Float.parseFloat(next());
 		}
+
+		public int[] nextIntArray(int size) {
+			int[] ret = new int[size];
+			for (int i = 0; i < size; ++i) {
+				ret[i] = nextInt();
+			}
+
+			return ret;
+		}
+
+		public long[] nextLongArray(int size) {
+			long[] ret = new long[size];
+			for (int i = 0; i < size; ++i) {
+				ret[i] = nextLong();
+			}
+
+			return ret;
+		}
+
+		public float[] nextFloatArray(int size) {
+			float[] ret = new float[size];
+			for (int i = 0; i < size; ++i) {
+				ret[i] = nextFloat();
+			}
+
+			return ret;
+		}
+
+		public double[] nextDoubleArray(int size) {
+			double[] ret = new double[size];
+			for (int i = 0; i < size; ++i) {
+				ret[i] = nextFloat();
+			}
+
+			return ret;
+		}
 	}	
 }
-
