@@ -53,15 +53,27 @@ public class MoonJourney {
 				}
 
 			}
+			
+			int size = rep.size();
+			int[] suffixSum = new int[size];
+			int[] values = new int[size];
 
-			List<Integer> list = new ArrayList<>(rep.values());
-			long ret = 0;
-			for (int i = 0; i < list.size() - 1; ++i) {
-				for (int j = i + 1; j < list.size(); ++j) {
-					long product = list.get(i) * list.get(j);
-					ret += product;
-				}
+			int index = 0;
+			for (int it : rep.values()) {
+				values[index++] = it;
 			}
+
+			int sum = 0;
+			for (int i = size - 1; i >=0; --i) {
+				sum += values[i];
+				suffixSum[i] = sum;
+			}
+
+			long ret = 0;
+			for (int i = 0; i < size - 1; ++i) {
+				ret += values[i] * suffixSum[i + 1];
+			}
+
 			out.println(ret);
 		}
 	}
