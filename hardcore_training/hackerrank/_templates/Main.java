@@ -61,6 +61,14 @@ public class %FILE% {
 			return Float.parseFloat(next());
 		}
 
+		public String[] nextArray(int size) {
+			String[] ret = new String[size];
+			for (int i = 0; i < size; ++i) {
+				ret[i] = in.next();
+			}
+			return ret;
+		}
+
 		public int[] nextIntArray(int size) {
 			int[] ret = new int[size];
 			for (int i = 0; i < size; ++i) {
