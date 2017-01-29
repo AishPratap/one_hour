@@ -64,7 +64,7 @@ public class %FILE% {
 		public String[] nextArray(int size) {
 			String[] ret = new String[size];
 			for (int i = 0; i < size; ++i) {
-				ret[i] = in.next();
+				ret[i] = next();
 			}
 			return ret;
 		}
