@@ -4,7 +4,7 @@
 import java.io.*;
 import java.util.*;
 
-public class LilysHomework {
+public class AlmostSorted {
 
 	public static void main(String[] args) throws Exception {
 		boolean fileInput = true;
@@ -21,41 +21,7 @@ public class LilysHomework {
 
 	static class Task {
 		public void solve(InputReader in, PrintWriter out) {
-			// Logic goes here
-			int n = in.nextInt();
-
-			int[] raw = new int[n];
-			int[] sorted = new int[n];
-
-			for (int i = 0; i < n; ++i) {
-				raw[i] = in.nextInt();
-				sorted[i] = raw[i];
-			}
-
-			Arrays.sort(sorted);
-
-
-			Map<Integer, Integer> map = new HashMap<>();
-		
-			for (int i = 0; i < n; ++i) {
-				map.put(sorted[i], i);
-			}
-
-			Set<Integer> set = new HashSet<>();
-			int ret = 0;
-
-			int cur = 0;
-			while (cur < n && cur == map.get(raw[cur])) {
-				cur += 1;
-			}
-
-			while (!set.contains(cur)) {
-				set.add(cur);
-				int next = map.get(raw[cur]);
-				cur = next;
-
-			}
-			out.println(set.size() - 1);
+			
 		}
 	}
 
@@ -95,6 +61,14 @@ public class LilysHomework {
 			return Float.parseFloat(next());
 		}
 
+        public String[] nextArray(int size) {
+            String[] ret = new String[size];
+            for (int i = 0; i < size; ++i) {
+                ret[i] = next();
+            }
+            return ret;
+        }
+        
 		public int[] nextIntArray(int size) {
 			int[] ret = new int[size];
 			for (int i = 0; i < size; ++i) {
