@@ -36,26 +36,82 @@ public class LilysHomework {
 
 
 			Map<Integer, Integer> map = new HashMap<>();
-		
+
 			for (int i = 0; i < n; ++i) {
 				map.put(sorted[i], i);
 			}
 
-			Set<Integer> set = new HashSet<>();
+			UnionFind set = new UnionFind(n);
+
+			for (int i = 0; i < n; ++i) {
+				int j = map.get(raw[i]);
+				set.union(i, j);
+			}
+
 			int ret = 0;
 
-			int cur = 0;
-			while (cur < n && cur == map.get(raw[cur])) {
-				cur += 1;
+			for (int num : set.memberList()) {
+				ret += (num - 1);
 			}
 
-			while (!set.contains(cur)) {
-				set.add(cur);
-				int next = map.get(raw[cur]);
-				cur = next;
+			out.println(ret);
+		}
 
+		class UnionFind {
+
+			public Map<Integer, Integer> upper = new HashMap<>();
+			public Map<Integer, Integer> depth = new HashMap<>();
+			public Map<Integer, Integer> rep = new HashMap<>();
+
+			public UnionFind(int size) {
+				for (int i = 0; i < size; ++i) {
+					rep.put(i, 1);
+					upper.put(i, i);
+					depth.put(i, 0);
+				}
 			}
-			out.println(set.size() - 1);
+
+			public void union(int a, int b) {
+				int rootA = find(a);
+				int rootB = find(b);
+
+				if (rootA == rootB) {
+					return;
+				}
+
+				if (depth.get(rootA) > depth.get(rootB)) {
+					merge(rootA, rootB);
+				} else {
+					merge(rootB, rootA);
+				}
+			}
+
+			public int find(int target) {
+				int copy = target;
+				while (target != upper.get(target)) {
+					target = upper.get(target);
+				}
+
+				upper.put(copy, target);
+
+				return target;
+			}
+
+			public List<Integer> memberList() {
+				return new ArrayList<>(rep.values());
+			}
+
+			private void merge(int root, int branch) {
+				int rootDepth = depth.get(root);
+				if (rootDepth == depth.get(branch)) {
+					depth.put(root, rootDepth + 1);
+				}
+
+				rep.put(root,rep.get(root) +rep.get(branch));
+				rep.remove(branch);
+
+				upper.put(branch, root);
+			}
 		}
 	}
 
