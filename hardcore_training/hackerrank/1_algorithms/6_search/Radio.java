@@ -24,21 +24,27 @@ public class Radio {
 			// Logic goes here
 			int n = in.nextInt();
 			int k = in.nextInt();
+			int[] data = in.nextIntArray(n);
 
-			double min = 1000000, max = 1;
+			// sort
+			Arrays.sort(data);
 
-			while (n-- > 0) {
-				double cur = in.nextInt();
-				min = Math.min(min, cur);
-				max = Math.max(max, cur);
+			int ret = 0; // radio count
+
+			int i = 0;
+			while (i < n) {
+				int j = i + 1;
+				while (j < n && data[i] >= data[j] - k) {
+					j += 1;
+				}
+				ret += 1;
+
+				while (i < n && data[i] <= data[j - 1] + k) {
+					i += 1;
+				}
 			}
 
-			double length = max - min + 1;
-			double cover = k * 2 + 1;
-
-			double ret = Math.ceil(length / cover);
-			
-			out.println((int) ret);
+			out.println(ret);
 		}
 	}
 
@@ -78,14 +84,14 @@ public class Radio {
 			return Float.parseFloat(next());
 		}
 
-        public String[] nextArray(int size) {
-            String[] ret = new String[size];
-            for (int i = 0; i < size; ++i) {
-                ret[i] = next();
-            }
-            return ret;
-        }
-        
+		public String[] nextArray(int size) {
+			String[] ret = new String[size];
+			for (int i = 0; i < size; ++i) {
+				ret[i] = next();
+			}
+			return ret;
+		}
+
 		public int[] nextIntArray(int size) {
 			int[] ret = new int[size];
 			for (int i = 0; i < size; ++i) {
