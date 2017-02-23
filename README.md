@@ -1,5 +1,5 @@
 ![kaizen](http://getflycrm.com/wp-content/uploads/2016/02/kaizen-la-gi.jpg)
-# 2_hours_of_code
+## Schedule
 | Day | Objective | Note                       |
 |-----|-----------|----------------------------|
 | Mon | CF        | Compete or one problem set |
@@ -10,5 +10,5 @@
 | Sat | CC        | Compete or free2play       |
 | Sun | LC        | Same as Wed                |
 
-# Personal projects
- 1.5 hours
+## Note for myself
+ 1.5 hours for other personal projects
