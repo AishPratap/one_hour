@@ -5,7 +5,7 @@
 | Mon | CF        | Compete or one problem set |
 | Tue | HR        | Compete or free2play       |
 | Wed | LC        | Change category daily      |
-| Thu | GG        | Same as Tue                |
+| Thu | GG        | Free2Play                  |
 | Fri | TC        | Compete or one SRM         |
 | Sat | CC        | Compete or free2play       |
 | Sun | LC        | Same as Wed                |
