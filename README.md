@@ -9,6 +9,3 @@
 | Fri | TC        | Compete or one SRM         |
 | Sat | CC        | Compete or free2play       |
 | Sun | LC        | Same as Wed                |
-
-## Note for myself
- 1.5 hours for other personal projects
